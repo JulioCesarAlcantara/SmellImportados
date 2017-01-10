@@ -57,6 +57,7 @@
                     <input type="radio" id="inputSexo" class="radio-inline" name="gender" value="other"> Outro <br> 
                     <br><input type="text" id="inputEndereco" class="form-control" placeholder="Endereço" name="enderecoCliente" ></br>
                     <br><input type="number" id="inputCep" class="form-control" placeholder="CEP" name="cepCliente"></br>
+                    
                     <button class="btn btn-lg btn-primary btn-block" type="submit" value="cadastraCliente">Cadastrar</button>
                 </form>
             </div>
