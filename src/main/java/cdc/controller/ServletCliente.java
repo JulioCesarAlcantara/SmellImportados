@@ -1,9 +1,10 @@
-package Controller;
+package cdc.controller;
 
-import Conexao.DAO;
-import DAO.ClienteDAO;
+import cdc.model.ClienteDAO;
 import Model.ClienteModel;
 import java.io.IOException;
+import cdc.util.DAO;
+import java.text.SimpleDateFormat;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cesar
  */
-@WebServlet(name = "ServletCliente", urlPatterns = {"/ServletCliente", "/TelaPrincipal"})
+//@WebServlet(name = "ServletCliente", urlPatterns = {"/ServletCliente", "/TelaPrincipal"})
 public class ServletCliente extends HttpServlet {
 
     /**
@@ -29,6 +30,7 @@ public class ServletCliente extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         System.out.println("aqui 0");
         String cmd = request.getParameter("cmd");
         DAO dao;
@@ -41,29 +43,36 @@ public class ServletCliente extends HttpServlet {
         try {
             dao = new ClienteDAO();
             RequestDispatcher rd = null;
-            if (cmd.equalsIgnoreCase("cadastraCliente")) {
-                Integer idCidadeCliente = Integer.parseInt(request.getParameter("idCidadeCliente"));
+            if (cmd.equalsIgnoreCase("saveAdd")) {
+                //  Integer idCidadeCliente = Integer.parseInt(request.getParameter("idCidadeCliente"));
                 String nomeCliente = request.getParameter("nomeCliente");
                 String sexoCliente = request.getParameter("sexoCliente");
+                System.out.println(sexoCliente);
                 String cpfCliente = request.getParameter("cpfCliente");
+                String dataNascimentoCliente = request.getParameter("dataNascimentoCliente");
                 String telefone1Cliente = request.getParameter("telefone1Cliente");
-                String telefone2Cliente= request.getParameter("telefone2Cliente");
-                String emailCliente= request.getParameter("emailCliente");
+                String telefone2Cliente = request.getParameter("telefone2Cliente");
+                String emailCliente = request.getParameter("emailCliente");
                 String enderecoCliente = request.getParameter("endereçocliente");
                 String cepCliente = request.getParameter("cepCliente");
-                
+
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                java.sql.Date data = new java.sql.Date(format.parse(dataNascimentoCliente).getTime());
+
                 System.out.println("aqui 1");
-               
-                ClienteModel cliente = new ClienteModel(nomeCliente, sexoCliente, cpfCliente, telefone1Cliente, telefone2Cliente, emailCliente, enderecoCliente, cepCliente);                  
-                dao.cadastra(cliente);
-                rd=request.getRequestDispatcher("/TelaPrincipal.jsp");
+
+                ClienteModel cliente = new ClienteModel(nomeCliente, telefone1Cliente, telefone2Cliente, emailCliente, cepCliente, data, sexoCliente, cpfCliente, enderecoCliente, cepCliente);
+                dao.salvar(cliente);
+                rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
+
+            } else {
+                rd = request.getRequestDispatcher("/index.html");
 
             }
-            
-              rd.forward(request, response);
+
         } catch (Exception e) {
             e.printStackTrace();
-            throw new ServletException(e); 
+            throw new ServletException(e);
         }
 
     }

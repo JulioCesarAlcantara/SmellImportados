@@ -43,22 +43,28 @@
         <div id ="redor">
             <div class="container">
 
-                <form class="form-signin" action="TelaPrincipal" method="post">
+                <form class="form-signin" action="clientes" method="post">
                     
-                    <h2 class="form-signin-heading">Cadastro de Clientes ... </h2>
-                    <input type="hidden" name="cmd" value="cadastraCliente"/>
+                    <h2 class="form-signin-heading">Cadastro de Clientes ... </h2><br>
+                    <input type="hidden" name="cmd" value="saveAdd"/>
                     <input type="name" id="inputName" class="form-control" placeholder="Nome " name="nomeCliente"></br>                    
                     <br><input type="email" id="inputEmail" class="form-control" placeholder="Email" name="emailCliente"></br>
-                    <br><input type="text" id="inputCPF" class="form-control" placeholder="CPF " name="cpfCliente"  pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"></br>
+                    <br><input type="text" id="inputCPF" class="form-control" placeholder="CPF " name="cpfCliente"></br>
+                    <br><input type="text" id="inputDt" class="form-control" placeholder="Data Nascimento " name="dataNascimentoCliente"></br>
                     <br><input type="tel" id="inputTelefone1" class="form-control" placeholder="Telefone1" name="telefone1Cliente"></br>
                     <br><input type="tel" id="inputTelefone2" class="form-control" placeholder="Telefone2" name="telefone2Cliente"></br>
-                    <input type="radio" id="inputSexo" class="radio-inline" name="gender" value="male"> Masculino
-                    <input type="radio" id="inputSexo" class="radio-inline" name="gender" value="female"> Feminino
-                    <input type="radio" id="inputSexo" class="radio-inline" name="gender" value="other"> Outro <br> 
+                    <input type="radio" name="sexoCliente" value="m"> Masculino
+                    <input type="radio" name="sexoCliente" value="f"> Feminino
                     <br><input type="text" id="inputEndereco" class="form-control" placeholder="Endereço" name="enderecoCliente" ></br>
+                    <br><select class="form-control" name ="estadoCliente">                        
+                        <option value="Goiás">Goiás</option>
+                    </select> 
+                    <br><select class="form-control" name ="cidadeCliente">                        
+                        <option value="caturai">Caturai</option>
+                    </select> 
                     <br><input type="number" id="inputCep" class="form-control" placeholder="CEP" name="cepCliente"></br>
                     
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" value="cadastraCliente">Cadastrar</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Salvar">Cadastrar</button>
                 </form>
             </div>
         </div>

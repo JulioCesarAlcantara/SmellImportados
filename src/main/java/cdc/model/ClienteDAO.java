@@ -1,7 +1,7 @@
-package DAO;
+package cdc.model;
 
-import Conexao.ConnectionDAO;
-import Conexao.DAO;
+import cdc.util.ConnectionDAO;
+import cdc.util.DAO;
 import Model.ClienteModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class ClienteDAO implements DAO {
 
-    private Connection conn = null; 
+    private Connection conn = null;
 
     @Override
     public void atualizar(Object ob) throws Exception {
@@ -37,30 +37,33 @@ public class ClienteDAO implements DAO {
     }
 
     @Override
-    public void cadastra(Object ob) throws Exception {
+    public void salvar(Object ob) throws Exception {
         ClienteModel cli;
         cli = (ClienteModel) ob;
         PreparedStatement ps = null;
-        Connection conn = ConnectionDAO.getConnection(); 
+        Connection conn = ConnectionDAO.getConnection();
 
         if (cli == null) {
             throw new Exception("O valor designado para o cliente não pode ser nulo. Por favor informe valores.");
         }
 
         try {
-            String query = "INSERT INTO Cliente (idCliente, nomeCliente, sexoCliente, cpfCliente, telefone1Cliente, telefone2Cliente, emailcliente, cepCliente, idCidadeCliente) VALUES (?,?,?,?,?,?,?,?,?)";
+            String query = "insert into Usuario (nomeUsuario, telefone1Usuario, telefone2Usuario, emailUsuario, "
+                    + "tipoUsuario, dataNascimentoUsuario, sexoUsuario, "
+                    + "cpfUsuario, enderecoUsuario, cepUsuario) values (?,?,?,?,?,?,?,?,?,?)";
             ps = conn.prepareStatement(query);
 
-            ps.setInt(1, cli.getIdCliente());
-            ps.setString(2, cli.getNomeCliente());
-            ps.setString(3, cli.getSexoCliente());
-            ps.setString(4, cli.getCpfCliente());
-            ps.setString(5, cli.getTelefone1Cliente());
-            ps.setString(6, cli.getTelefone2Cliente());
-            ps.setString(7, cli.getEmailCliente());
-            ps.setString(8, cli.getCepCliente());
-            ps.setInt(9, cli.getIdCidadeCliente());
-
+            ps.setString(1, cli.getNomeCliente());
+            ps.setString(2, cli.getTelefone1Cliente());
+            ps.setString(3, cli.getTelefone2Cliente());
+            ps.setString(4, cli.getEmailCliente());
+            ps.setString(5, "c");
+            ps.setDate(6, cli.getDataNascimentoCliente());
+            ps.setString(7, cli.getSexoCliente());
+            ps.setString(8, cli.getCpfCliente());
+            ps.setString(9, cli.getEnderecoCliente());
+            ps.setString(10, cli.getCepCliente());
+            System.out.println(ps);
             System.out.println("aqui 2");
 
             ps.executeUpdate();
