@@ -5,6 +5,7 @@
     <groupId>br.edu.ifg</groupId>
     <artifactId>SmellImportados</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <packaging>war</packaging>
 
     <name>SmellImportados</name>
