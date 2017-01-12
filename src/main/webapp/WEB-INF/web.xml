@@ -3,20 +3,17 @@
     <servlet>
         <servlet-name>usuarios</servlet-name>
         <servlet-class>cdc.controller.ServletUsuario</servlet-class>
-        <init-param>
-            <param-name>adminEmail</param-name>
-            <param-value>victor.lopes@ifg.edu.br</param-value>
-        </init-param>
-    </servlet>
+</servlet>
     
     <servlet>
         <servlet-name>clientes</servlet-name>
         <servlet-class>cdc.controller.ServletCliente</servlet-class>
-        <init-param>
-            <param-name>adminEmail</param-name>
-            <param-value>victor.lopes@ifg.edu.br</param-value>
-        </init-param>
-    </servlet>
+ </servlet>
+ 
+     <servlet>
+        <servlet-name>promocao</servlet-name>
+        <servlet-class>cdc.controller.ServletPromocao</servlet-class>
+ </servlet>
     
     <servlet-mapping>
         <servlet-name>usuarios</servlet-name>
@@ -28,10 +25,12 @@
         <url-pattern>/clientes</url-pattern>
     </servlet-mapping>
     
-    <context-param>
-        <param-name>emailGeral</param-name>
-        <param-value>victorhullopes@gmail.com</param-value>
-    </context-param>
+        <servlet-mapping>
+        <servlet-name>promocao</servlet-name>
+        <url-pattern>/promocao</url-pattern>
+    </servlet-mapping>
+    
+
     <session-config>
         <session-timeout>
             30

@@ -4,58 +4,70 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        
+        <title>Cadastro de Clientes</title>
+        <link href="sistemCSS_1.css" rel="stylesheet">
     </head>
-    <body>
-        <h1> Smell Importados </h1>
-        <div style="padding:10px; background-color: #cccccc; text-align: center;">
-            <span style='padding: 5px'>
-                <a href="autores?cmd=listar" title="Clique para listar os autores">Produtos </a>
-            </span>
-             <span style='padding: 5px'>
-                <a href="autores?cmd=listar" title="Clique para listar os autores">Categorias</a>
-            </span>
-            <span style="padding: 5px">
-            <a href="publicacoes?cmd=listar" title="Clique para listar as publicações">Sobre nós</a>
-            </span>
-            <span style="padding: 5px">
-            <a href="addAutor.jsp" title="Clique para cadastrar novo autor">Novo Cliente</a>
-            </span>
+   <body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand"><span>Smell Importados</span><br></a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                    <i class="fa fa-3x fa-car fa-fw pull-right text-muted"></i>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="TelaPrincipal.jsp">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Contacts</a>
+                        </li>
+                        <li>
+                            <a href="login.jsp">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
+       
+       <div id ="redor">
+            <div class="container">
         
-         <div style="padding: 10px; margin:10px;">
-             <p><h1> Cadastra Usuários </h1></p>
-            <form action="usuarios" method="post">
+            <form class="form-signin" action="usuarios" method="post">
+                    <h2 class="form-signin-heading">Cadastro de Usuários </h2><br>
                 <input type="hidden" name="cmd" value="saveAdd" /> 
-                <label> Nome do Usuário </label>
-                <input type="text" name="nomeUsuario"/>
-                <br /><br />
-               <label> Telefone 1 </label>
-               <input type="text" name="telefone1Usuario" /> 
-               <br><br />
-               <label> Telefone 2 </label>
-               <input type="text" name="telefone2Usuario" /> 
-               <br><br />
-               <label> Email </label>
-               <input type="email" name="emailUsuario" /> 
-               <br><br />
+                <input type="name" class="form-control" placeholder="Nome " name="nomeUsuario"></br>
+             
+               <input type="email" class="form-control" placeholder="Email" name="emailUsuario" /> 
+               <br>
+               <input type="text" class="form-control" placeholder="Telefone 1" name="telefone1Usuario" /> 
+               <br>
+               <input type="text" class="form-control" placeholder="Telefone 2" name="telefone2Usuario" /> 
+               <br>
                <label> Tipo Usuário </label><br />
                  <input type="radio" name="tipoUsuario" value="a"> Adm do Sistema<br>
                  <input type="radio" name="tipoUsuario" value="g"> Gerente da Loja<br>
                  <input type="radio" name="tipoUsuario" value="e"> Encarregado<br>
                  <input type="radio" name="tipoUsuario" value="v"> Vendedor<br>
-               <br><br />
-               <label> Data de Nascimento </label>
-               <input type="text" name="dataNascimentoUsuario" /> 
-               <br><br />
+               <br>
+               <input type="text" class="form-control" placeholder="Data de nascimento" name="dataNascimentoUsuario" /> 
+               <br>
                <label> Sexo </label><br />
                  <input type="radio" name="sexoUsuario" value="m"> Masculino<br>
                  <input type="radio" name="sexoUsuario" value="f"> Feminino<br> 
-               <br><br />
+               <br>
+               <input type="password" class="form-control" placeholder="Senha" name="passwordUsuario" />
+               <br>
                
-               <input type="submit" value="Salvar">
+                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Salvar">Cadastrar</button>
             </form>
         </div>
+       </div>
     </body>
 </html>

@@ -31,7 +31,6 @@ public class ServletCliente extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("aqui 0");
         String cmd = request.getParameter("cmd");
         DAO dao;
         request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
@@ -55,13 +54,12 @@ public class ServletCliente extends HttpServlet {
                 String emailCliente = request.getParameter("emailCliente");
                 String enderecoCliente = request.getParameter("endereçocliente");
                 String cepCliente = request.getParameter("cepCliente");
+                String passwordCliente = request.getParameter("passwordCliente");
 
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 java.sql.Date data = new java.sql.Date(format.parse(dataNascimentoCliente).getTime());
 
-                System.out.println("aqui 1");
-
-                ClienteModel cliente = new ClienteModel(nomeCliente, telefone1Cliente, telefone2Cliente, emailCliente, cepCliente, data, sexoCliente, cpfCliente, enderecoCliente, cepCliente);
+                ClienteModel cliente = new ClienteModel(nomeCliente, telefone1Cliente, telefone2Cliente, emailCliente, cepCliente, data, sexoCliente, cpfCliente, enderecoCliente, cepCliente, passwordCliente);
                 dao.salvar(cliente);
                 rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
 

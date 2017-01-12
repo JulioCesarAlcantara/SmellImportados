@@ -5,6 +5,8 @@
  */
 package cdc.model;
 
+import java.sql.Date;
+
 /**
  *
  * @author erik
@@ -13,8 +15,8 @@ public class Promocao {
     
     private int idPromocao;
     private String nomePromocao;
-    private String dataInicioPromocao;
-    private String dataFimPromocao;
+    private Date dataInicioPromocao;
+    private Date dataFimPromocao;
     private float descontoPromocao;
     private String statusPromocao;
     private int idProdutoPromocao;
@@ -22,7 +24,7 @@ public class Promocao {
     public Promocao() {
     }
 
-    public Promocao(int idPromocao, String nomePromocao, String dataInicioPromocao, String dataFimPromocao, float descontoPromocao, String statusPromocao, int idProdutoPromocao) {
+    public Promocao(int idPromocao, String nomePromocao, Date dataInicioPromocao, Date dataFimPromocao, float descontoPromocao, String statusPromocao, int idProdutoPromocao) {
         this.idPromocao = idPromocao;
         this.nomePromocao = nomePromocao;
         this.dataInicioPromocao = dataInicioPromocao;
@@ -31,6 +33,16 @@ public class Promocao {
         this.statusPromocao = statusPromocao;
         this.idProdutoPromocao = idProdutoPromocao;
     }
+
+    public Promocao(String nomePromocao, Date dataInicioPromocao, Date dataFimPromocao, float descontoPromocao, String statusPromocao) {
+        this.nomePromocao = nomePromocao;
+        this.dataInicioPromocao = dataInicioPromocao;
+        this.dataFimPromocao = dataFimPromocao;
+        this.descontoPromocao = descontoPromocao;
+        this.statusPromocao = statusPromocao;
+    }
+    
+    
 
     public int getIdPromocao() {
         return idPromocao;
@@ -48,19 +60,19 @@ public class Promocao {
         this.nomePromocao = nomePromocao;
     }
 
-    public String getDataInicioPromocao() {
+    public Date getDataInicioPromocao() {
         return dataInicioPromocao;
     }
 
-    public void setDataInicioPromocao(String dataInicioPromocao) {
+    public void setDataInicioPromocao(Date dataInicioPromocao) {
         this.dataInicioPromocao = dataInicioPromocao;
     }
 
-    public String getDataFimPromocao() {
+    public Date getDataFimPromocao() {
         return dataFimPromocao;
     }
 
-    public void setDataFimPromocao(String dataFimPromocao) {
+    public void setDataFimPromocao(Date dataFimPromocao) {
         this.dataFimPromocao = dataFimPromocao;
     }
 

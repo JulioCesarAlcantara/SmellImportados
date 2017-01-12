@@ -51,11 +51,12 @@ public class ServletUsuario extends HttpServlet {
                 String tipoUsuario = request.getParameter("tipoUsuario");
                 String dataNascimentoUsuario = request.getParameter("dataNascimentoUsuario");
                 String sexoUsuario = request.getParameter("sexoUsuario");
+                String passwordUsuario = request.getParameter("passwordUsuario");
 
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 java.sql.Date data = new java.sql.Date(format.parse(dataNascimentoUsuario).getTime());
 
-                Usuario usuario = new Usuario(nomeUsuario, telefone1Usuario, telefone2Usuario, emailUsuario, tipoUsuario, data, sexoUsuario);
+                Usuario usuario = new Usuario(nomeUsuario, telefone1Usuario, telefone2Usuario, emailUsuario, tipoUsuario, data, sexoUsuario, passwordUsuario);
                 dao.salvar(usuario);
                 rd = request.getRequestDispatcher("/index.html");
             } else {

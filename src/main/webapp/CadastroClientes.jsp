@@ -1,9 +1,3 @@
-<%-- 
-    Document   : CadastraUsuario
-    Created on : 28/10/2016, 11:21:31
-    Author     : cesar
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -45,7 +39,7 @@
 
                 <form class="form-signin" action="clientes" method="post">
                     
-                    <h2 class="form-signin-heading">Cadastro de Clientes ... </h2><br>
+                    <h2 class="form-signin-heading">Cadastro de Clientes </h2><br>
                     <input type="hidden" name="cmd" value="saveAdd"/>
                     <input type="name" id="inputName" class="form-control" placeholder="Nome " name="nomeCliente"></br>                    
                     <br><input type="email" id="inputEmail" class="form-control" placeholder="Email" name="emailCliente"></br>
@@ -53,8 +47,8 @@
                     <br><input type="text" id="inputDt" class="form-control" placeholder="Data Nascimento " name="dataNascimentoCliente"></br>
                     <br><input type="tel" id="inputTelefone1" class="form-control" placeholder="Telefone1" name="telefone1Cliente"></br>
                     <br><input type="tel" id="inputTelefone2" class="form-control" placeholder="Telefone2" name="telefone2Cliente"></br>
-                    <input type="radio" name="sexoCliente" value="m"> Masculino
-                    <input type="radio" name="sexoCliente" value="f"> Feminino
+                    <input type="radio" name="sexoCliente" value="m"> Masculino <br><br>
+                    <input type="radio" name="sexoCliente" value="f"> Feminino <br>
                     <br><input type="text" id="inputEndereco" class="form-control" placeholder="Endereço" name="enderecoCliente" ></br>
                     <br><select class="form-control" name ="estadoCliente">                        
                         <option value="Goiás">Goiás</option>
@@ -63,6 +57,8 @@
                         <option value="caturai">Caturai</option>
                     </select> 
                     <br><input type="number" id="inputCep" class="form-control" placeholder="CEP" name="cepCliente"></br>
+                    
+                    <input type="password" id="inputpassword" class="form-control" placeholder="Senha" name="passwordCliente"></br>
                     
                     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Salvar">Cadastrar</button>
                 </form>

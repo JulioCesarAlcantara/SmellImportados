@@ -196,7 +196,7 @@ public class UsuarioDAO  implements DAO {
         }
 
         try {
-            String sql = "insert into Usuario (nomeUsuario, telefone1Usuario, telefone2Usuario, emailUsuario, tipoUsuario, dataNascimentoUsuario, sexoUsuario) values (?,?,?,?,?,?,?)";
+            String sql = "insert into Usuario (nomeUsuario, telefone1Usuario, telefone2Usuario, emailUsuario, tipoUsuario, dataNascimentoUsuario, sexoUsuario, passwordUsuario) values (?,?,?,?,?,?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setString(1, com.getNomeUsuario());
@@ -206,6 +206,7 @@ public class UsuarioDAO  implements DAO {
             ps.setString(5, com.getTipoUsuario());
             ps.setDate(6, com.getDataNascimentoUsuario());
             ps.setString(7, com.getSexoUsuario());
+            ps.setString(8, com.getPasswordUsuario());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);

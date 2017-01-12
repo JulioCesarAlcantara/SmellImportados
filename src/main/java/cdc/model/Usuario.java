@@ -16,12 +16,13 @@ public class Usuario {
     private String tipoUsuario;
     private Date dataNascimentoUsuario;
     private String sexoUsuario;
+    private String passwordUsuario;
     private int idClienteUsuario;
 
     public Usuario() {
     }
 
-    public Usuario(String nomeUsuario, String telefone1Usuario, String telefone2Usuario, String emailUsuario, String tipoUsuario, Date dataNascimentoUsuario, String sexoUsuario) {
+    public Usuario(String nomeUsuario, String telefone1Usuario, String telefone2Usuario, String emailUsuario, String tipoUsuario, Date dataNascimentoUsuario, String sexoUsuario, String passwordUsuario) {
         this.nomeUsuario = nomeUsuario;
         this.telefone1Usuario = telefone1Usuario;
         this.telefone2Usuario = telefone2Usuario;
@@ -29,10 +30,11 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
         this.dataNascimentoUsuario = dataNascimentoUsuario;
         this.sexoUsuario = sexoUsuario;
+        this.passwordUsuario = passwordUsuario;
     }
 
     
-    public Usuario(int idUsuario, String nomeUsuario, String telefone1Usuario, String telefone2Usuario, String emailUsuario, String tipoUsuario, Date dataNascimentoUsuario, String sexoUsuario, int idClienteUsuario) {
+    public Usuario(int idUsuario, String nomeUsuario, String telefone1Usuario, String telefone2Usuario, String emailUsuario, String tipoUsuario, Date dataNascimentoUsuario, String sexoUsuario, String passwordUsuario, int idClienteUsuario) {
         this.idUsuario = idUsuario;
         this.nomeUsuario = nomeUsuario;
         this.telefone1Usuario = telefone1Usuario;
@@ -41,7 +43,16 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
         this.dataNascimentoUsuario = dataNascimentoUsuario;
         this.sexoUsuario = sexoUsuario;
+        this.passwordUsuario = passwordUsuario;
         this.idClienteUsuario = idClienteUsuario;
+    }
+
+    public String getPasswordUsuario() {
+        return passwordUsuario;
+    }
+
+    public void setPasswordUsuario(String passwordUsuario) {
+        this.passwordUsuario = passwordUsuario;
     }
 
     public int getIdUsuario() {

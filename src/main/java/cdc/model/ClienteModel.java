@@ -19,12 +19,13 @@ public class ClienteModel {
     String cpfCliente;
     String enderecoCliente;
     String cepCliente;
+    String passwordCliente;
     Integer idCidadeCliente;
 
     public ClienteModel() {
     }
 
-    public ClienteModel(String nomeCliente, String telefone1Cliente, String telefone2Cliente, String emailCliente, String tipoCliente, Date dataNascimentoCliente, String sexoCliente, String cpfCliente, String enderecoCliente, String cepCliente, Integer idCidadeCliente) {
+    public ClienteModel(String nomeCliente, String telefone1Cliente, String telefone2Cliente, String emailCliente, String tipoCliente, Date dataNascimentoCliente, String sexoCliente, String cpfCliente, String enderecoCliente, String cepCliente, String passwordCliente, Integer idCidadeCliente) {
         this.nomeCliente = nomeCliente;
         this.telefone1Cliente = telefone1Cliente;
         this.telefone2Cliente = telefone2Cliente;
@@ -35,10 +36,11 @@ public class ClienteModel {
         this.cpfCliente = cpfCliente;
         this.enderecoCliente = enderecoCliente;
         this.cepCliente = cepCliente;
+        this.passwordCliente = passwordCliente;
         this.idCidadeCliente = idCidadeCliente;
     }
     
-     public ClienteModel(String nomeCliente, String telefone1Cliente, String telefone2Cliente, String emailCliente, String tipoCliente, Date dataNascimentoCliente, String sexoCliente, String cpfCliente, String enderecoCliente, String cepCliente) {
+     public ClienteModel(String nomeCliente, String telefone1Cliente, String telefone2Cliente, String emailCliente, String tipoCliente, Date dataNascimentoCliente, String sexoCliente, String cpfCliente, String enderecoCliente, String cepCliente, String passwordCliente) {
         this.nomeCliente = nomeCliente;
         this.telefone1Cliente = telefone1Cliente;
         this.telefone2Cliente = telefone2Cliente;
@@ -49,8 +51,16 @@ public class ClienteModel {
         this.cpfCliente = cpfCliente;
         this.enderecoCliente = enderecoCliente;
         this.cepCliente = cepCliente;
+        this.passwordCliente = passwordCliente;
+    }
+    
+    public String getPasswordCliente() {
+        return passwordCliente;
     }
 
+    public void setPasswordCliente(String passwordCliente) {
+        this.passwordCliente = passwordCliente;
+    }
 
     public Integer getIdCliente() {
         return idCliente;

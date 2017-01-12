@@ -42,8 +42,8 @@ public class PromocaoDAO implements DAO {
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.setString(1, prom.getNomePromocao());
-            ps.setString(2, prom.getDataInicioPromocao());
-            ps.setString(3, prom.getDataFimPromocao());
+            ps.setDate(2, prom.getDataInicioPromocao());
+            ps.setDate(3, prom.getDataFimPromocao());
             ps.setFloat(4, prom.getDescontoPromocao());
             ps.setString(5, prom.getStatusPromocao());
             ps.setInt(6, prom.getIdProdutoPromocao());
@@ -189,15 +189,14 @@ public class PromocaoDAO implements DAO {
             throw new Exception("O valor passado não pode ser nulo");
         }
         try {
-            String SQL = "INSERT INTO Promocao (nomePromocao, dataInicioPromocao, dataFimPromocao, descontoPromocao, statusPromocao, idProdutoPromocao) VALUES (?,?,?,?,?,?)";
+            String SQL = "INSERT INTO Promocao (nomePromocao, dataInicioPromocao, dataFimPromocao, descontoPromocao, statusPromocao) VALUES (?,?,?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.setString(1, cat.getNomePromocao());
-            ps.setString(2, cat.getDataInicioPromocao());
-            ps.setString(3, cat.getDataFimPromocao());
+            ps.setDate(2, cat.getDataInicioPromocao());
+            ps.setDate(3, cat.getDataFimPromocao());
             ps.setFloat(4, cat.getDescontoPromocao());
             ps.setString(5, cat.getStatusPromocao());
-            ps.setInt(6, cat.getIdProdutoPromocao());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception("Erro ao inserir dados da Promocao:\n" + e);
