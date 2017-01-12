@@ -4,6 +4,11 @@
     Author     : cesar
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="cdc.model.EstadoDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="cdc.model.Estado"%>
+<%@page import="cdc.model.CidadeEstadoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -44,7 +49,7 @@
             <div class="container">
 
                 <form class="form-signin" action="clientes" method="post">
-                    
+
                     <h2 class="form-signin-heading">Cadastro de Clientes ... </h2><br>
                     <input type="hidden" name="cmd" value="saveAdd"/>
                     <input type="name" id="inputName" class="form-control" placeholder="Nome " name="nomeCliente"></br>                    
@@ -56,14 +61,23 @@
                     <input type="radio" name="sexoCliente" value="m"> Masculino
                     <input type="radio" name="sexoCliente" value="f"> Feminino
                     <br><input type="text" id="inputEndereco" class="form-control" placeholder="Endereço" name="enderecoCliente" ></br>
-                    <br><select class="form-control" name ="estadoCliente">                        
-                        <option value="Goiás">Goiás</option>
+                    <br><select class="form-control" name ="estado">
+                        <%
+                            List estados = (List) request.getAttribute("estado");
+                            for(int i = 0; i < estados.size(); i++) {
+                                Estado estadoLocal = (Estado) estados.get(i);
+                        %>  
+
+                        <option value=<%=estadoLocal.getIdEstado()%>><%=estadoLocal.getEstadoSigla()%></option>
+
+                        <%}%>     
+
                     </select> 
                     <br><select class="form-control" name ="cidadeCliente">                        
                         <option value="caturai">Caturai</option>
                     </select> 
-                    <br><input type="number" id="inputCep" class="form-control" placeholder="CEP" name="cepCliente"></br>
-                    
+                    <br><input type="text" id="inputCep" class="form-control" placeholder="CEP" name="cepCliente"></br>
+
                     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Salvar">Cadastrar</button>
                 </form>
             </div>
