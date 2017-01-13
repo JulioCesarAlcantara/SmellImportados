@@ -2,7 +2,6 @@ package cdc.model;
 
 import cdc.util.ConnectionDAO;
 import cdc.util.DAO;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -185,7 +184,7 @@ public class EstadoDAO implements DAO {
             ConnectionDAO.closeConnection(conn, ps);
         }
     }
-
+    
     public List<Estado> teste() throws Exception {
         PreparedStatement ps = null;
         Connection conn = ConnectionDAO.getConnection();
@@ -208,39 +207,5 @@ public class EstadoDAO implements DAO {
         return estado; 
         
     }
-
-    public List buscaEstados() throws Exception {
-        PreparedStatement ps = null;
-
-        Connection conn = ConnectionDAO.getConnection();
-
-        List estados = new ArrayList();
-
-        try {
-            String sql = "SELECT estadoSigla AS Sigla FROM Estado";
-            // ResultSet rs = ps.executeQuery();
-            ps = conn.prepareStatement(sql);
-            ResultSet rs = (ResultSet) ps;
-
-            System.out.println("Aqui 1");
-
-            while (rs.next()) {
-                String estadoNome = rs.getString(1);
-                String estadoSigla = rs.getString(2);
-
-                estados.add(new Estado(estadoNome, estadoSigla));
-                System.out.println("Aqui 2");
-
-            }
-            System.out.println("Array de ESTADOS: " + estados);
-
-        } catch (SQLException e) {
-            throw new Exception("Erro ao buscar Estados: " + e);
-        } finally {
-            ConnectionDAO.closeConnection(conn, ps);
-        }
-
-        return estados;
-
-    }
+    
 }
