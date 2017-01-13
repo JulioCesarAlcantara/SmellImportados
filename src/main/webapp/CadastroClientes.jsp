@@ -50,12 +50,23 @@
                     <input type="radio" name="sexoCliente" value="m"> Masculino <br><br>
                     <input type="radio" name="sexoCliente" value="f"> Feminino <br>
                     <br><input type="text" id="inputEndereco" class="form-control" placeholder="Endereço" name="enderecoCliente" ></br>
-                    <br><select class="form-control" name ="estadoCliente">                        
-                        <option value="Goiás">Goiás</option>
+                    <br><select class="form-control" name ="estado">
+                        <%
+                            List estados = (List) request.getAttribute("estado");
+                            for(int i = 0; i < estados.size(); i++) {
+                                Estado estadoLocal = (Estado) estados.get(i);
+                        %>  
+
+                        <option value=<%=estadoLocal.getIdEstado()%>><%=estadoLocal.getEstadoSigla()%></option>
+
+                        <%}%>     
+
                     </select> 
                     <br><select class="form-control" name ="cidadeCliente">                        
                         <option value="caturai">Caturai</option>
                     </select> 
+                    <br><input type="text" id="inputCep" class="form-control" placeholder="CEP" name="cepCliente"></br>
+
                     <br><input type="number" id="inputCep" class="form-control" placeholder="CEP" name="cepCliente"></br>
                     
                     <input type="password" id="inputpassword" class="form-control" placeholder="Senha" name="passwordCliente"></br>

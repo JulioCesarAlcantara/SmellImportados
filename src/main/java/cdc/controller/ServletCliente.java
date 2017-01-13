@@ -2,12 +2,14 @@ package cdc.controller;
 
 import cdc.model.ClienteDAO;
 import Model.ClienteModel;
+import cdc.model.Estado;
+import cdc.model.EstadoDAO;
 import java.io.IOException;
 import cdc.util.DAO;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,6 +56,10 @@ public class ServletCliente extends HttpServlet {
                 String emailCliente = request.getParameter("emailCliente");
                 String enderecoCliente = request.getParameter("endereçocliente");
                 String cepCliente = request.getParameter("cepCliente");
+                
+                EstadoDAO a = new EstadoDAO(); 
+                List estadoList = a.teste(); 
+                request.setAttribute("estado", estadoList);
                 String passwordCliente = request.getParameter("passwordCliente");
 
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");

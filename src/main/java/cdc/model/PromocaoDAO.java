@@ -96,7 +96,7 @@ public class PromocaoDAO implements DAO {
                 float descontoPromo = rs.getFloat(5);
                 String statusPromo = rs.getString(6);
                 Integer idProdutoPromocao = rs.getInt(7);
-                list.add(new Promocao(idPromocao, nomePromocao, dataInicio, dataFim, descontoPromo, statusPromo, idProdutoPromocao));
+//                list.add(new Promocao(idPromocao, nomePromocao, dataInicio, dataFim, descontoPromo, statusPromo, idProdutoPromocao));
             }
             return list;
         } catch (SQLException sqle) {
@@ -169,7 +169,7 @@ public class PromocaoDAO implements DAO {
                 float descontoPromo = rs.getFloat(5);
                 String statusPromo = rs.getString(6);
                 Integer idProdutoPromocao = rs.getInt(7);
-                list.add(new Promocao(idPromocao, nomePromocao, dataInicio, dataFim, descontoPromo, statusPromo, idProdutoPromocao));
+               // list.add(new Promocao(idPromocao, nomePromocao, dataInicio, dataFim, descontoPromo, statusPromo, idProdutoPromocao));
             }
             return list;
         } catch (SQLException sqle) {
