@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author erik
  */
-public class ProdutoDAO  implements DAO {
+public class ProdutoDAO implements DAO {
 
     Connection conn;
 
@@ -157,7 +157,7 @@ public class ProdutoDAO  implements DAO {
                 if (com.getPrecoProduto() != 0) {
                     ps.setFloat(contaCampos, com.getPrecoProduto());
                 }
-                if(com.getIdCategoriaProduto() != 0){
+                if (com.getIdCategoriaProduto() != 0) {
                     ps.setInt(contaCampos, com.getIdCategoriaProduto());
                 }
             }
@@ -190,12 +190,15 @@ public class ProdutoDAO  implements DAO {
         }
 
         try {
-            String sql = "insert into Produto (nomeProduto, precoProduto, idCategoriaProduto) values (?,?,?)";
+            String sql = "insert into Produto (nomeProduto, precoProduto, descricaoProduto, imagemProduto, idCategoriaProduto,PalavrasChave_idPalavrasChave) values (?,?,?,?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setString(1, com.getNomeProduto());
             ps.setFloat(2, com.getPrecoProduto());
-            ps.setInt(3, com.getIdCategoriaProduto());
+            ps.setString(3, com.getDescricaoProduto());
+            ps.setBlob(4, com.getImagemProduto());
+            ps.setInt(5, com.getIdCategoriaProduto());
+            ps.setInt(6, com.getIdPalavraChave());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);
@@ -204,6 +207,20 @@ public class ProdutoDAO  implements DAO {
         }
     }
 
-}
-    
+    public byte[] recuperaImagem(int codimagem) throws Exception {
+        Connection conn = ConnectionDAO.getConnection();
+        String SQL = "select imagemProduto from Produto";
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        
+        try {
+            ResultSet resultado = ps.executeQuery();
+            if (resultado.next()) {
+                return resultado.getBytes("imagemProduto");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 
+}
