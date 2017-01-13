@@ -50,7 +50,7 @@ public class ClienteDAO implements DAO {
         try {
             String query = "insert into Usuario (nomeUsuario, telefone1Usuario, telefone2Usuario, emailUsuario, "
                     + "tipoUsuario, dataNascimentoUsuario, sexoUsuario, "
-                    + "cpfUsuario, enderecoUsuario, cepUsuario, passwordUsuario) values (?,?,?,?,?,?,?,?,?,?,?)";
+                    + "cpfUsuario, enderecoUsuario, cepUsuario, passwordUsuario, cidadeUsuario, estadoUsuario) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             ps = conn.prepareStatement(query);
 
             ps.setString(1, cli.getNomeCliente());
@@ -64,6 +64,8 @@ public class ClienteDAO implements DAO {
             ps.setString(9, cli.getEnderecoCliente());
             ps.setString(10, cli.getCepCliente());
             ps.setString(11, cli.getPasswordCliente());
+            ps.setString(12, cli.getCidadeCliente());
+            ps.setString(13, cli.getEstadoCliente());
             ps.executeUpdate();
 
         } catch (SQLException e) {

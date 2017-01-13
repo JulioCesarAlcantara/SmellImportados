@@ -1,3 +1,5 @@
+<%@page import="cdc.model.Estado"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -50,21 +52,17 @@
                     <input type="radio" name="sexoCliente" value="m"> Masculino <br><br>
                     <input type="radio" name="sexoCliente" value="f"> Feminino <br>
                     <br><input type="text" id="inputEndereco" class="form-control" placeholder="Endereço" name="enderecoCliente" ></br>
-                    <br><select class="form-control" name ="estado">
-                        <%
-                            List estados = (List) request.getAttribute("estado");
-                            for(int i = 0; i < estados.size(); i++) {
-                                Estado estadoLocal = (Estado) estados.get(i);
-                        %>  
-
-                        <option value=<%=estadoLocal.getIdEstado()%>><%=estadoLocal.getEstadoSigla()%></option>
-
-                        <%}%>     
-
+                    <br><select class="form-control" name ="estadoCliente">
+                        <option value="GO">Goiás</option>
+                        <option value="TO">Tocantins</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="BA">Bahia</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="RS">Rio Grande do Sul</option>
                     </select> 
-                    <br><select class="form-control" name ="cidadeCliente">                        
-                        <option value="caturai">Caturai</option>
-                    </select> 
+                    <br><input type="text" id="inputCid" class="form-control" placeholder="Cidade" name="cidadeCliente"></br>
                     <br><input type="text" id="inputCep" class="form-control" placeholder="CEP" name="cepCliente"></br>
 
                     <br><input type="number" id="inputCep" class="form-control" placeholder="CEP" name="cepCliente"></br>

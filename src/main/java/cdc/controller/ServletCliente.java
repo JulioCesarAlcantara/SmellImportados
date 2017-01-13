@@ -54,20 +54,18 @@ public class ServletCliente extends HttpServlet {
                 String telefone1Cliente = request.getParameter("telefone1Cliente");
                 String telefone2Cliente = request.getParameter("telefone2Cliente");
                 String emailCliente = request.getParameter("emailCliente");
-                String enderecoCliente = request.getParameter("endereçocliente");
+                String enderecoCliente = request.getParameter("enderecoCliente");
                 String cepCliente = request.getParameter("cepCliente");
-                
-                EstadoDAO a = new EstadoDAO(); 
-                List estadoList = a.teste(); 
-                request.setAttribute("estado", estadoList);
+                String cidadeCliente = request.getParameter("cidadeCliente");
+                String estadoCliente = request.getParameter("estadoCliente");                
                 String passwordCliente = request.getParameter("passwordCliente");
 
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 java.sql.Date data = new java.sql.Date(format.parse(dataNascimentoCliente).getTime());
 
-                ClienteModel cliente = new ClienteModel(nomeCliente, telefone1Cliente, telefone2Cliente, emailCliente, cepCliente, data, sexoCliente, cpfCliente, enderecoCliente, cepCliente, passwordCliente);
+                ClienteModel cliente = new ClienteModel(nomeCliente, telefone1Cliente, telefone2Cliente, emailCliente, cepCliente, data, sexoCliente, cpfCliente, enderecoCliente, cepCliente, passwordCliente, cidadeCliente, estadoCliente);
                 dao.salvar(cliente);
-                rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
+                rd = request.getRequestDispatcher("/clientes.jsp");
 
             } else {
                 rd = request.getRequestDispatcher("/index.html");

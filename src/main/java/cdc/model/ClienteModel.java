@@ -20,12 +20,13 @@ public class ClienteModel {
     String enderecoCliente;
     String cepCliente;
     String passwordCliente;
-    Integer idCidadeCliente;
+    String cidadeCliente;
+    String estadoCliente;
 
     public ClienteModel() {
     }
 
-    public ClienteModel(String nomeCliente, String telefone1Cliente, String telefone2Cliente, String emailCliente, String tipoCliente, Date dataNascimentoCliente, String sexoCliente, String cpfCliente, String enderecoCliente, String cepCliente, String passwordCliente, Integer idCidadeCliente) {
+    public ClienteModel(String nomeCliente, String telefone1Cliente, String telefone2Cliente, String emailCliente, String tipoCliente, Date dataNascimentoCliente, String sexoCliente, String cpfCliente, String enderecoCliente, String cepCliente, String passwordCliente, String cidadeCliente, String estadoCliente) {
         this.nomeCliente = nomeCliente;
         this.telefone1Cliente = telefone1Cliente;
         this.telefone2Cliente = telefone2Cliente;
@@ -36,11 +37,13 @@ public class ClienteModel {
         this.cpfCliente = cpfCliente;
         this.enderecoCliente = enderecoCliente;
         this.cepCliente = cepCliente;
+        this.cidadeCliente = cidadeCliente;
+        this.estadoCliente = estadoCliente;
         this.passwordCliente = passwordCliente;
-        this.idCidadeCliente = idCidadeCliente;
     }
-    
-     public ClienteModel(String nomeCliente, String telefone1Cliente, String telefone2Cliente, String emailCliente, String tipoCliente, Date dataNascimentoCliente, String sexoCliente, String cpfCliente, String enderecoCliente, String cepCliente, String passwordCliente) {
+
+    public ClienteModel(int idCliente, String nomeCliente, String telefone1Cliente, String telefone2Cliente, String emailCliente, String tipoCliente, Date dataNascimentoCliente, String sexoCliente, String cpfCliente, String enderecoCliente, String cepCliente, String passwordCliente, String cidadeCliente, String estadoCliente) {
+        this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
         this.telefone1Cliente = telefone1Cliente;
         this.telefone2Cliente = telefone2Cliente;
@@ -51,9 +54,29 @@ public class ClienteModel {
         this.cpfCliente = cpfCliente;
         this.enderecoCliente = enderecoCliente;
         this.cepCliente = cepCliente;
+        this.cidadeCliente = cidadeCliente;
+        this.estadoCliente = estadoCliente;
         this.passwordCliente = passwordCliente;
     }
+
+    public String getCidadeCliente() {
+        return cidadeCliente;
+    }
+
+    public void setCidadeCliente(String cidadeCliente) {
+        this.cidadeCliente = cidadeCliente;
+    }
+
+    public String getEstadoCliente() {
+        return estadoCliente;
+    }
+
+    public void setEstadoCliente(String estadoCliente) {
+        this.estadoCliente = estadoCliente;
+    }
     
+    
+
     public String getPasswordCliente() {
         return passwordCliente;
     }
@@ -149,15 +172,5 @@ public class ClienteModel {
     public void setCepCliente(String cepCliente) {
         this.cepCliente = cepCliente;
     }
-
-    public Integer getIdCidadeCliente() {
-        return idCidadeCliente;
-    }
-
-    public void setIdCidadeCliente(Integer idCidadeCliente) {
-        this.idCidadeCliente = idCidadeCliente;
-    }
-    
-    
 
 }

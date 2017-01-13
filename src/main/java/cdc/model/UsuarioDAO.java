@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author erik
  */
-public class UsuarioDAO  implements DAO {
+public class UsuarioDAO implements DAO {
 
     Connection conn;
 
@@ -94,7 +94,7 @@ public class UsuarioDAO  implements DAO {
             rs = ps.executeQuery();
             List<Usuario> list = new ArrayList<Usuario>();
             while (rs.next()) {
-              //  list.add(new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7)));
+                //  list.add(new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7)));
             }
             return list;
         } catch (SQLException e) {
@@ -160,7 +160,7 @@ public class UsuarioDAO  implements DAO {
                 if (com.getTipoUsuario() != null) {
                     ps.setString(contaCampos, com.getTipoUsuario());
                 }
-                if(com.getIdClienteUsuario() != 0){
+                if (com.getIdClienteUsuario() != 0) {
                     ps.setInt(contaCampos, com.getIdClienteUsuario());
                 }
             }
@@ -213,6 +213,35 @@ public class UsuarioDAO  implements DAO {
         } finally {
             ConnectionDAO.closeConnection(conn, ps);
         }
+    }
+
+    public boolean verificaLogin(String email, String senha) throws Exception {
+        String username = email;
+        String password = senha;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT tipoUsuario FROM Usuario WHERE emailUsuario = ? AND passwordUsuario = ?";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+
+            ps.setString(1, username);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            rs.last();
+            int size = rs.getRow();
+            rs.beforeFirst();
+            
+            return size >= 1;
+            
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps);
+        }
+
     }
 
 }
