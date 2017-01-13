@@ -29,6 +29,13 @@ public class ImagemProduto {
         this.idProduto = idProduto;
     }
 
+    public ImagemProduto(Blob imagem1, Blob imagem2, Blob imagem3) {
+        this.imagem1 = imagem1;
+        this.imagem2 = imagem2;
+        this.imagem3 = imagem3;
+    }
+    
+
     public ImagemProduto(Blob imagem1, Blob imagem2, Blob imagem3, int idProduto) {
         this.imagem1 = imagem1;
         this.imagem2 = imagem2;

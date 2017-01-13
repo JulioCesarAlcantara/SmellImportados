@@ -85,7 +85,7 @@ public class ServletProduto extends HttpServlet {
                 int id = pd.buscaIdPeloNome(nomeProduto);
                 
                 
-                ImagemProduto ip = new ImagemProduto(blob1, blob2, blob3, id); 
+                ImagemProduto ip = new ImagemProduto(blob1, blob2, blob3); 
                 pd.salvarImagem(ip);
                 
                 PalavrasChave pc = new PalavrasChave(palavra1, palavra2, palavra3, id);

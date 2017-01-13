@@ -256,13 +256,13 @@ public class ProdutoDAO implements DAO {
         }
 
         try {
-            String sql = "insert into ImagemProduto (imagem1,imagem2, imagem3, idProduto) values (?,?,?,?)";
+            String sql = "insert into ImagemDeProduto (imagem1,imagem2, imagem3) values (?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setBlob(1, ip.getImagem1());
             ps.setBlob(2, ip.getImagem2());
             ps.setBlob(3, ip.getImagem3());
-            ps.setInt(4, ip.getIdProduto());
+           // ps.setInt(4, ip.getIdProduto());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);
@@ -289,7 +289,7 @@ public class ProdutoDAO implements DAO {
             while (rs.next()){
                 id = rs.getInt(1);
             }
-            
+            System.out.println("identificador: " + id);
             return id; 
         } catch (SQLException e) {
             throw new Exception(e);
