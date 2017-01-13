@@ -46,7 +46,7 @@ public class ProdutoDAO implements DAO {
             ps = conn.prepareStatement(sql);
             ps.setString(1, com.getNomeProduto());
             ps.setFloat(2, com.getPrecoProduto());
-            ps.setInt(3, com.getIdCategoriaProduto());
+            // ps.setInt(3, com.getIdCategoriaProduto());
             ps.setInt(4, com.getIdProduto());
 
             ps.executeUpdate();
@@ -91,7 +91,7 @@ public class ProdutoDAO implements DAO {
             rs = ps.executeQuery();
             List<Produto> list = new ArrayList<Produto>();
             while (rs.next()) {
-                list.add(new Produto(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getInt(4)));
+                // list.add(new Produto(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getInt(4)));
             }
             return list;
         } catch (SQLException e) {
@@ -115,7 +115,7 @@ public class ProdutoDAO implements DAO {
             String SQL = "select * from Produto ";
             String where = "";
             boolean checa = false;
-            if (com.getIdProduto() != 0 || com.getNomeProduto() != null || com.getPrecoProduto() != 0 || com.getIdCategoriaProduto() != 0) {
+            /* if (com.getIdProduto() != 0 || com.getNomeProduto() != null || com.getPrecoProduto() != 0 || com.getIdCategoriaProduto() != 0) {
                 where = "where ";
                 if (com.getIdProduto() != 0) {
                     where += "idProduto=? ";
@@ -135,17 +135,17 @@ public class ProdutoDAO implements DAO {
                     where += " precoProduto=? ";
                     checa = true;
                 }
-                if (com.getIdCategoriaProduto() != 0) {
-                    if (checa) {
+                /*if (com.getIdCategoriaProduto() != 0) {
+                    if (checa) {    
                         where += "and";
                     }
                     where += " idCategoriaProduto=? ";
                 }
-            }
+            }*/
 
             ps = conn.prepareStatement(SQL + where);
             int contaCampos = 1;
-            if (com.getIdProduto() != 0 || com.getNomeProduto() != null || com.getPrecoProduto() != 0 || com.getIdCategoriaProduto() != 0) {
+            /*if (com.getIdProduto() != 0 || com.getNomeProduto() != null || com.getPrecoProduto() != 0 || com.getIdCategoriaProduto() != 0) {
                 if (com.getIdProduto() != 0) {
                     ps.setInt(contaCampos, com.getIdProduto());
                     contaCampos++;
@@ -157,10 +157,10 @@ public class ProdutoDAO implements DAO {
                 if (com.getPrecoProduto() != 0) {
                     ps.setFloat(contaCampos, com.getPrecoProduto());
                 }
-                if (com.getIdCategoriaProduto() != 0) {
-                    ps.setInt(contaCampos, com.getIdCategoriaProduto());
-                }
-            }
+               // if (com.getIdCategoriaProduto() != 0) {
+               //    ps.setInt(contaCampos, com.getIdCategoriaProduto());
+               // }
+            }*/
             rs = ps.executeQuery();
             List<Produto> list = new ArrayList<Produto>();
             while (rs.next()) {
@@ -168,7 +168,7 @@ public class ProdutoDAO implements DAO {
                 String nomeProduto = rs.getString(2);
                 Float precoProduto = rs.getFloat(3);
                 Integer idCategoriaProduto = rs.getInt(4);
-                list.add(new Produto(idProduto, nomeProduto, precoProduto, idCategoriaProduto));
+                //list.add(new Produto(idProduto, nomeProduto, precoProduto, idCategoriaProduto));
             }
             return list;
         } catch (SQLException sqle) {
@@ -190,15 +190,13 @@ public class ProdutoDAO implements DAO {
         }
 
         try {
-            String sql = "insert into Produto (nomeProduto, precoProduto, descricaoProduto, imagemProduto, idCategoriaProduto,PalavrasChave_idPalavrasChave) values (?,?,?,?,?,?)";
+            String sql = "insert into Produto (nomeProduto, precoProduto, descricaoProduto, categoriaProduto) values (?,?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setString(1, com.getNomeProduto());
             ps.setFloat(2, com.getPrecoProduto());
             ps.setString(3, com.getDescricaoProduto());
-            ps.setBlob(4, com.getImagemProduto());
-            ps.setInt(5, com.getIdCategoriaProduto());
-            ps.setInt(6, com.getIdPalavraChave());
+            ps.setString(4, com.getCategoria());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);
@@ -211,7 +209,7 @@ public class ProdutoDAO implements DAO {
         Connection conn = ConnectionDAO.getConnection();
         String SQL = "select imagemProduto from Produto";
         PreparedStatement ps = conn.prepareStatement(SQL);
-        
+
         try {
             ResultSet resultado = ps.executeQuery();
             if (resultado.next()) {
@@ -223,4 +221,80 @@ public class ProdutoDAO implements DAO {
         return null;
     }
 
+    public void salvarPalvras(Object ob) throws Exception {
+        PalavrasChave pc = (PalavrasChave) ob;
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        if (pc == null) {
+            throw new Exception("O valor passado não pode ser nulo/ The value passed cannot be null");
+        }
+
+        try {
+            String sql = "insert into PalavrasChave (palavra1, palavra2, palavra3, idProduto) values (?,?,?,?)";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, pc.getPalavra1());
+            ps.setString(2, pc.getPalavra2());
+            ps.setString(3, pc.getPalavra3());
+            ps.setInt(4, pc.getIdProduto());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps);
+        }
+    }
+
+    public void salvarImagem(Object ob) throws Exception {
+        ImagemProduto ip = (ImagemProduto) ob;
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        if (ip == null) {
+            throw new Exception("O valor passado não pode ser nulo/ The value passed cannot be null");
+        }
+
+        try {
+            String sql = "insert into ImagemProduto (imagem1,imagem2, imagem3, idProduto) values (?,?,?,?)";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setBlob(1, ip.getImagem1());
+            ps.setBlob(2, ip.getImagem2());
+            ps.setBlob(3, ip.getImagem3());
+            ps.setInt(4, ip.getIdProduto());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps);
+        }
+    }
+
+    public int buscaIdPeloNome(Object ob) throws Exception {
+        Produto com = (Produto) ob;
+        ResultSet rs = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            String sql = "SELECT idProduto FROM Produto where nomeProduto=?";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, com.getNomeProduto());
+
+            rs = (ResultSet)ps.executeQuery();
+            int id = 0; 
+            
+            while (rs.next()){
+                id = rs.getInt(1);
+            }
+            
+            return id; 
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps);
+        }
+    }
 }

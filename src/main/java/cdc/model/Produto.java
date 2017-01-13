@@ -1,6 +1,5 @@
 package cdc.model;
 
-import java.sql.Blob;
 
 /**
  *
@@ -12,26 +11,26 @@ public class Produto {
     private String nomeProduto;
     private float precoProduto;
     private String descricaoProduto;
-    private Blob imagemProduto;
-    private int idCategoriaProduto;
-    private int idPalavraChave; 
+    private String Categoria;  
 
     public Produto() {
     }
 
-    public Produto(Integer idProduto, String nomeProduto, float precoProduto, String descricaoProduto, Blob imagemProduto, Integer idCategoriaProduto, Integer idPalavraChave) {
+    public Produto(int idProduto, String nomeProduto, float precoProduto, String descricaoProduto,String Categoria) {
         this.idProduto = idProduto;
         this.nomeProduto = nomeProduto;
         this.precoProduto = precoProduto;
         this.descricaoProduto = descricaoProduto;
-        this.imagemProduto = imagemProduto;
-        this.idCategoriaProduto = idCategoriaProduto;
-        this.idPalavraChave = idPalavraChave;
+        this.Categoria = Categoria;
     }
 
-    Produto(Integer idProduto, String nomeProduto, Float precoProduto, Integer idCategoriaProduto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Produto(String nomeProduto, float precoProduto, String descricaoProduto, String Categoria) {
+        this.nomeProduto = nomeProduto;
+        this.precoProduto = precoProduto;
+        this.descricaoProduto = descricaoProduto;
+        this.Categoria = Categoria;
     }
+    
 
     public int getIdProduto() {
         return idProduto;
@@ -65,28 +64,14 @@ public class Produto {
         this.descricaoProduto = descricaoProduto;
     }
 
-    public Blob getImagemProduto() {
-        return imagemProduto;
+    public String getCategoria() {
+        return Categoria;
     }
 
-    public void setImagemProduto(Blob imagemProduto) {
-        this.imagemProduto = imagemProduto;
+    public void setCategoria(String Categoria) {
+        this.Categoria = Categoria;
     }
-
-    public int getIdCategoriaProduto() {
-        return idCategoriaProduto;
-    }
-
-    public void setIdCategoriaProduto(int idCategoriaProduto) {
-        this.idCategoriaProduto = idCategoriaProduto;
-    }
-
-    public int getIdPalavraChave() {
-        return idPalavraChave;
-    }
-
-    public void setIdPalavraChave(int idPalavraChave) {
-        this.idPalavraChave = idPalavraChave;
-    }
+    
+    
 
 }

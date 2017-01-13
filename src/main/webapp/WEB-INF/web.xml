@@ -3,17 +3,20 @@
     <servlet>
         <servlet-name>usuarios</servlet-name>
         <servlet-class>cdc.controller.ServletUsuario</servlet-class>
-</servlet>
-    
+    </servlet>
+    <servlet>
+        <servlet-name>produtos</servlet-name>
+        <servlet-class>cdc.controller.ServletProduto</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>clientes</servlet-name>
         <servlet-class>cdc.controller.ServletCliente</servlet-class>
- </servlet>
+    </servlet>
  
-     <servlet>
+    <servlet>
         <servlet-name>promocao</servlet-name>
         <servlet-class>cdc.controller.ServletPromocao</servlet-class>
- </servlet>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>usuarios</servlet-name>
@@ -25,7 +28,12 @@
         <url-pattern>/clientes</url-pattern>
     </servlet-mapping>
     
-        <servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>produtos</servlet-name>
+        <url-pattern>/produtos</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>promocao</servlet-name>
         <url-pattern>/promocao</url-pattern>
     </servlet-mapping>
