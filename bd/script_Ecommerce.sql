@@ -7,38 +7,6 @@ CREATE SCHEMA IF NOT EXISTS `smell` DEFAULT CHARACTER SET utf8 COLLATE utf8_gene
 USE `smell` ;
 
 -- -----------------------------------------------------
--- Table `smell`.`Estado`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `smell`.`Estado` ;
-
-CREATE TABLE IF NOT EXISTS `smell`.`Estado` (
-  `idEstado` INT NOT NULL AUTO_INCREMENT,
-  `nomeEstado` VARCHAR(45) NOT NULL,
-  `estadoSigla` VARCHAR(3) NOT NULL,
-  PRIMARY KEY (`idEstado`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `smell`.`Cidade`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `smell`.`Cidade` ;
-
-CREATE TABLE IF NOT EXISTS `smell`.`Cidade` (
-  `idCidade` INT NOT NULL AUTO_INCREMENT,
-  `nomeCidade` VARCHAR(45) NOT NULL,
-  `idEstadoCidade` INT NOT NULL,
-  PRIMARY KEY (`idCidade`),
-  INDEX `fk_Cidade_Estado1_idx` (`idEstadoCidade` ASC),
-  CONSTRAINT `fk_Cidade_Estado1`
-    FOREIGN KEY (`idEstadoCidade`)
-    REFERENCES `smell`.`Estado` (`idEstado`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `smell`.`Usuario`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `smell`.`Usuario` ;
@@ -56,14 +24,9 @@ CREATE TABLE IF NOT EXISTS `smell`.`Usuario` (
   `cpfUsuario` VARCHAR(45) NULL,
   `enderecoUsuario` VARCHAR(45) NULL,
   `cepUsuario` VARCHAR(45) NULL,
-  `idCidadeUsuario` INT NULL,
-  PRIMARY KEY (`idUsuario`),
-  INDEX `fk_Usuario_Cidade1_idx` (`idCidadeUsuario` ASC),
-  CONSTRAINT `fk_Usuario_Cidade1`
-    FOREIGN KEY (`idCidadeUsuario`)
-    REFERENCES `smell`.`Cidade` (`idCidade`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `cidadeUsuario` VARCHAR(20) NULL,
+  `estadoUsuario` VARCHAR(2) NULL,
+  PRIMARY KEY (`idUsuario`))
 ENGINE = InnoDB;
 
 
@@ -77,8 +40,7 @@ CREATE TABLE IF NOT EXISTS `smell`.`Produto` (
   `nomeProduto` VARCHAR(45) NOT NULL,
   `precoProduto` FLOAT NOT NULL,
   `descricaoProduto` VARCHAR(1000) NOT NULL,
-  `imagemProduto` LONGBLOB NOT NULL,
-  `categoriaProduto` INT NOT NULL,
+  `categoriaProduto` ENUM('m','f') NOT NULL,
   PRIMARY KEY (`idProduto`))
 ENGINE = InnoDB;
 
