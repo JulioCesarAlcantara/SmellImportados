@@ -190,13 +190,14 @@ public class ProdutoDAO implements DAO {
         }
 
         try {
-            String sql = "insert into Produto (nomeProduto, precoProduto, descricaoProduto, categoriaProduto) values (?,?,?,?)";
+            String sql = "insert into Produto (nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeProduto) values (?,?,?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setString(1, com.getNomeProduto());
             ps.setFloat(2, com.getPrecoProduto());
             ps.setString(3, com.getDescricaoProduto());
             ps.setString(4, com.getCategoria());
+            ps.setInt(5, com.getQuantidadeProduto());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);
@@ -205,92 +206,24 @@ public class ProdutoDAO implements DAO {
         }
     }
 
-    public byte[] recuperaImagem(int codimagem) throws Exception {
-        Connection conn = ConnectionDAO.getConnection();
-        String SQL = "select imagemProduto from Produto";
-        PreparedStatement ps = conn.prepareStatement(SQL);
-
-        try {
-            ResultSet resultado = ps.executeQuery();
-            if (resultado.next()) {
-                return resultado.getBytes("imagemProduto");
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
-    public void salvarPalvras(Object ob) throws Exception {
-        PalavrasChave pc = (PalavrasChave) ob;
-        Connection conn = null;
-        PreparedStatement ps = null;
-
-        if (pc == null) {
-            throw new Exception("O valor passado não pode ser nulo/ The value passed cannot be null");
-        }
-
-        try {
-            String sql = "insert into PalavrasChave (palavra1, palavra2, palavra3, idProduto) values (?,?,?,?)";
-            conn = this.conn;
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, pc.getPalavra1());
-            ps.setString(2, pc.getPalavra2());
-            ps.setString(3, pc.getPalavra3());
-            ps.setInt(4, pc.getIdProduto());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new Exception(e);
-        } finally {
-            ConnectionDAO.closeConnection(conn, ps);
-        }
-    }
-
-    public void salvarImagem(Object ob) throws Exception {
-        ImagemProduto ip = (ImagemProduto) ob;
-        Connection conn = null;
-        PreparedStatement ps = null;
-
-        if (ip == null) {
-            throw new Exception("O valor passado não pode ser nulo/ The value passed cannot be null");
-        }
-
-        try {
-            String sql = "insert into ImagemDeProduto (imagem1,imagem2, imagem3) values (?,?,?)";
-            conn = this.conn;
-            ps = conn.prepareStatement(sql);
-            ps.setBlob(1, ip.getImagem1());
-            ps.setBlob(2, ip.getImagem2());
-            ps.setBlob(3, ip.getImagem3());
-           // ps.setInt(4, ip.getIdProduto());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new Exception(e);
-        } finally {
-            ConnectionDAO.closeConnection(conn, ps);
-        }
-    }
-
-    public int buscaIdPeloNome(Object ob) throws Exception {
-        Produto com = (Produto) ob;
+    public int buscaIdPeloNome(String str) throws Exception {
         ResultSet rs = null;
         Connection conn = null;
         PreparedStatement ps = null;
 
         try {
-            String sql = "SELECT idProduto FROM Produto where nomeProduto=?";
+            String sql = "SELECT idProduto FROM Produto WHERE nomeProduto= '" + str + "'";
+
             conn = this.conn;
             ps = conn.prepareStatement(sql);
-            ps.setString(1, com.getNomeProduto());
 
-            rs = (ResultSet)ps.executeQuery();
-            int id = 0; 
-            
-            while (rs.next()){
+            rs = (ResultSet) ps.executeQuery();
+            int id = 0;
+
+            while (rs.next()) {
                 id = rs.getInt(1);
             }
-            System.out.println("identificador: " + id);
-            return id; 
+            return id;
         } catch (SQLException e) {
             throw new Exception(e);
         } finally {

@@ -1,11 +1,16 @@
 package cdc.controller;
 
 import cdc.model.ImagemProduto;
+import cdc.model.ImagemProdutoDAO;
 import cdc.model.PalavrasChave;
+import cdc.model.PalavrasChaveDAO;
 import cdc.model.Produto;
 import cdc.model.ProdutoDAO;
 import cdc.util.DAO;
-import java.io.IOException;         
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -43,48 +48,46 @@ public class ServletProduto extends HttpServlet {
 
         try {
             dao = new ProdutoDAO();
-            ProdutoDAO pd = new ProdutoDAO(); 
-            RequestDispatcher rd = null; //setando o objeto "despachador"
+            ProdutoDAO pd = new ProdutoDAO();
+            PalavrasChaveDAO keyword = new PalavrasChaveDAO();
+            ImagemProdutoDAO image = new ImagemProdutoDAO();
+            RequestDispatcher rd = null; //setando o objeto "despachador
+            
             if (cmd.equalsIgnoreCase("saveAdd")) {
                 String nomeProduto = request.getParameter("nomeProduto");
+                String descricaoProduto = request.getParameter("descricaoProduto");
                 String precoProduto = request.getParameter("precoProduto");
                 System.out.println("chegou aqui !!");
                 //converter String para float; 
-                float preco = Float.parseFloat(precoProduto);                
+                float preco = Float.parseFloat(precoProduto);
                 
-                String descricaoProduto = request.getParameter("descricaoProduto");
+                //não funciona assim; 
                 String imagemProduto1 = request.getParameter("imagemProduto1");
                 String imagemProduto2 = request.getParameter("imagemProduto2");
                 String imagemProduto3 = request.getParameter("imagemProduto3");
-                
-                //converter a imagem para base 64; 
-                byte[] imagemByte1 = imagemProduto1.getBytes(); // a variavel imagem é o caminho aonde o arquivo está salvo (D:/Downloads/imagem.jpg)
-                SerialBlob blob1 = new SerialBlob(imagemByte1);
-                System.out.println("imagem1: " + blob1);
-                
-                byte[] imagemByte2 = imagemProduto2.getBytes(); // a variavel imagem é o caminho aonde o arquivo está salvo (D:/Downloads/imagem.jpg)
-                SerialBlob blob2 = new SerialBlob(imagemByte2);
-                
-                byte[] imagemByte3 = imagemProduto3.getBytes(); // a variavel imagem é o caminho aonde o arquivo está salvo (D:/Downloads/imagem.jpg)
-                SerialBlob blob3 = new SerialBlob(imagemByte3);
-                
+
                 String palavra1 = request.getParameter("palavra1");
                 String palavra2 = request.getParameter("palavra2");
                 String palavra3 = request.getParameter("palavra3");
                 String categoria = request.getParameter("categoria");
-                
-                Produto produtoMontado = new Produto(nomeProduto, preco, descricaoProduto, categoria);
+                String qntProduto = request.getParameter("quantidadeProduto");
+                //converter para int; 
+                int quantidadeProduto = Integer.parseInt(qntProduto);
+
+                Produto produtoMontado = new Produto(nomeProduto, preco, descricaoProduto, categoria, quantidadeProduto);
                 dao.salvar(produtoMontado);
+
+                System.out.println("nome Produto: " + nomeProduto);
+
                 int id = pd.buscaIdPeloNome(nomeProduto);
-                
-                
-                ImagemProduto ip = new ImagemProduto(blob1, blob2, blob3); 
-                pd.salvarImagem(ip);
-                
+                System.out.println("Id do produto: " + id);
+                System.out.println("Palavra Chave 1: " + palavra1);
+                System.out.println("Palavra Chave 2: " + palavra2);
+                System.out.println("Palavra Chave 3: " + palavra3);
+
                 PalavrasChave pc = new PalavrasChave(palavra1, palavra2, palavra3, id);
-                pd.salvarPalvras(pc);
-                
-                
+                keyword.salvar(pc);
+
                 rd = request.getRequestDispatcher("/index.html");
             } else {
                 rd = request.getRequestDispatcher("/index.html");

@@ -45,6 +45,7 @@
                     <input type="hidden" name="cmd" value="saveAdd"/>
                     <input type="name" id="inputName" class="form-control" placeholder="Nome do Produto " name="nomeProduto"></br>                    
                     <br><input type="number" id="inputPreco" class="form-control" placeholder="Preco do produto" name="precoProduto"></br>
+                    <br><input type="number" id="inputPreco" class="form-control" placeholder="Quantidade" name="quantidadeProduto"></br>
                     <br><input type="text" id="inputDescricao" class="form-control" placeholder="Descrição do Produto " name="descricaoProduto"></br>
                     <br><input type="file" id="inputImagem" class="btn btn-default btn-file" name="imagemProduto1"></br>
                     <br><input type="file" id="inputImagem" class="btn btn-default btn-file" name="imagemProduto2"></br>
