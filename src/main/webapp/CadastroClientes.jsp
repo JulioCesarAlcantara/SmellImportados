@@ -43,7 +43,7 @@
                     
                     <h2 class="form-signin-heading">Cadastro de Clientes </h2><br>
                     <input type="hidden" name="cmd" value="saveAdd"/>
-                    <input type="name" id="inputName" class="form-control" placeholder="Nome " name="nomeCliente"></br>                    
+                    <input type="text" id="inputName" class="form-control" placeholder="Nome " name="nomeCliente"></br>                    
                     <br><input type="email" id="inputEmail" class="form-control" placeholder="Email" name="emailCliente"></br>
                     <br><input type="text" id="inputCPF" class="form-control" placeholder="CPF " name="cpfCliente"></br>
                     <br><input type="text" id="inputDt" class="form-control" placeholder="Data Nascimento " name="dataNascimentoCliente"></br>

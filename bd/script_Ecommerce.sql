@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `smell`.`Produto` (
   `precoProduto` FLOAT NOT NULL,
   `descricaoProduto` VARCHAR(1000) NOT NULL,
   `categoriaProduto` ENUM('m','f') NOT NULL,
+  `quantidadeProduto` INT NOT NULL,
   PRIMARY KEY (`idProduto`))
 ENGINE = InnoDB;
 
@@ -133,11 +134,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `smell`.`ProdutoPromocao` ;
 
 CREATE TABLE IF NOT EXISTS `smell`.`ProdutoPromocao` (
+  `idProdutoPromocao` INT NOT NULL AUTO_INCREMENT,
   `idProdutoProdutoPromocao` INT NOT NULL,
   `idPromocaoProdutoPromocao` INT NOT NULL,
-  PRIMARY KEY (`idProdutoProdutoPromocao`, `idPromocaoProdutoPromocao`),
   INDEX `fk_Produto_has_Promocao_Promocao1_idx` (`idPromocaoProdutoPromocao` ASC),
   INDEX `fk_Produto_has_Promocao_Produto1_idx` (`idProdutoProdutoPromocao` ASC),
+  PRIMARY KEY (`idProdutoPromocao`),
   CONSTRAINT `fk_Produto_has_Promocao_Produto1`
     FOREIGN KEY (`idProdutoProdutoPromocao`)
     REFERENCES `smell`.`Produto` (`idProduto`)
@@ -157,7 +159,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `smell`.`ImagemDeProduto` ;
 
 CREATE TABLE IF NOT EXISTS `smell`.`ImagemDeProduto` (
-  `idImagemDeProduto` INT NOT NULL,
+  `idImagemDeProduto` INT NOT NULL AUTO_INCREMENT,
   `imagem1` LONGBLOB NOT NULL,
   `imagem2` LONGBLOB NULL,
   `imagem3` LONGBLOB NULL,

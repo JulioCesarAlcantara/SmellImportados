@@ -24,14 +24,13 @@ public class Promocao {
     public Promocao() {
     }
 
-    public Promocao(int idPromocao, String nomePromocao, Date dataInicioPromocao, Date dataFimPromocao, float descontoPromocao, String statusPromocao, int idProdutoPromocao) {
+    public Promocao(int idPromocao, String nomePromocao, Date dataInicioPromocao, Date dataFimPromocao, float descontoPromocao, String statusPromocao) {
         this.idPromocao = idPromocao;
         this.nomePromocao = nomePromocao;
         this.dataInicioPromocao = dataInicioPromocao;
         this.dataFimPromocao = dataFimPromocao;
         this.descontoPromocao = descontoPromocao;
         this.statusPromocao = statusPromocao;
-        this.idProdutoPromocao = idProdutoPromocao;
     }
 
     public Promocao(String nomePromocao, Date dataInicioPromocao, Date dataFimPromocao, float descontoPromocao, String statusPromocao) {
