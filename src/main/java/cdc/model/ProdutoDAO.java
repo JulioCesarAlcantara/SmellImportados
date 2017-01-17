@@ -87,11 +87,11 @@ public class ProdutoDAO implements DAO {
 
         try {
             conn = this.conn;
-            ps = conn.prepareStatement("select * from Produto");
+            ps = conn.prepareStatement("SELECT * FROM Produto INNER JOIN ImagemDeProduto ON ImagemDeProduto.idProduto = Produto.idProduto");
             rs = ps.executeQuery();
-            List<Produto> list = new ArrayList<Produto>();
+            List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>();
             while (rs.next()) {
-                // list.add(new Produto(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getInt(4)));
+                list.add(new ListaImagemProduto(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9)));
             }
             return list;
         } catch (SQLException e) {

@@ -16,6 +16,14 @@ public class ImagemProdutoDAO implements DAO {
 
     Connection conn;
 
+    public ImagemProdutoDAO() throws Exception {
+         try {
+            this.conn = ConnectionDAO.getConnection(); 
+        } catch (Exception e) {
+            throw new Exception("Erro: " + e.getMessage());
+        }
+    }    
+
     @Override
     public void atualizar(Object ob) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -47,7 +55,7 @@ public class ImagemProdutoDAO implements DAO {
         }
 
         try {
-            String sql = "insert into ImagemDeProduto (imagem1,imagem2, imagem3) values (?,?,?)";
+            String sql = "insert into ImagemDeProduto (imagem1,imagem2, imagem3,idProduto) values (?,?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setBlob(1, ip.getImagem1());

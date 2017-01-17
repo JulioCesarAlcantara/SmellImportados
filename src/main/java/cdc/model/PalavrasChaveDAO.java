@@ -13,7 +13,17 @@ import java.util.List;
  */
 public class PalavrasChaveDAO implements DAO {
 
-    Connection conn;
+    private Connection conn;
+
+    public PalavrasChaveDAO() throws Exception {
+        try {
+            this.conn = ConnectionDAO.getConnection(); 
+        } catch (Exception e) {
+            throw new Exception("Erro: " + e.getMessage());
+        }
+    }
+    
+    
 
     @Override
     public void atualizar(Object ob) throws Exception {
