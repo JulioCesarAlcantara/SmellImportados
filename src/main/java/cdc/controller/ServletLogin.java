@@ -47,7 +47,7 @@ public class ServletLogin extends HttpServlet {
                 //  Integer idCidadeCliente = Integer.parseInt(request.getParameter("idCidadeCliente"));
                 String email = request.getParameter("emailUsuario");
                 String senha = request.getParameter("passwordUsuario");
-                
+                System.out.println("parei aqui");
                boolean resultado = usu.verificaLogin(email, senha);
                
                if(resultado){
@@ -55,7 +55,9 @@ public class ServletLogin extends HttpServlet {
                } else{
                    System.out.println("DEU NAO");
                }
-                rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
+            //    rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
+                
+            getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
 
             } else {
                 rd = request.getRequestDispatcher("/index.html");
