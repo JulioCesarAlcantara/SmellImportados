@@ -87,55 +87,5 @@
                 </div>
             </div>
         </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <ul class="pagination">
-                            <li class="active">
-                                <a href="#">Prev</a>
-                            </li>
-                            <li class="">
-                                <a href="#">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#">Next</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-xs-3 text-center">
-                        <a><i class="fa fa-5x fa-fw fa-instagram"></i></a>
-                    </div>
-                    <div class="col-xs-3">
-                        <a><i class="fa fa-5x fa-fw fa-twitter"></i></a>
-                    </div>
-                    <div class="col-xs-3">
-                        <a><i class="fa fa-5x fa-fw fa-facebook"></i></a>
-                    </div>
-                    <div class="col-xs-3 text-center">
-                        <a><i class="fa fa-5x fa-fw fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </body></html>
+    </body>
+</html>
