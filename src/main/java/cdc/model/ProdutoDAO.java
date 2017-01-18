@@ -87,7 +87,11 @@ public class ProdutoDAO implements DAO {
 
         try {
             conn = this.conn;
-            ps = conn.prepareStatement("SELECT * FROM Produto INNER JOIN ImagemDeProduto ON ImagemDeProduto.idProduto = Produto.idProduto");
+            ps = conn.prepareStatement("SELECT Produto.idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeProduto,"
+                    + " idImagemDeProduto, imagem1,ImagemDeProduto.idProduto"
+                    + " FROM Produto"
+                    + "	INNER JOIN ImagemDeProduto"
+                    + " ON ImagemDeProduto.idProduto = Produto.idProduto");
             rs = ps.executeQuery();
             List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>();
             while (rs.next()) {

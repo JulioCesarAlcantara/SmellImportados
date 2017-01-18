@@ -51,7 +51,7 @@
         <footer class="section section-primary">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-xs-6">
                         <p class="text-info text-right">
                             <br>
                             <br>
@@ -70,12 +70,7 @@
         </footer>
         <% List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>(); 
         ProdutoDAO produto = new ProdutoDAO(); 
-        list = produto.listaTodos();         
-        
-        for(int i =0; i<4; i++){
-            
-            
-        }
+        list = produto.listaTodos();      
         %>
         <div class="section">
             <div class="background-image background-image-fixed"></div>

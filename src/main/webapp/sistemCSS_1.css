@@ -17,7 +17,7 @@
 body {
     padding-top: 40px;
     padding-bottom: 40px;
-    /*  background-image: url("IMG/images.jpg");*/
+    /*background-image: url("IMG/images.jpg");*/
     background-color: #eeeded;   
     border-radius: 0px;
 }
@@ -6840,4 +6840,17 @@ body {
 }
 .corpo {
     line-height: 30px;
+}
+
+.the-legend {
+    border-style: none;
+    border-width: 0;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+}
+.the-fieldset {
+    border: 2px groove threedface #444;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
 }

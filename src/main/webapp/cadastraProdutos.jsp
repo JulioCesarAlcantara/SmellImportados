@@ -6,8 +6,38 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de Produtos</title>
         <link href="sistemCSS_1.css" rel="stylesheet">
+
+        <script>
+            function exibirSrcImagem1(evento) {
+                var fr = new FileReader();
+                fr.onload = function () {
+                    //console.log(fr.result);
+                    document.getElementById("imagem1").value = fr.result;
+                };
+                fr.readAsDataURL((evento.target || window.event.srcElement).files[0]);
+            }
+
+            function exibirSrcImagem2(evento) {
+                var fr = new FileReader();
+                fr.onload = function () {
+                    //console.log(fr.result);
+                    document.getElementById("imagem2").value = fr.result;
+                };
+                fr.readAsDataURL((evento.target || window.event.srcElement).files[0]);
+            }
+
+            function exibirSrcImagem3(evento) {
+                var fr = new FileReader();
+                fr.onload = function () {
+                    //console.log(fr.result);
+                    document.getElementById("imagem3").value = fr.result;
+                };
+                fr.readAsDataURL((evento.target || window.event.srcElement).files[0]);
+            }
+        </script>
+
     </head>
-   <body>
+    <body>
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -35,31 +65,48 @@
                 </div>
             </div>
         </div>
-       
-       <div id ="redor">
-            <div class="container">
-        
-            <form class="form-signin" action="produtos" method="post">
+
+        <div id ="redor">
+            <div class="controls form-horizontal well">
+
+                <form class="form-signin" action="produtos" method="post">
 
                     <h2 class="form-signin-heading">Cadastro de Produtos </h2><br>
                     <input type="hidden" name="cmd" value="saveAdd"/>
-                    <input type="name" id="inputName" class="form-control" placeholder="Nome do Produto " name="nomeProduto"></br>                    
-                    <br><input type="number" id="inputPreco" class="form-control" placeholder="Preco do produto" name="precoProduto"></br>
-                    <br><input type="number" id="inputPreco" class="form-control" placeholder="Quantidade" name="quantidadeProduto"></br>
-                    <br><input type="text" id="inputDescricao" class="form-control" placeholder="Descrição do Produto " name="descricaoProduto"></br>
-                    <br><input type="file" id="inputImagem" class="btn btn-default btn-file" name="imagemProduto1"></br>
-                    <br><input type="file" id="inputImagem" class="btn btn-default btn-file" name="imagemProduto2"></br>
-                    <br><input type="file" id="inputImagem" class="btn btn-default btn-file" name="imagemProduto3"></br>
-                    <br><input type="text" id="inputPalavraChaveProduto" class="form-control" placeholder="Palavra Chave ..." name="palavra1"></br>
-                    <br><input type="text" id="inputPalavraChaveProduto" class="form-control" placeholder="Palavra Chave ..." name="palavra2"></br>
-                    <br><input type="text" id="inputPalavraChaveProduto" class="form-control" placeholder="Palavra Chave ..." name="palavra3"></br><br>
+                    <input type="hidden" name="imagem1" id="imagem1"/>
+                    <input type="hidden" name="imagem2" id="imagem2"/>
+                    <input type="hidden" name="imagem3" id="imagem3"/>
+                    <fieldset class="well the-fieldset">  
+                        <legend> Dados do Produto</legend>
+                        <input type="name" id="inputName" class="form-control" placeholder="Nome do Produto " name="nomeProduto"></br>                    
+                        <br><input type="number" id="inputPreco" class="form-control" placeholder="Preco do produto" name="precoProduto"></br>
+                        <br><input type="number" id="inputPreco" class="form-control" placeholder="Quantidade" name="quantidadeProduto"></br>                    
+                        <br><input type="text" id="inputDescricao" class="form-control" placeholder="Descrição do Produto " name="descricaoProduto"></br>
+                    </fieldset>
+
+                    <fieldset class="well the-fieldset">
+                        <legend>Imagens</legend>
+                        <br><input type="file" id="inputImagem1" onchange="exibirSrcImagem1(this)" class="btn btn-default" name="imagemProduto1" /></br>
+                        <br><input type="file" id="inputImagem2" onchange="exibirSrcImagem2(this)" class="btn btn-default" name="imagemProduto2" /></br>
+                        <br><input type="file" id="inputImagem3" onchange="exibirSrcImagem3(this)" class="btn btn-default" name="imagemProduto3" /></br>
+                    </fieldset>
+
+                    <fieldset class="well the-fieldset">
+                        <legend>Palavras chave</legend>
+                        <br><input type="text" id="inputPalavraChaveProduto" class="form-control" placeholder="Palavra Chave ..." name="palavra1"></br>
+                        <br><input type="text" id="inputPalavraChaveProduto" class="form-control" placeholder="Palavra Chave ..." name="palavra2"></br>
+                        <br><input type="text" id="inputPalavraChaveProduto" class="form-control" placeholder="Palavra Chave ..." name="palavra3"></br>
+                    </fieldset>
+                    
+                    <fieldset class="well the-fieldset">
+                        <legend>Categoria</legend>
                     <input type="radio" name="categoria" value="m"> Masculino
                     <input type="radio" name="categoria" value="f"> Feminino
-                    
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Salvar">Cadastrar</button>
-                   
-        </form> 
+                    </fieldset>
+                    <button class="btn btn-lg btn-primary" type="submit" value="Salvar">Cadastrar</button>
+
+                </form> 
+            </div>
         </div>
-       </div>
     </body>
 </html>

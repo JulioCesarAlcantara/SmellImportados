@@ -8,6 +8,8 @@ import cdc.model.Produto;
 import cdc.model.ProdutoDAO;
 import cdc.util.DAO;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -18,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import javax.sql.rowset.serial.SerialBlob;
 
 /**
@@ -37,6 +40,7 @@ public class ServletProduto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
+              
         String cmd = request.getParameter("cmd");
         DAO dao;
 
@@ -52,7 +56,7 @@ public class ServletProduto extends HttpServlet {
             PalavrasChaveDAO keyword = new PalavrasChaveDAO();
             ImagemProdutoDAO image = new ImagemProdutoDAO();
             RequestDispatcher rd = null; //setando o objeto "despachador
-            
+
             if (cmd.equalsIgnoreCase("saveAdd")) {
                 String nomeProduto = request.getParameter("nomeProduto");
                 String descricaoProduto = request.getParameter("descricaoProduto");
@@ -60,33 +64,38 @@ public class ServletProduto extends HttpServlet {
                 System.out.println("chegou aqui !!");
                 //converter String para float; 
                 float preco = Float.parseFloat(precoProduto);
-                
-                //não funciona assim; 
-                String imagemProduto1 = request.getParameter("imagemProduto1");
-                String imagemProduto2 = request.getParameter("imagemProduto2");
-                String imagemProduto3 = request.getParameter("imagemProduto3");
 
+                //aqui ta ok;
                 String palavra1 = request.getParameter("palavra1");
                 String palavra2 = request.getParameter("palavra2");
                 String palavra3 = request.getParameter("palavra3");
                 String categoria = request.getParameter("categoria");
                 String qntProduto = request.getParameter("quantidadeProduto");
-                //converter para int; 
+                String imagem1 = request.getParameter("imagem1");
+                String imagem2 = request.getParameter("imagem2");
+                String imagem3 = request.getParameter("imagem3");
+                //converter o id do produto para int; 
                 int quantidadeProduto = Integer.parseInt(qntProduto);
-
+                
                 Produto produtoMontado = new Produto(nomeProduto, preco, descricaoProduto, categoria, quantidadeProduto);
                 dao.salvar(produtoMontado);
-
-                System.out.println("nome Produto: " + nomeProduto);
-
+                
+                //busca o id do produto add, para add palavra chave e imagem; 
                 int id = pd.buscaIdPeloNome(nomeProduto);
-                System.out.println("Id do produto: " + id);
-                System.out.println("Palavra Chave 1: " + palavra1);
-                System.out.println("Palavra Chave 2: " + palavra2);
-                System.out.println("Palavra Chave 3: " + palavra3);
-
+                
+                ImagemProduto imagemModel = new ImagemProduto(imagem1, imagem2, imagem3, id);
+                image.salvar(imagemModel);
+                
                 PalavrasChave pc = new PalavrasChave(palavra1, palavra2, palavra3, id);
                 keyword.salvar(pc);
+
+                System.out.println("Id do produto: " + id);
+                System.out.println("=================================================================");
+                System.out.println("Imagem 1: " + imagem1);
+                System.out.println("=================================================================");
+                System.out.println("Imagem 2: " + imagem2);
+                System.out.println("=================================================================");
+                System.out.println("Imagem 3: " + imagem3);
 
                 rd = request.getRequestDispatcher("/index.html");
             } else {
@@ -130,6 +139,7 @@ public class ServletProduto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         try {
             processRequest(request, response);
         } catch (Exception ex) {

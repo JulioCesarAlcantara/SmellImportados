@@ -55,12 +55,12 @@ public class ImagemProdutoDAO implements DAO {
         }
 
         try {
-            String sql = "insert into ImagemDeProduto (imagem1,imagem2, imagem3,idProduto) values (?,?,?,?)";
+            String sql = "INSERT INTO ImagemDeProduto (imagem1,imagem2,imagem3,idProduto) VALUES (?,?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
-            ps.setBlob(1, ip.getImagem1());
-            ps.setBlob(2, ip.getImagem2());
-            ps.setBlob(3, ip.getImagem3());
+            ps.setString(1, ip.getImagem1());
+            ps.setString(2, ip.getImagem2());
+            ps.setString(3, ip.getImagem3());
             ps.setInt(4, ip.getIdProduto());
             ps.executeUpdate();
         } catch (SQLException e) {
