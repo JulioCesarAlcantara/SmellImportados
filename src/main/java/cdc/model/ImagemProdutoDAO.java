@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,12 +18,12 @@ public class ImagemProdutoDAO implements DAO {
     Connection conn;
 
     public ImagemProdutoDAO() throws Exception {
-         try {
-            this.conn = ConnectionDAO.getConnection(); 
+        try {
+            this.conn = ConnectionDAO.getConnection();
         } catch (Exception e) {
             throw new Exception("Erro: " + e.getMessage());
         }
-    }    
+    }
 
     @Override
     public void atualizar(Object ob) throws Exception {
@@ -70,20 +71,33 @@ public class ImagemProdutoDAO implements DAO {
         }
     }
 
-    public byte[] recuperaImagem(int codimagem) throws Exception {
-        Connection conn = ConnectionDAO.getConnection();
-        String SQL = "select imagemProduto from Produto";
-        PreparedStatement ps = conn.prepareStatement(SQL);
+    public List listaProdutosParaCompra(String id) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
 
         try {
-            ResultSet resultado = ps.executeQuery();
-            if (resultado.next()) {
-                return resultado.getBytes("imagemProduto");
+            conn = this.conn;
+            ps = conn.prepareStatement("SELECT *  "
+                    + "FROM Produto "
+                    + "INNER JOIN ImagemDeProduto  "
+                    + "ON ImagemDeProduto.idProduto = Produto.idProduto "
+                    + "WHERE Produto.idProduto = " + id);
+            System.out.println(" PS :  " + ps);
+            rs = ps.executeQuery();
+            List list = new ArrayList();
+            while (rs.next()) {
+                list.add(new ListaImagemProduto(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), 
+                                                rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), 
+                                                rs.getString(9), rs.getString(10), rs.getInt(11)));
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("Lista :  " + list);
+            return list;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
         }
-        return null;
     }
 
 }

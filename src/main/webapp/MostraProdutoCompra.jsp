@@ -4,6 +4,8 @@
     Author     : cesar
 --%>
 
+<%@page import="cdc.model.ImagemProduto"%>
+<%@page import="cdc.model.ImagemProdutoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="cdc.model.ListaImagemProduto" %>
 <%@page import="cdc.model.ProdutoDAO" %>
@@ -48,44 +50,32 @@
                 </div>
             </div>
         </div>
-        <footer class="section section-primary">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <p class="text-info text-right">
-                            <br>
-                            <br>
-                        </p>
-                        <div class="row">
-                            <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
-                                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
-                                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <% List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>(); 
-        ProdutoDAO produto = new ProdutoDAO(); 
-        list = produto.listaTodos();      
+
+        <% 
+            List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>();
+            ImagemProdutoDAO produto = new ImagemProdutoDAO();
+            list = produto.listaProdutosParaCompra("4");
         %>
         <div class="section">
             <div class="background-image background-image-fixed"></div>
             <div class="container">
                 <div class="row">
-                    <% for(ListaImagemProduto proIm : list ){ %>
-                    <div class="col-md-3 col-sm-5" >                        
-                        <a href="MostraProdutoCompra.jsp"><img src="<%out.print(proIm.getImagem1());%>" class="img-responsive img-thumbnail">
-                        <a href=""><h2><%out.print(proIm.getNomeproduto()); %></h2></a>
-                        <p><%out.print(proIm.getDescricaoProduto());%>
-                            <br>
-                        </p>                                  
-                    </div><%} %>
+                    <% for (ListaImagemProduto proIm : list) { %>
+                    <div class="col-lg-12 col-sm-5" >      
+                        <a <img src="<%out.print(proIm.getImagem1());%>"></a>
+                        <br>
+                        <a <h2><%out.print(proIm.getNomeproduto()); %></h2></a>
+                        
+                                                    
+                    </div><%}%>
+                    </form>
                 </div>
             </div>
         </div>
+                    
+                    <div id="menu" class="media-right col-lg-2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ">
+                        
+                        Teste de menu
+                    </div> 
     </body>
 </html>

@@ -53,8 +53,16 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <p class="text-info text-right">
-                            <br>
-                            <br>
+                        <div class="container">
+                            <div class="row">
+                                <form action="PesquisaProduto" method="post">
+                                    <input type="hidden" name="cmd" value="pesquisa"/>
+                                    <input type="text" class="form form-control col-lg-6 col-md-2" name="palavraPesquisa" placeholder="Pesquise por um produto aqui ..." />
+                                    <input type="submit" class="btn btn-success" value="Pesquisar" />
+                                </form>
+                            </div>
+                        </div>
+                        <br>
                         </p>
                         <div class="row">
                             <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
@@ -68,22 +76,25 @@
                 </div>
             </div>
         </footer>
-        <% List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>(); 
-        ProdutoDAO produto = new ProdutoDAO(); 
-        list = produto.listaTodos();      
+        <% List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>();
+            ListaImagemProduto id = new ListaImagemProduto();
+            ProdutoDAO produto = new ProdutoDAO();
+            list = produto.listaTodos();
         %>
         <div class="section">
             <div class="background-image background-image-fixed"></div>
             <div class="container">
-                <div class="row">
-                    <% for(ListaImagemProduto proIm : list ){ %>
-                    <div class="col-md-3 col-sm-5" >                        
+                <div class="row">                    
+                    <% for (ListaImagemProduto proIm : list) { %>
+                    <div class="col-md-3 col-sm-5" >   
+                        <input type="hidden" name="idProduto" value="<%id.getIdProduto();%>"/>
+                        <a href="MostraProdutoCompra.jsp"><h2><center><%out.print(proIm.getNomeproduto()); %></center></h2></a>
                         <a href="MostraProdutoCompra.jsp"><img src="<%out.print(proIm.getImagem1());%>" class="img-responsive img-thumbnail">
-                        <a href=""><h2><%out.print(proIm.getNomeproduto()); %></h2></a>
-                        <p><%out.print(proIm.getDescricaoProduto());%>
                             <br>
-                        </p>                                  
-                    </div><%} %>
+                            <br><p><%out.print(proIm.getDescricaoProduto());%>
+                                <br>
+                            </p>                                  
+                    </div><%}%>
                 </div>
             </div>
         </div>

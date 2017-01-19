@@ -7,12 +7,7 @@ import cdc.model.PalavrasChaveDAO;
 import cdc.model.Produto;
 import cdc.model.ProdutoDAO;
 import cdc.util.DAO;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -20,8 +15,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import javax.sql.rowset.serial.SerialBlob;
 
 /**
  *
@@ -88,14 +81,6 @@ public class ServletProduto extends HttpServlet {
                 
                 PalavrasChave pc = new PalavrasChave(palavra1, palavra2, palavra3, id);
                 keyword.salvar(pc);
-
-                System.out.println("Id do produto: " + id);
-                System.out.println("=================================================================");
-                System.out.println("Imagem 1: " + imagem1);
-                System.out.println("=================================================================");
-                System.out.println("Imagem 2: " + imagem2);
-                System.out.println("=================================================================");
-                System.out.println("Imagem 3: " + imagem3);
 
                 rd = request.getRequestDispatcher("/index.html");
             } else {
