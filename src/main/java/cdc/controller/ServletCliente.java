@@ -48,7 +48,6 @@ public class ServletCliente extends HttpServlet {
                 //  Integer idCidadeCliente = Integer.parseInt(request.getParameter("idCidadeCliente"));
                 String nomeCliente = request.getParameter("nomeCliente");
                 String sexoCliente = request.getParameter("sexoCliente");
-                System.out.println(sexoCliente);
                 String cpfCliente = request.getParameter("cpfCliente");
                 String dataNascimentoCliente = request.getParameter("dataNascimentoCliente");
                 String telefone1Cliente = request.getParameter("telefone1Cliente");
@@ -57,19 +56,58 @@ public class ServletCliente extends HttpServlet {
                 String enderecoCliente = request.getParameter("enderecoCliente");
                 String cepCliente = request.getParameter("cepCliente");
                 String cidadeCliente = request.getParameter("cidadeCliente");
-                String estadoCliente = request.getParameter("estadoCliente");                
+                String estadoCliente = request.getParameter("estadoCliente");
                 String passwordCliente = request.getParameter("passwordCliente");
 
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 java.sql.Date data = new java.sql.Date(format.parse(dataNascimentoCliente).getTime());
+                System.out.println(data);
 
                 ClienteModel cliente = new ClienteModel(nomeCliente, telefone1Cliente, telefone2Cliente, emailCliente, cepCliente, data, sexoCliente, cpfCliente, enderecoCliente, cepCliente, passwordCliente, cidadeCliente, estadoCliente);
                 dao.salvar(cliente);
-                rd = request.getRequestDispatcher("/clientes.jsp");
+                getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("listar")) {
+                List clienteList = dao.listaTodos();//recebendo o ArrayList com todos os autores
+                request.setAttribute("clienteList", clienteList); //enviando parametros via request
+                //setando o despachador
+                getServletContext().getRequestDispatcher("/clientes.jsp").forward(request, response);
 
-            } else {
-                rd = request.getRequestDispatcher("/index.html");
+            } else if (cmd.equalsIgnoreCase("update")) {
+                Integer idCliente = Integer.parseInt(request.getParameter("id"));
 
+                List clienteList = dao.procura(new ClienteModel(idCliente));
+                request.setAttribute("clienteList", clienteList);
+                getServletContext().getRequestDispatcher("/AlteraCliente.jsp").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("saveUpdate")) {
+                Integer idCliente = Integer.parseInt(request.getParameter("idCliente"));
+                String nomeCliente = request.getParameter("nomeCliente");
+                String sexoCliente = request.getParameter("sexoCliente");
+                String cpfCliente = request.getParameter("cpfCliente");
+                String dataNascimentoCliente = request.getParameter("dataNascimentoCliente");
+                String telefone1Cliente = request.getParameter("telefone1Cliente");
+                String telefone2Cliente = request.getParameter("telefone2Cliente");
+                String emailCliente = request.getParameter("emailCliente");
+                String enderecoCliente = request.getParameter("enderecoCliente");
+                String cepCliente = request.getParameter("cepCliente");
+                String cidadeCliente = request.getParameter("cidadeCliente");
+                String estadoCliente = request.getParameter("estadoCliente");
+                String passwordCliente = request.getParameter("passwordCliente");
+
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                java.sql.Date data = new java.sql.Date(format.parse(dataNascimentoCliente).getTime());
+                System.out.println(data);
+                ClienteModel cliente = new ClienteModel(idCliente, nomeCliente, telefone1Cliente, telefone2Cliente, emailCliente, cepCliente, data, sexoCliente, cpfCliente, enderecoCliente, cepCliente, passwordCliente, cidadeCliente, estadoCliente);
+                dao.atualizar(cliente);
+                getServletContext().getRequestDispatcher("/clientes?cmd=listar").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("add")) {
+                getServletContext().getRequestDispatcher("/CadastroClientes.jsp").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("del")) {
+                Integer id = Integer.parseInt(request.getParameter("id"));
+                ClienteModel cli = new ClienteModel(id);
+                dao.excluir(cli);
+                getServletContext().getRequestDispatcher("/clientes?cmd=listar").forward(request, response);
             }
 
         } catch (Exception e) {

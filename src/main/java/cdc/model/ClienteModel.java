@@ -26,6 +26,10 @@ public class ClienteModel {
     public ClienteModel() {
     }
 
+    public ClienteModel(Integer id) {
+        this.idCliente = id;
+    }
+
     public ClienteModel(String nomeCliente, String telefone1Cliente, String telefone2Cliente, String emailCliente, String tipoCliente, Date dataNascimentoCliente, String sexoCliente, String cpfCliente, String enderecoCliente, String cepCliente, String passwordCliente, String cidadeCliente, String estadoCliente) {
         this.nomeCliente = nomeCliente;
         this.telefone1Cliente = telefone1Cliente;
@@ -74,8 +78,6 @@ public class ClienteModel {
     public void setEstadoCliente(String estadoCliente) {
         this.estadoCliente = estadoCliente;
     }
-    
-    
 
     public String getPasswordCliente() {
         return passwordCliente;

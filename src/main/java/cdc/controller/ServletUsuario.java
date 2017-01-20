@@ -1,10 +1,10 @@
 package cdc.controller;
-
 import cdc.model.Usuario;
 import cdc.model.UsuarioDAO;
 import cdc.util.DAO;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,10 +58,47 @@ public class ServletUsuario extends HttpServlet {
 
                 Usuario usuario = new Usuario(nomeUsuario, telefone1Usuario, telefone2Usuario, emailUsuario, tipoUsuario, data, sexoUsuario, passwordUsuario);
                 dao.salvar(usuario);
-                rd = request.getRequestDispatcher("/index.html");
-            } else {
-                rd = request.getRequestDispatcher("/index.html");
-            }
+                getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("listar")) {
+                List usuarioList = dao.listaTodos();//recebendo o ArrayList com todos os autores
+                request.setAttribute("usuarioList", usuarioList); //enviando parametros via request
+                //setando o despachador
+                getServletContext().getRequestDispatcher("/usuarios.jsp").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("update")) {
+                Usuario usuario;
+                Integer idUsuario = Integer.parseInt(request.getParameter("id"));
+
+                List usuarioList = dao.procura(new Usuario(idUsuario));
+                request.setAttribute("usuarioList", usuarioList);
+                getServletContext().getRequestDispatcher("/AlteraUsuario.jsp").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("saveUpdate")) {
+                Integer idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+                String nomeUsuario = request.getParameter("nomeUsuario");
+                String telefone1Usuario = request.getParameter("telefone1Usuario");
+                String telefone2Usuario = request.getParameter("telefone2Usuario");
+                String emailUsuario = request.getParameter("emailUsuario");
+                String tipoUsuario = request.getParameter("tipoUsuario");
+                String dataNascimentoUsuario = request.getParameter("dataNascimentoUsuario");
+                String sexoUsuario = request.getParameter("sexoUsuario");
+                String passwordUsuario = request.getParameter("passwordUsuario");
+
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                java.sql.Date data = new java.sql.Date(format.parse(dataNascimentoUsuario).getTime());
+
+                Usuario usuario = new Usuario(idUsuario, nomeUsuario, telefone1Usuario, telefone2Usuario, emailUsuario, tipoUsuario, data, sexoUsuario, passwordUsuario);
+                dao.atualizar(usuario);
+                getServletContext().getRequestDispatcher("/usuarios?cmd=listar").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("add")) {
+                getServletContext().getRequestDispatcher("/CadastroUsuario.jsp").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("del")) {
+                Integer id = Integer.parseInt(request.getParameter("id"));
+                Usuario uso = new Usuario(id);
+                dao.excluir(uso);
+                getServletContext().getRequestDispatcher("/usuarios?cmd=listar").forward(request, response);
+            } 
 
         } catch (Exception e) {
             e.printStackTrace();

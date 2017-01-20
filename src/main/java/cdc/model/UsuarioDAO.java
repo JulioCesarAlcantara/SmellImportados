@@ -41,17 +41,19 @@ public class UsuarioDAO implements DAO {
             throw new Exception("O valor passado não pode ser nulo!");
         }
         try {
-            String sql = "update Usuario set nomeUsuario = ?, telefone1Usuario = ?, telefone2Usuario = ?, emailUsuario=?, tipoUsuario=?, idClienteUsuario = ? where idUsuario = ?";
+            String sql = "update Usuario set nomeUsuario = ?, telefone1Usuario = ?, telefone2Usuario = ?, emailUsuario=?, tipoUsuario=?, dataNascimentoUsuario=?, sexoUsuario=?, passwordUsuario=? where idUsuario = ?";
             conn = this.conn;
+            ps = conn.prepareStatement(sql);
             ps = conn.prepareStatement(sql);
             ps.setString(1, com.getNomeUsuario());
             ps.setString(2, com.getTelefone1Usuario());
             ps.setString(3, com.getTelefone2Usuario());
             ps.setString(4, com.getEmailUsuario());
             ps.setString(5, com.getTipoUsuario());
-            ps.setInt(6, com.getIdClienteUsuario());
-            ps.setInt(7, com.getIdUsuario());
-
+            ps.setDate(6, com.getDataNascimentoUsuario());
+            ps.setString(7, com.getSexoUsuario());
+            ps.setString(8, com.getPasswordUsuario());
+            ps.setInt(9, com.getIdUsuario());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);
@@ -90,11 +92,11 @@ public class UsuarioDAO implements DAO {
 
         try {
             conn = this.conn;
-            ps = conn.prepareStatement("select * from Usuario");
+            ps = conn.prepareStatement("select * from Usuario where tipoUsuario <> 'c'");
             rs = ps.executeQuery();
             List<Usuario> list = new ArrayList<Usuario>();
             while (rs.next()) {
-                //  list.add(new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7)));
+                list.add(new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7), rs.getString(8), rs.getString(9)));
             }
             return list;
         } catch (SQLException e) {
@@ -118,63 +120,26 @@ public class UsuarioDAO implements DAO {
             String SQL = "select * from Usuario ";
             String where = "";
             boolean checa = false;
-            if (com.getIdUsuario() != 0 || com.getNomeUsuario() != null || com.getTipoUsuario() != null || com.getIdClienteUsuario() != 0) {
+            if (com.getIdUsuario() != 0) {
                 where = "where ";
                 if (com.getIdUsuario() != 0) {
                     where += "idUsuario=? ";
                     checa = true;
                 }
-                if (com.getNomeUsuario() != null) {
-                    if (checa) {
-                        where += "and";
-                    }
-                    where += " nommeUsuario=? ";
-                    checa = true;
-                }
-                if (com.getTipoUsuario() != null) {
-                    if (checa) {
-                        where += "and";
-                    }
-                    where += " tipoUsuario=? ";
-                    checa = true;
-                }
-                if (com.getIdClienteUsuario() != 0) {
-                    if (checa) {
-                        where += "and";
-                    }
-                    where += " idClienteUsuario=? ";
-                }
             }
 
             ps = conn.prepareStatement(SQL + where);
             int contaCampos = 1;
-            if (com.getIdUsuario() != 0 || com.getNomeUsuario() != null || com.getTipoUsuario() != null || com.getIdClienteUsuario() != 0) {
+            if (com.getIdUsuario() != 0) {
                 if (com.getIdUsuario() != 0) {
                     ps.setInt(contaCampos, com.getIdUsuario());
                     contaCampos++;
-                }
-                if (com.getNomeUsuario() != null) {
-                    ps.setString(contaCampos, com.getNomeUsuario());
-                    contaCampos++;
-                }
-                if (com.getTipoUsuario() != null) {
-                    ps.setString(contaCampos, com.getTipoUsuario());
-                }
-                if (com.getIdClienteUsuario() != 0) {
-                    ps.setInt(contaCampos, com.getIdClienteUsuario());
                 }
             }
             rs = ps.executeQuery();
             List<Usuario> list = new ArrayList<Usuario>();
             while (rs.next()) {
-                Integer idUsuario = rs.getInt(1);
-                String nomeUsuario = rs.getString(2);
-                String telefone1 = rs.getString(3);
-                String telefone2 = rs.getString(4);
-                String email = rs.getString(5);
-                String tipoUsuario = rs.getString(6);
-                Integer idClienteUsuario = rs.getInt(7);
-                //list.add(new Usuario(idUsuario, nomeUsuario, telefone1, telefone2, email, tipoUsuario, idClienteUsuario));
+                list.add(new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7), rs.getString(8), rs.getString(9)));
             }
             return list;
         } catch (SQLException sqle) {
@@ -233,9 +198,9 @@ public class UsuarioDAO implements DAO {
             rs.last();
             int size = rs.getRow();
             rs.beforeFirst();
-            
+
             return size >= 1;
-            
+
         } catch (SQLException e) {
             throw new Exception(e);
         } finally {
