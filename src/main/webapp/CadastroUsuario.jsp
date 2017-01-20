@@ -42,7 +42,7 @@
             <form class="form-signin" action="usuarios" method="post">
                     <h2 class="form-signin-heading">Cadastro de Usuários </h2><br>
                 <input type="hidden" name="cmd" value="saveAdd" /> 
-                <input type="name" class="form-control" placeholder="Nome " name="nomeUsuario"></br>
+                <input type="text" class="form-control" placeholder="Nome " name="nomeUsuario"><br/>
              
                <input type="email" class="form-control" placeholder="Email" name="emailUsuario" /> 
                <br>

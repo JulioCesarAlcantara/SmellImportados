@@ -17,10 +17,15 @@ public class Usuario {
     private Date dataNascimentoUsuario;
     private String sexoUsuario;
     private String passwordUsuario;
-    private int idClienteUsuario;
 
     public Usuario() {
     }
+
+    public Usuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
+    
 
     public Usuario(String nomeUsuario, String telefone1Usuario, String telefone2Usuario, String emailUsuario, String tipoUsuario, Date dataNascimentoUsuario, String sexoUsuario, String passwordUsuario) {
         this.nomeUsuario = nomeUsuario;
@@ -34,7 +39,7 @@ public class Usuario {
     }
 
     
-    public Usuario(int idUsuario, String nomeUsuario, String telefone1Usuario, String telefone2Usuario, String emailUsuario, String tipoUsuario, Date dataNascimentoUsuario, String sexoUsuario, String passwordUsuario, int idClienteUsuario) {
+    public Usuario(int idUsuario, String nomeUsuario, String telefone1Usuario, String telefone2Usuario, String emailUsuario, String tipoUsuario, Date dataNascimentoUsuario, String sexoUsuario, String passwordUsuario) {
         this.idUsuario = idUsuario;
         this.nomeUsuario = nomeUsuario;
         this.telefone1Usuario = telefone1Usuario;
@@ -44,7 +49,6 @@ public class Usuario {
         this.dataNascimentoUsuario = dataNascimentoUsuario;
         this.sexoUsuario = sexoUsuario;
         this.passwordUsuario = passwordUsuario;
-        this.idClienteUsuario = idClienteUsuario;
     }
 
     public String getPasswordUsuario() {
@@ -117,16 +121,7 @@ public class Usuario {
 
     public void setSexoUsuario(String sexoUsuario) {
         this.sexoUsuario = sexoUsuario;
-    }
-
-    public int getIdClienteUsuario() {
-        return idClienteUsuario;
-    }
-
-    public void setIdClienteUsuario(int idClienteUsuario) {
-        this.idClienteUsuario = idClienteUsuario;
-    }
-    
+    }    
     
     
 }

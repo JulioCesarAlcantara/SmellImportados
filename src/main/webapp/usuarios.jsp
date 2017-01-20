@@ -40,7 +40,7 @@
         <div id ="redor">
             <div class="container">
 
-                            <a href="clientes?cmd=add" >Cadastrar novo Cliente</a>
+                            <a href="usuarios?cmd=add" >Cadastrar novo Usuario</a>
             <div style="padding: 10px; margin:10px;">
                 <table>
                     <tr>
@@ -48,11 +48,11 @@
                         <th> Nome </th>
                         <th> Excluir </th>
                     </tr>
-                    <c:forEach var="lista" items="${ requestScope.clienteList }">
+                    <c:forEach var="lista" items="${ requestScope.usuarioList }">
                         <tr>
-                            <td><a href="clientes?cmd=update&id=${lista.idCliente}"> ${lista.idCliente} </a></td>
-                            <td>${lista.nomeCliente}</td>
-                           <td><a href="clientes?cmd=del&id=${lista.idCliente}"> Excluir Cliente</a></td>
+                            <td><a href="usuarios?cmd=update&id=${lista.idUsuario}"> ${lista.idUsuario} </a></td>
+                            <td>${lista.nomeUsuario}</td>
+                           <td><a href="usuarios?cmd=del&id=${lista.idUsuario}"> Excluir Usuario</a></td>
                     </c:forEach>
                 </table>
             </div>
