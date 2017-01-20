@@ -234,4 +234,70 @@ public class ProdutoDAO implements DAO {
             ConnectionDAO.closeConnection(conn, ps);
         }
     }
+
+    public List buscaProdutoPesquisado(String str) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT Produto.idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeProduto,"
+                    + " idImagemDeProduto, imagem1,ImagemDeProduto.idProduto"
+                    + " FROM Produto"
+                    + "	INNER JOIN ImagemDeProduto"
+                    + " ON ImagemDeProduto.idProduto = Produto.idProduto "
+                    + " WHERE Produto.nomeProduto "
+                    + " LIKE '%" + str + "%'";
+
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>();
+            while (rs.next()) {
+                list.add(new ListaImagemProduto(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9)));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+    }
+
+    /**
+     * Este método é responsável por buscar um determinado produto pra realizar 
+     * uma compra. O produto é buscado pelo id e é retornado uma lista contendo 
+     * todos seus atributos. 
+     * @param id
+     * @return
+     * @throws Exception 
+     */
+    public List listaProdutosParaCompra(String id) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.conn;
+            ps = conn.prepareStatement("SELECT *  "
+                    + "FROM Produto "
+                    + "INNER JOIN ImagemDeProduto  "
+                    + "ON ImagemDeProduto.idProduto = Produto.idProduto "
+                    + "WHERE Produto.idProduto = " + id);
+            rs = ps.executeQuery();
+            List list = new ArrayList();
+            while (rs.next()) {
+                list.add(new ListaImagemProduto(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4),
+                        rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getString(9), rs.getString(10), rs.getInt(11)));
+            }
+            System.out.println("Lista :  " + list);
+            return list;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+    }
+
 }

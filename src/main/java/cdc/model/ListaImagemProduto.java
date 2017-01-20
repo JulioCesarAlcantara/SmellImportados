@@ -14,7 +14,13 @@ public class ListaImagemProduto {
     private int qntProduto;
     private Integer idImagem; 
     private String imagem1; 
+    private String imagem2;
+    private String imagem3;
     private Integer idProdutoImagem; 
+
+    public ListaImagemProduto() {
+        
+    }    
 
     public ListaImagemProduto(Integer idProduto, String nomeproduto, float precoProduto, String descricaoProduto, String categoriaProduto, int qntProduto, Integer idImagem, String imagem1, Integer idProdutoImagem) {
         this.idProduto = idProduto;
@@ -27,6 +33,22 @@ public class ListaImagemProduto {
         this.imagem1 = imagem1;
         this.idProdutoImagem = idProdutoImagem;
     }
+
+    public ListaImagemProduto(Integer idProduto, String nomeproduto, float precoProduto, String descricaoProduto, String categoriaProduto, int qntProduto, Integer idImagem, String imagem1, String imagem2, String imagem3, Integer idProdutoImagem) {
+        this.idProduto = idProduto;
+        this.nomeproduto = nomeproduto;
+        this.precoProduto = precoProduto;
+        this.descricaoProduto = descricaoProduto;
+        this.categoriaProduto = categoriaProduto;
+        this.qntProduto = qntProduto;
+        this.idImagem = idImagem;
+        this.imagem1 = imagem1;
+        this.imagem2 = imagem2;
+        this.imagem3 = imagem3;
+        this.idProdutoImagem = idProdutoImagem;
+    }
+    
+    
 
     public Integer getIdProduto() {
         return idProduto;
@@ -99,6 +121,23 @@ public class ListaImagemProduto {
     public void setIdProdutoImagem(Integer idProdutoImagem) {
         this.idProdutoImagem = idProdutoImagem;
     }
+
+    public String getImagem2() {
+        return imagem2;
+    }
+
+    public void setImagem2(String imagem2) {
+        this.imagem2 = imagem2;
+    }
+
+    public String getImagem3() {
+        return imagem3;
+    }
+
+    public void setImagem3(String imagem3) {
+        this.imagem3 = imagem3;
+    }
+    
     
     
 }
