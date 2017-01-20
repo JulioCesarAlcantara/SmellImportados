@@ -36,7 +36,10 @@
                             <a href="TelaPrincipal.jsp">Home</a>
                         </li>
                         <li>
-                            <a href="CadastroClientes.jsp">Clientes</a>
+                            <a href="clientes?cmd=listar">Clientes</a>
+                        </li>
+                        <li>
+                            <a href="usuarios?cmd=listar">Usuarios</a>
                         </li>
                         <li>
                             <a href="#">Contacts</a>
