@@ -7,7 +7,11 @@ package cdc.controller;
 
 import cdc.util.DAO;
 import java.io.IOException;
-import cdc.controller.ServletMostraProdutoCompra; 
+import cdc.controller.ServletMostraProdutoCompra;
+import cdc.model.ListaImagemProduto;
+import cdc.model.Produto;
+import cdc.model.ProdutoDAO;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,15 +46,15 @@ public class ServletMostraProdutoCompra extends HttpServlet {
         }
 
         try {
+            ProdutoDAO proList = new ProdutoDAO();
             RequestDispatcher rd = null; //setando o objeto "despachador
-            if (cmd.equalsIgnoreCase("idProduto")) {  
-                String idProduto = request.getParameter("idProduto");
-                
-                System.out.println("id : " + idProduto);
-                
-                request.setAttribute("idProduto", idProduto);
-                
+            if (cmd.equalsIgnoreCase("id")) {
+                String id = request.getParameter("id");
+                System.out.println("id ====== " + id);
+                List produtoList = proList.listaProdutosParaCompra(id);
+                request.setAttribute("produtoList", produtoList);
                 getServletContext().getRequestDispatcher("/MostraProdutoCompra.jsp").forward(request, response);
+
             } else {
                 rd = request.getRequestDispatcher("/index.html");
             }
@@ -61,20 +65,26 @@ public class ServletMostraProdutoCompra extends HttpServlet {
         }
     }
 
-
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+        String id= request.getParameter("idProduto");
+        Produto pro = new Produto();
+        pro.setIdProduto1(id);
+        request.setAttribute("id", pro);
+        
+        getServletContext().getRequestDispatcher("/MostraProdutoCompra.jsp").forward(request, response);
     }
 
     /**
@@ -86,7 +96,7 @@ public class ServletMostraProdutoCompra extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -97,7 +107,7 @@ public class ServletMostraProdutoCompra extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

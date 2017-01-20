@@ -284,7 +284,10 @@ public class ProdutoDAO implements DAO {
                     + "INNER JOIN ImagemDeProduto  "
                     + "ON ImagemDeProduto.idProduto = Produto.idProduto "
                     + "WHERE Produto.idProduto = " + id);
+            
+            System.out.println("SQL : " + ps);
             rs = ps.executeQuery();
+            
             List list = new ArrayList();
             while (rs.next()) {
                 list.add(new ListaImagemProduto(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4),

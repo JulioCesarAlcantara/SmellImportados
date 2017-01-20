@@ -7,6 +7,7 @@ package cdc.model;
  */
 public class Produto {
 
+    private String idProduto1; 
     private int idProduto;
     private String nomeProduto;
     private float precoProduto;
@@ -33,8 +34,18 @@ public class Produto {
         this.Categoria = Categoria;
         this.quantidadeProduto = quantidadeProduto;
     }
-    
-    
+
+    public Produto(String idProduto1) {
+        this.idProduto1 = idProduto1;
+    }
+
+    public String getIdProduto1() {
+        return idProduto1;
+    }
+
+    public void setIdProduto1(String idProduto1) {
+        this.idProduto1 = idProduto1;
+    }    
 
     public int getIdProduto() {
         return idProduto;

@@ -29,7 +29,7 @@
         <servlet-class>cdc.controller.ServletPesquisaProduto</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletMostraProdutoCompra</servlet-name>
+        <servlet-name>MostraProdutoCompra</servlet-name>
         <servlet-class>cdc.controller.ServletMostraProdutoCompra</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -61,7 +61,7 @@
         <url-pattern>/PesquisaProduto</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletMostraProdutoCompra</servlet-name>
+        <servlet-name>MostraProdutoCompra</servlet-name>
         <url-pattern>/ServletMostraProdutoCompra</url-pattern>
     </servlet-mapping>
     <session-config>

@@ -9,6 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="cdc.model.ListaImagemProduto" %>
 <%@page import="cdc.model.ProdutoDAO" %>
+<%@page import="cdc.model.Produto" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="java.util.List" %>
 <!DOCTYPE html>
@@ -50,27 +51,21 @@
                 </div>
             </div>
         </div>
-
+        <jsp:useBean id="id" class="cdc.model.Produto" scope="request" />
+        <input type="hidden" name="id" value="${id.idProduto}"/>
         <%
-            List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>();
-            ProdutoDAO produto = new ProdutoDAO();
-            String id = (String) request.getAttribute("idProduto");
-            out.print(id);
-            list = produto.listaProdutosParaCompra(id);
+            Produto p = (Produto)request.getAttribute("id");
+            
+            out.println(p.getIdProduto1());
         %>
         <div class="section">
             <div class="background-image background-image-fixed"></div>
             <div class="container">
-                <div class="row">
-                    <% for (ListaImagemProduto proIm : list) { %>
+                <div class="row">                   
                     <div class="col-lg-12 col-sm-5" >  
-                       
-                        <a <img src="<%out.print(proIm.getImagem1());%>"></a>
-                        <br>
-                        <a <h2><%out.print(proIm.getNomeproduto()); %></h2></a>
+                        
 
-
-                    </div><%}%>
+                    </div>
                     </form>
                 </div>
             </div>
