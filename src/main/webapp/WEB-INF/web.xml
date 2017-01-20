@@ -28,6 +28,10 @@
         <servlet-name>PesquisaProduto</servlet-name>
         <servlet-class>cdc.controller.ServletPesquisaProduto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletMostraProdutoCompra</servlet-name>
+        <servlet-class>cdc.controller.ServletMostraProdutoCompra</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>usuarios</servlet-name>
         <url-pattern>/usuarios</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>PesquisaProduto</servlet-name>
         <url-pattern>/PesquisaProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletMostraProdutoCompra</servlet-name>
+        <url-pattern>/ServletMostraProdutoCompra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

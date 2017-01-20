@@ -29,7 +29,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand"><span>JCAL Ecommerce</span><br></a>
+                    <a class="navbar-brand"><span>Smell Importados</span><br></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <i class="fa fa-3x fa-car fa-fw pull-right text-muted"></i>
@@ -51,31 +51,34 @@
             </div>
         </div>
 
-        <% 
+        <%
             List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>();
-            ImagemProdutoDAO produto = new ImagemProdutoDAO();
-            list = produto.listaProdutosParaCompra("4");
+            ProdutoDAO produto = new ProdutoDAO();
+            String id = (String) request.getAttribute("idProduto");
+            out.print(id);
+            list = produto.listaProdutosParaCompra(id);
         %>
         <div class="section">
             <div class="background-image background-image-fixed"></div>
             <div class="container">
                 <div class="row">
                     <% for (ListaImagemProduto proIm : list) { %>
-                    <div class="col-lg-12 col-sm-5" >      
+                    <div class="col-lg-12 col-sm-5" >  
+                       
                         <a <img src="<%out.print(proIm.getImagem1());%>"></a>
                         <br>
                         <a <h2><%out.print(proIm.getNomeproduto()); %></h2></a>
-                        
-                                                    
+
+
                     </div><%}%>
                     </form>
                 </div>
             </div>
         </div>
-                    
-                    <div id="menu" class="media-right col-lg-2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ">
-                        
-                        Teste de menu
-                    </div> 
+
+        <div id="menu" class="media-object col-lg-2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ">
+
+            Teste de menu;
+        </div> 
     </body>
 </html>

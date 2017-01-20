@@ -7,6 +7,7 @@ package cdc.controller;
 
 import cdc.util.DAO;
 import java.io.IOException;
+import cdc.controller.ServletMostraProdutoCompra; 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cesar
  */
-public class ServletPesquisaProduto extends HttpServlet {
+public class ServletMostraProdutoCompra extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,6 +31,7 @@ public class ServletPesquisaProduto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         String cmd = request.getParameter("cmd");
         DAO dao;
 
@@ -41,8 +43,14 @@ public class ServletPesquisaProduto extends HttpServlet {
 
         try {
             RequestDispatcher rd = null; //setando o objeto "despachador
-            if (cmd.equalsIgnoreCase("pesquisa")) {
-                getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+            if (cmd.equalsIgnoreCase("idProduto")) {  
+                String idProduto = request.getParameter("idProduto");
+                
+                System.out.println("id : " + idProduto);
+                
+                request.setAttribute("idProduto", idProduto);
+                
+                getServletContext().getRequestDispatcher("/MostraProdutoCompra.jsp").forward(request, response);
             } else {
                 rd = request.getRequestDispatcher("/index.html");
             }
@@ -53,17 +61,18 @@ public class ServletPesquisaProduto extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+/**
+ * Handles the HTTP <code>GET</code> method.
+ *
+ * @param request servlet request
+ * @param response servlet response
+ * @throws ServletException if a servlet-specific error occurs
+ * @throws IOException if an I/O error occurs
+ */
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -77,7 +86,7 @@ public class ServletPesquisaProduto extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -88,7 +97,7 @@ public class ServletPesquisaProduto extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
