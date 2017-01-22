@@ -12,6 +12,8 @@
 <%@page import="cdc.model.Produto" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="java.util.List" %>
+<jsp:useBean id="produto1" class="cdc.model.Produto" scope="request" />
+
 <!DOCTYPE html>
 <html><head>
         <meta charset="utf-8">
@@ -51,13 +53,8 @@
                 </div>
             </div>
         </div>
-        <jsp:useBean id="id" class="cdc.model.Produto" scope="request" />
-        <input type="hidden" name="id" value="${id.idProduto}"/>
-        <%
-            Produto p = (Produto)request.getAttribute("id");
-            
-            out.println(p.getIdProduto1());
-        %>
+        Id do produto eh: ${produto1.idProduto} !!!
+
         <div class="section">
             <div class="background-image background-image-fixed"></div>
             <div class="container">
