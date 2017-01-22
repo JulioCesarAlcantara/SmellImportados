@@ -8,6 +8,7 @@ package cdc.model;
 import cdc.util.ConnectionDAO;
 import cdc.util.DAO;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +39,7 @@ public class PromocaoDAO implements DAO {
             throw new Exception("O valor passado não pode ser nulo");
         }
         try {
-            String SQL = "update Promocao set nomePromocao = ?, dataInicioPromocao = ?, dataFimPromocao = ?, descontoPromocao=?, statusPromocao=?, idProdutoPromocao=? WHERE idPromocao = ?";
+            String SQL = "update Promocao set nomePromocao = ?, dataInicioPromocao = ?, dataFimPromocao = ?, descontoPromocao=?, statusPromocao=? WHERE idPromocao = ?";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.setString(1, prom.getNomePromocao());
@@ -46,7 +47,7 @@ public class PromocaoDAO implements DAO {
             ps.setDate(3, prom.getDataFimPromocao());
             ps.setFloat(4, prom.getDescontoPromocao());
             ps.setString(5, prom.getStatusPromocao());
-            ps.setInt(6, prom.getIdProdutoPromocao());
+            ps.setInt(6, prom.getIdPromocao());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception("Erro ao atualizar Promocao:\n" + e);
@@ -89,14 +90,13 @@ public class PromocaoDAO implements DAO {
             rs = ps.executeQuery();
             List<Promocao> list = new ArrayList<Promocao>();
             while (rs.next()) {
-                Integer idPromocao = rs.getInt(1);
+               Integer idPromocao = rs.getInt(1);
                 String nomePromocao = rs.getString(2);
-                String dataInicio = rs.getString(3);
-                String dataFim = rs.getString(4);
+                Date dataInicio = rs.getDate(3);
+                Date dataFim = rs.getDate(4);
                 float descontoPromo = rs.getFloat(5);
                 String statusPromo = rs.getString(6);
-                Integer idProdutoPromocao = rs.getInt(7);
-//                list.add(new Promocao(idPromocao, nomePromocao, dataInicio, dataFim, descontoPromo, statusPromo, idProdutoPromocao));
+                list.add(new Promocao(idPromocao, nomePromocao, dataInicio, dataFim, descontoPromo, statusPromo));
             }
             return list;
         } catch (SQLException sqle) {
@@ -164,12 +164,11 @@ public class PromocaoDAO implements DAO {
             while (rs.next()) {
                 Integer idPromocao = rs.getInt(1);
                 String nomePromocao = rs.getString(2);
-                String dataInicio = rs.getString(3);
-                String dataFim = rs.getString(4);
+                Date dataInicio = rs.getDate(3);
+                Date dataFim = rs.getDate(4);
                 float descontoPromo = rs.getFloat(5);
                 String statusPromo = rs.getString(6);
-                Integer idProdutoPromocao = rs.getInt(7);
-               // list.add(new Promocao(idPromocao, nomePromocao, dataInicio, dataFim, descontoPromo, statusPromo, idProdutoPromocao));
+                list.add(new Promocao(idPromocao, nomePromocao, dataInicio, dataFim, descontoPromo, statusPromo));
             }
             return list;
         } catch (SQLException sqle) {

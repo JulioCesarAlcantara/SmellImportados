@@ -19,10 +19,15 @@ public class Promocao {
     private Date dataFimPromocao;
     private float descontoPromocao;
     private String statusPromocao;
-    private int idProdutoPromocao;
 
     public Promocao() {
     }
+
+    public Promocao(int idPromocao) {
+        this.idPromocao = idPromocao;
+    }
+    
+    
 
     public Promocao(int idPromocao, String nomePromocao, Date dataInicioPromocao, Date dataFimPromocao, float descontoPromocao, String statusPromocao) {
         this.idPromocao = idPromocao;
@@ -89,16 +94,7 @@ public class Promocao {
 
     public void setStatusPromocao(String statusPromocao) {
         this.statusPromocao = statusPromocao;
-    }
-
-    public int getIdProdutoPromocao() {
-        return idProdutoPromocao;
-    }
-
-    public void setIdProdutoPromocao(int idProdutoPromocao) {
-        this.idProdutoPromocao = idProdutoPromocao;
-    }
-    
+    }   
     
     
 }
