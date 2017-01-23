@@ -163,5 +163,25 @@ public class ItemCompraDAO implements DAO{
             throw new Exception(e);
         }
     }
+    
+        public void salvarProdutoNoCarrinho(String idPro, String idUsu) throws Exception {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        if (idPro == null || idUsu == null) {
+            throw new Exception("O valor passado não pode ser nulo");
+        }
+
+        try {
+            String sql = "insert into ItemCompra (idProdutoItemCompra, idUsuarioItemCompra) values (?,?)";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idPro);
+            ps.setString(2, idUsu);            
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception(e);
+        }
+    }
 
 }

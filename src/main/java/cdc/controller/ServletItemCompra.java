@@ -24,17 +24,22 @@ public class ServletItemCompra extends HttpServlet {
         HttpSession session = request.getSession(false);
 
         try {
+
             String idProduto = request.getParameter("idPro");
             String idUsuario = session.getAttribute("idUsuarioLogin").toString();
             System.out.println("ID PRODUTO: " + idProduto);
             System.out.println("ID USUARIO: " + idUsuario);
 
-            ItemCompra items = new ItemCompra(Integer.parseInt(idProduto), Integer.parseInt(idUsuario));
-            ItemCompraDAO itemCompra = new ItemCompraDAO();
-            itemCompra.salvar(items);
-            
-            request.getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+            if (!idUsuario.isEmpty()) {
+                ItemCompraDAO itemCompra = new ItemCompraDAO();
+                itemCompra.salvarProdutoNoCarrinho(idProduto, idUsuario);
+
+                request.getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/Login.jsp").forward(request, response);
+            }
         } catch (Exception ex) {
+            request.getRequestDispatcher("/Login.jsp").forward(request, response);
             Logger.getLogger(ServletTelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
