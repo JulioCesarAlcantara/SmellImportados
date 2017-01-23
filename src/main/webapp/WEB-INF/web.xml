@@ -33,7 +33,7 @@
         <servlet-class>cdc.controller.ServletMostraProdutoCompra</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>TelaPrincipal</servlet-name>
+        <servlet-name>MontaCompra</servlet-name>
         <servlet-class>cdc.controller.ServletTelaPrincipal</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -69,7 +69,7 @@
         <url-pattern>/ServletMostraProdutoCompra</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>TelaPrincipal</servlet-name>
+        <servlet-name>MontaCompra</servlet-name>
         <url-pattern>/ServletTelaPrincipal</url-pattern>
     </servlet-mapping>
     <session-config>

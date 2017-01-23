@@ -17,14 +17,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cesar
  */
-@WebServlet("/TelaPrincipal")
+@WebServlet("/MontaCompra")
 public class ServletTelaPrincipal extends HttpServlet {
-    //private static final long serialVersionUID = 1L;
-
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idProduto = request.getParameter("idProduto");
-        System.out.println("id do Produto: " + idProduto);
-        
         Produto p1 = new Produto();
         p1.setIdProduto(Integer.parseInt(idProduto));
         request.setAttribute("produto1", p1);
