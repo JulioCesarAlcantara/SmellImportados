@@ -1,12 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="cdc.model.Estado"%>
-<%@page import="java.util.List"%>   
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Alterar Promoção</title>
+        <title>Cadastro de Clientes</title>
         <link href="sistemCSS_1.css" rel="stylesheet">
     </head>
     <body>
@@ -37,23 +37,19 @@
                 </div>
             </div>
         </div>
-        <div id ="redor">
+                <div id ="redor">
             <div class="container">
 
-                            <a href="promocao?cmd=add" >Cadastrar nova Promoção </a> |
-                            <a href="CadastroProdutoPromocao.jsp" > Associar Produtos em Promoções</a>
             <div style="padding: 10px; margin:10px;">
                 <table>
                     <tr>
-                        <th> ID - Atualizar </th>
                         <th> Nome </th>
                         <th> Excluir </th>
                     </tr>
-                    <c:forEach var="lista" items="${ requestScope.promocaoList }">
+                    <c:forEach var="lista" items="${ requestScope.produtoList }">
                         <tr>
-                            <td><a href="promocao?cmd=update&id=${lista.idPromocao}"> ${lista.idPromocao} </a></td>
-                            <td>${lista.nomePromocao}</td>
-                           <td><a href="promocao?cmd=del&id=${lista.idPromocao}"> Excluir Promoção</a></td>
+                            <td>${lista.nomeProduto}</td>
+                           <td><a href="produtoPromocao?cmd=del&idPromocao=${requestScope.idPromocao}&idProduto=${lista.idProduto}">Excluir produto da promoção </a></td>
                     </c:forEach>
                 </table>
             </div>

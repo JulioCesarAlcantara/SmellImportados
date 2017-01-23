@@ -39,8 +39,10 @@
             <div class="container">
 
                 <form class="form-signin" action="promocao" method="post">
+                    
 
                     <h2 class="form-signin-heading">Alterar Promoção </h2><br>
+                    <a href="produtoPromocao?cmd=update&id=${promocaoList.get(0).idPromocao}"> Gerenciar Produtos desta promoção </a><br/><br/>
                     <input type="hidden" name="cmd" value="saveUpdate"/>
                     <input type="text" id="inputId" class="form-control" placeholder="Nome " name="idPromocao" value="${promocaoList.get(0).idPromocao}" readonly>  <br/>                 
                     <input type="text" id="inputName" class="form-control" placeholder="Nome " name="nomePromocao" value="${promocaoList.get(0).nomePromocao}">                    
@@ -58,6 +60,9 @@
                         <input type="radio" name="statusPromocao" value="A"> Ativa <br><br>
                         <input type="radio" name="statusPromocao" value="I" checked> Inativa <br><br>
                     </c:if>
+                        
+                        
+                        
                     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Salvar">Alterar</button>
                 </form>
             </div>

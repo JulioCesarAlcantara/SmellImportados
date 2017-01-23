@@ -44,6 +44,7 @@
                     <input type="email" id="inputName" class="form-control" placeholder="Email " name="emailUsuario"></br>                    
                     <br><input type="password" id="inputDt" class="form-control" placeholder="Insira sua senha" name="passwordUsuario"></br>
                     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Logar">Entrar</button> <br>
+                    Não tem uma conta? Cadastre-se agora<br/>
                     <a href="CadastroClientes.jsp" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true"> Cadastrar </a>
                        
                 </form>
