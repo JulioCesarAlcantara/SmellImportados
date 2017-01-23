@@ -7,9 +7,11 @@ package cdc.controller;
 
 import cdc.model.ProdutoPromocao;
 import cdc.model.ProdutoPromocaoDAO;
+import cdc.model.Promocao;
 import cdc.util.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -57,8 +59,20 @@ public class ServletProdutoPromocao extends HttpServlet {
                 }
 
                 rd = request.getRequestDispatcher("/index.html");
-            } else {
-                rd = request.getRequestDispatcher("/index.html");
+            } else if (cmd.equalsIgnoreCase("update")) {
+                Integer idPromocao = Integer.parseInt(request.getParameter("id"));
+                ProdutoPromocaoDAO dao1 = new ProdutoPromocaoDAO();
+                List produtoList = dao1.buscaProdutosDeUmaPromocao(idPromocao);
+                request.setAttribute("produtoList", produtoList);
+                request.setAttribute("idPromocao", idPromocao);
+                getServletContext().getRequestDispatcher("/AlteraProdutoPromocao.jsp").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("del")) {
+                Integer idProduto = Integer.parseInt(request.getParameter("idProduto"));
+                Integer idPromocao = Integer.parseInt(request.getParameter("idPromocao"));
+                ProdutoPromocaoDAO dao1 = new ProdutoPromocaoDAO();
+                dao1.delete(idProduto, idPromocao);
+                getServletContext().getRequestDispatcher("/produtoPromocao?cmd=update&id="+idPromocao).forward(request, response);
+
             }
 
         } catch (Exception e) {

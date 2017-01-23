@@ -50,7 +50,7 @@
                             <a href="#">Contacts</a>
                         </li>
                         <li>
-                            <a href="login.jsp">Login</a>
+                            <a href="Login.jsp">Login</a>
                         </li>
                     </ul>
                 </div>

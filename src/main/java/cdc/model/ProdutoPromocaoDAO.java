@@ -95,7 +95,7 @@ public class ProdutoPromocaoDAO implements DAO {
             return list;
         } catch (SQLException sqle) {
             throw new Exception(sqle);
-        } 
+        }
 
     }
 
@@ -125,6 +125,112 @@ public class ProdutoPromocaoDAO implements DAO {
             ConnectionDAO.close(conn, ps, rs);
         }
 
+    }
+    
+     public List buscaProdutosDeUmaPromocao(int idPromo) throws Exception {
+
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.conn;
+            ps = conn.prepareStatement("SELECT idProduto, nomeProduto FROM ProdutoPromocao INNER JOIN Promocao ON Promocao.idPromocao = ProdutoPromocao.idPromocaoProdutoPromocao INNER JOIN Produto ON idProduto = idProdutoProdutoPromocao AND idPromocao = ?");
+            ps.setInt(1, idPromo);
+            rs = ps.executeQuery();
+            List<Produto> list = new ArrayList<>();
+            while (rs.next()) {
+                Integer idProduto = rs.getInt(1);
+                String nomeProduto = rs.getString(2);
+                list.add(new Produto(idProduto, nomeProduto, 0, null, null, 0));
+            }
+            
+            return list;
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+        } finally {
+            ConnectionDAO.close(conn, ps, rs);
+        }
+
+    }
+
+//    public List buscaProdutosDeUmaPromocao(int idPromo) throws Exception {
+//
+//        PreparedStatement ps = null;
+//        Connection conn = null;
+//        ResultSet rs = null;
+//
+//        try {
+//            conn = this.conn;
+//            ps = conn.prepareStatement("select idProdutoProdutoPromocao from ProdutoPromocao where idPromocaoProdutoPromocao = ?");
+//            ps.setInt(1, idPromo);
+//            rs = ps.executeQuery();
+//            List<Integer> listIdProdutos = new ArrayList<>();
+//            while (rs.next()) {
+//                Integer id = rs.getInt(1);
+//                listIdProdutos.add(id);
+//            }
+//            List<Produto> list = buscaDadosDosProdutos(listIdProdutos);
+//            return list;
+//        } catch (SQLException sqle) {
+//            throw new Exception(sqle);
+//        } finally {
+//            ConnectionDAO.close(conn, ps, rs);
+//        }
+//
+//    }
+//
+//    public List buscaDadosDosProdutos(List<Integer> listaDeId) throws Exception {
+//        PreparedStatement ps = null;
+//        Connection conn = null;
+//        ResultSet rs = null;
+//        List<Produto> produtos;
+//        produtos = new ArrayList<>();
+//
+//        try {
+//            conn = this.conn;
+//            for (Integer id : listaDeId) {
+//                ps = conn.prepareStatement("SELECT * FROM Produto WHERE idProduto = ?");
+//                ps.setInt(1, id);
+//                rs = ps.executeQuery();
+//                while (rs.next()) {
+//                    Integer idProduto = rs.getInt(1);
+//                    String nomeProduto = rs.getString(2);
+//                    float precoProduto = rs.getFloat(3);
+//                    String descricaoProduto = rs.getString(4);
+//                    String categoriaProduto = rs.getString(5);
+//                    int quantidadeProduto = rs.getInt(6);
+//                    produtos.add(new Produto(idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeProduto));
+//                }
+//            }
+//            return produtos;
+//        } catch (SQLException sqle) {
+//            throw new Exception(sqle);
+//        } finally {
+//            ConnectionDAO.close(conn, ps, rs);
+//        }
+//    }
+
+    public void delete(Integer idProduto, Integer idPromocao) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+
+        if (idProduto == 0 && idPromocao == 0) {
+            throw new Exception("O valor passado não pode ser nulo");
+        }
+        try {
+            String SQL = "delete from ProdutoPromocao where idProdutoProdutoPromocao = ? and idPromocaoProdutoPromocao = ?";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            ps.setInt(1, idProduto);
+            ps.setInt(2, idPromocao);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new Exception("Erro ao inserir dados do cliente: " + e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps);
+        }
     }
 
 }

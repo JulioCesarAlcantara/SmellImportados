@@ -51,9 +51,9 @@ public class ServletLogin extends HttpServlet {
                boolean resultado = usu.verificaLogin(email, senha);
                
                if(resultado){
-                   System.out.println("DEU");
+                   getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
                } else{
-                   System.out.println("DEU NAO");
+                   getServletContext().getRequestDispatcher("/CadastroCliente.jsp").forward(request, response);
                }
             //    rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
                 
