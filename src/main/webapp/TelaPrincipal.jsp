@@ -44,6 +44,9 @@
                             <a href="usuarios?cmd=listar">Usuarios</a>
                         </li>
                         <li>
+                            <a href="promocao?cmd=listar">Promoções</a>
+                        </li>
+                        <li>
                             <a href="#">Contacts</a>
                         </li>
                         <li>

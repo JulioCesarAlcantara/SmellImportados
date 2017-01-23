@@ -1,9 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="cdc.model.Estado"%>
+<%@page import="java.util.List"%>   
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro de Promoção</title>
+        <title>Alterar Promoção</title>
         <link href="sistemCSS_1.css" rel="stylesheet">
     </head>
     <body>
@@ -37,18 +40,22 @@
         <div id ="redor">
             <div class="container">
 
-                <form class="form-signin" action="promocao" method="post">
-                    
-                    <h2 class="form-signin-heading">Nova Promoção </h2><br>
-                    <input type="hidden" name="cmd" value="saveAdd"/>
-                    <input type="text" id="inputName" class="form-control" placeholder="Nome " name="nomePromocao"></br>                    
-                    <br><input type="text" id="inputDti" class="form-control" placeholder="Data do Início" name="dataInicioPromocao"></br>                    
-                    <br><input type="text" id="inputDtf" class="form-control" placeholder="Data do Fim" name="dataFimPromocao"></br>
-                    <br><input type="text" id="inputDesconto" class="form-control" placeholder="Percentual de desconto (%)" name="descontoPromocao"></br>
-                    <input type="radio" name="statusPromocao" value="A"> Ativa <br><br>
-                    <input type="radio" name="statusPromocao" value="I"> Inativa <br><br>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Salvar">Cadastrar</button>
-                </form>
+                            <a href="promocao?cmd=add" >Cadastrar nova Promoção</a>
+            <div style="padding: 10px; margin:10px;">
+                <table>
+                    <tr>
+                        <th> ID - Atualizar </th>
+                        <th> Nome </th>
+                        <th> Excluir </th>
+                    </tr>
+                    <c:forEach var="lista" items="${ requestScope.promocaoList }">
+                        <tr>
+                            <td><a href="promocao?cmd=update&id=${lista.idPromocao}"> ${lista.idPromocao} </a></td>
+                            <td>${lista.nomePromocao}</td>
+                           <td><a href="promocao?cmd=del&id=${lista.idPromocao}"> Excluir Promoção</a></td>
+                    </c:forEach>
+                </table>
+            </div>
             </div>
         </div>
     </body>

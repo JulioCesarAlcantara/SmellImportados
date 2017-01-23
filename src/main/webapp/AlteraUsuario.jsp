@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -52,17 +54,51 @@
                     <input type="text" class="form-control" placeholder="Telefone 2" name="telefone2Usuario" value="${usuarioList.get(0).telefone2Usuario}"> 
                     <br>
                     <label> Tipo Usuário </label><br />
-                    <input type="radio" name="tipoUsuario" value="a"> Adm do Sistema<br>
-                    <input type="radio" name="tipoUsuario" value="g"> Gerente da Loja<br>
-                    <input type="radio" name="tipoUsuario" value="e"> Encarregado<br>
-                    <input type="radio" name="tipoUsuario" value="v"> Vendedor<br>
+                    <c:if test="${usuarioList.get(0).tipoUsuario eq 'a'}">
+                        <input type="radio" name="tipoUsuario" value="a" checked> Adm do Sistema<br>
+                        <input type="radio" name="tipoUsuario" value="g"> Gerente da Loja<br>
+                        <input type="radio" name="tipoUsuario" value="e"> Encarregado<br>
+                        <input type="radio" name="tipoUsuario" value="v"> Vendedor<br>
+                    </c:if>
+
+                    <c:if test="${usuarioList.get(0).tipoUsuario eq 'g'}">
+                        <input type="radio" name="tipoUsuario" value="a"> Adm do Sistema<br>
+                        <input type="radio" name="tipoUsuario" value="g" checked> Gerente da Loja<br>
+                        <input type="radio" name="tipoUsuario" value="e"> Encarregado<br>
+                        <input type="radio" name="tipoUsuario" value="v"> Vendedor<br>
+                    </c:if>
+
+                    <c:if test="${usuarioList.get(0).tipoUsuario eq 'e'}">
+                        <input type="radio" name="tipoUsuario" value="a"> Adm do Sistema<br>
+                        <input type="radio" name="tipoUsuario" value="g"> Gerente da Loja<br>
+                        <input type="radio" name="tipoUsuario" value="e" checked> Encarregado<br>
+                        <input type="radio" name="tipoUsuario" value="v"> Vendedor<br>
+                    </c:if>
+
+                    <c:if test="${usuarioList.get(0).tipoUsuario eq 'v'}">
+                        <input type="radio" name="tipoUsuario" value="a"> Adm do Sistema<br>
+                        <input type="radio" name="tipoUsuario" value="g"> Gerente da Loja<br>
+                        <input type="radio" name="tipoUsuario" value="e"> Encarregado<br>
+                        <input type="radio" name="tipoUsuario" value="v" checked> Vendedor<br>
+                    </c:if>
+
+
+
                     <br>
                     <input type="text" class="form-control" placeholder="Data de nascimento" name="dataNascimentoUsuario" value="${usuarioList.get(0).dataNascimentoUsuario}"> 
                     <br>
                     <label> Sexo </label><br />
-                    <input type="radio" name="sexoUsuario" value="m"> Masculino<br>
-                    <input type="radio" name="sexoUsuario" value="f"> Feminino<br> 
-                    <br>
+                    <c:if test= "${usuarioList.get(0).sexoUsuario eq 'm'}">
+                        <input type="radio" name="sexoUsuario" value="m" checked> Masculino <br><br>
+                        <input type="radio" name="sexoUsuario" value="f"> Feminino <br>
+
+                    </c:if>
+
+                    <c:if test= "${usuarioList.get(0).sexoUsuario eq 'f'}">
+                        <input type="radio" name="sexoUsuario" value="m" > Masculino <br><br>
+                        <input type="radio" name="sexoUsuario" value="f" checked> Feminino <br>
+
+                    </c:if>
                     <input type="password" class="form-control" placeholder="Senha" name="passwordUsuario" value="${usuarioList.get(0).passwordUsuario}">
                     <br>
 
