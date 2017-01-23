@@ -36,6 +36,11 @@
         <servlet-name>MontaCompra</servlet-name>
         <servlet-class>cdc.controller.ServletTelaPrincipal</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ItemCompra</servlet-name>
+        <servlet-class>cdc.controller.ServletItemCompra</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>usuarios</servlet-name>
         <url-pattern>/usuarios</url-pattern>
@@ -70,7 +75,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MontaCompra</servlet-name>
-        <url-pattern>/ServletTelaPrincipal</url-pattern>
+        <url-pattern>/MontaCompra</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ItemCompra</servlet-name>
+        <url-pattern>/ItemCompra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -153,16 +153,14 @@ public class ItemCompraDAO implements DAO{
         }
 
         try {
-            String sql = "insert into ItemCompra (idCompraItemCompra, idProdutoItemCompra) values (?,?)";
+            String sql = "insert into ItemCompra (idProdutoItemCompra, idUsuarioItemCompra) values (?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, ic.getIdCompraItemCompra());
-            ps.setInt(2, ic.getIdProdutoItemCompra());
+            ps.setInt(1, ic.getIdProdutoItemCompra());
+            ps.setInt(2, ic.getIdCompraItemCompra());            
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);
-        } finally {
-            ConnectionDAO.closeConnection(conn, ps);
         }
     }
 

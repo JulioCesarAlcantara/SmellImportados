@@ -13,9 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +29,6 @@ public class ServletTelaPrincipal extends HttpServlet {
 
         try {
             String idProduto = request.getParameter("idProduto");
-            Produto p1 = new Produto();
             List<ListaImagemProduto> listaComTudo = new ArrayList<ListaImagemProduto>();
             ProdutoDAO pro = new ProdutoDAO();
 

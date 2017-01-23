@@ -6,40 +6,45 @@ package cdc.model;
  */
 public class ItemCompra {
     
-    private int idItemCompra;
-    private int idCompraItemCompra;
-    private int idProdutoItemCompra;
+    private Integer idItemCompra;
+    private Integer idCompraItemCompra;
+    private Integer idProdutoItemCompra;
 
     public ItemCompra() {
     }
 
-    public ItemCompra(int idItemCompra, int idCompraItemCompra, int idProdutoItemCompra) {
+    public ItemCompra(Integer idCompraItemCompra, Integer idProdutoItemCompra) {
+        this.idCompraItemCompra = idCompraItemCompra;
+        this.idProdutoItemCompra = idProdutoItemCompra;
+    }    
+
+    public ItemCompra(Integer idItemCompra, Integer idCompraItemCompra, Integer idProdutoItemCompra) {
         this.idItemCompra = idItemCompra;
         this.idCompraItemCompra = idCompraItemCompra;
         this.idProdutoItemCompra = idProdutoItemCompra;
     }
 
-    public int getIdItemCompra() {
+    public Integer getIdItemCompra() {
         return idItemCompra;
     }
 
-    public void setIdItemCompra(int idItemCompra) {
+    public void setIdItemCompra(Integer idItemCompra) {
         this.idItemCompra = idItemCompra;
     }
 
-    public int getIdCompraItemCompra() {
+    public Integer getIdCompraItemCompra() {
         return idCompraItemCompra;
     }
 
-    public void setIdCompraItemCompra(int idCompraItemCompra) {
+    public void setIdCompraItemCompra(Integer idCompraItemCompra) {
         this.idCompraItemCompra = idCompraItemCompra;
     }
 
-    public int getIdProdutoItemCompra() {
+    public Integer getIdProdutoItemCompra() {
         return idProdutoItemCompra;
     }
 
-    public void setIdProdutoItemCompra(int idProdutoItemCompra) {
+    public void setIdProdutoItemCompra(Integer idProdutoItemCompra) {
         this.idProdutoItemCompra = idProdutoItemCompra;
     }
     

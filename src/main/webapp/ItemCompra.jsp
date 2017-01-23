@@ -1,8 +1,3 @@
-<%-- 
-    Document   : TelaPrincipal
-    Created on : 31/10/2016, 15:57:02
-    Author     : cesar
---%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="cdc.model.ImagemProduto"%>
@@ -65,12 +60,13 @@
                                     <td> <img src="${lista.imagem1}"> </td> 
                                     <td rowspan="3" valign="top">
                                         <div id="menu" >
-                                            <form action="ItemCompra" method="get">
-                                            <input type="hidden" name="idPro" value="${lista.idProduto}"/>
+                                            <form action="FinalizaCompra" method="get">
+                                            <input type="hidden" name="idPro" value="${lista.idProduto}">
                                             <big><big><big><big><big><big><big><big><big><big><h2> ${lista.nomeProduto} </h2>
                                             <br><h4>${lista.descricaoProduto}</h4>
                                             <br><h3>R$ ${lista.precoProduto}</h3>
-                                            <input type="submit" class="btn btn-success col-lg-4 col-md-1 col-sm-2 col-xs-1" value="Comprar" />
+                                            <br><input type="submit" value="Comprar" class="btn btn-primary"> 
+
                                             </form>
                                         </div>
                                     </td> 

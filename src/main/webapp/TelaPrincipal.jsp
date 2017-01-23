@@ -106,7 +106,7 @@
                     <% for (ListaImagemProduto proIm : list) { %>
                     <form action="MontaCompra" method="get">                        
                         <div class="col-md-3 col-sm-5" >   
-                            <input type="hidden" name="idProduto" value="<%out.print(proIm.getIdProduto().toString());%>"/>      
+                            <input type="hidden" name="idProduto" value="<%out.print(proIm.getIdProduto());%>"/>      
                             <a href="MostraProdutoCompra.jsp"><h2><center><%out.print(proIm.getNomeProduto()); %></center></h2></a>
                             <a href="MostraProdutoCompra.jsp"><img src="<%out.print(proIm.getImagem1());%>" class="img-responsive img-thumbnail"></a>
 
