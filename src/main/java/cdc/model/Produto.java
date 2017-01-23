@@ -18,6 +18,8 @@ public class Produto {
     public Produto() {
     }
 
+    
+    
     public Produto(String nomeProduto, float precoProduto, String descricaoProduto, String Categoria, int quantidadeProduto) {
         this.nomeProduto = nomeProduto;
         this.precoProduto = precoProduto;
@@ -35,8 +37,8 @@ public class Produto {
         this.quantidadeProduto = quantidadeProduto;
     }
 
-    public Produto(String idProduto1) {
-        this.idProduto1 = idProduto1;
+    public Produto(int idProduto) {
+        this.idProduto = idProduto;
     }
 
     public String getIdProduto1() {

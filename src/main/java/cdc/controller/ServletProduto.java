@@ -2,8 +2,10 @@ package cdc.controller;
 
 import cdc.model.ImagemProduto;
 import cdc.model.ImagemProdutoDAO;
+import cdc.model.ItemCompraDAO;
 import cdc.model.Produto;
 import cdc.model.ProdutoDAO;
+import cdc.model.ProdutoPromocaoDAO;
 import cdc.util.DAO;
 import java.io.IOException;
 import java.util.List;
@@ -76,7 +78,8 @@ public class ServletProduto extends HttpServlet {
 
                 rd = request.getRequestDispatcher("/index.html");
             } else if (cmd.equalsIgnoreCase("listar")) {
-                List produtoList = dao.listaTodos();//recebendo o ArrayList com todos os autores
+                ProdutoDAO dao1 = new ProdutoDAO();
+                List produtoList = dao1.pegaProdutos();
                 request.setAttribute("produtoList", produtoList); //enviando parametros via request
                 //setando o despachador
                 getServletContext().getRequestDispatcher("/produtos.jsp").forward(request, response);
@@ -112,12 +115,21 @@ public class ServletProduto extends HttpServlet {
                 getServletContext().getRequestDispatcher("/produtos?cmd=listar").forward(request, response);
 
             } else if (cmd.equalsIgnoreCase("add")) {
-                getServletContext().getRequestDispatcher("/CadastroClientes.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/CadastraProdutos.jsp").forward(request, response);
             } else if (cmd.equalsIgnoreCase("del")) {
                 Integer id = Integer.parseInt(request.getParameter("id"));
-                ClienteModel cli = new ClienteModel(id);
-                dao.excluir(cli);
-                getServletContext().getRequestDispatcher("/clientes?cmd=listar").forward(request, response);
+                Produto prod = new Produto(id);
+                
+                ProdutoPromocaoDAO prodProm = new ProdutoPromocaoDAO();
+                ImagemProdutoDAO prodImg = new ImagemProdutoDAO();
+                ItemCompraDAO itemCompra = new ItemCompraDAO();
+                
+                System.out.println(id);
+                prodProm.excluirPromo(id);
+                prodImg.excluirPromo(id);
+                itemCompra.excluirPromo(id);
+                dao.excluir(prod);
+                getServletContext().getRequestDispatcher("/produtos?cmd=listar").forward(request, response);
             }
 
         } catch (Exception e) {
