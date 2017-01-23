@@ -65,8 +65,8 @@
                                     <td> <img src="${lista.imagem1}"> </td> 
                                     <td rowspan="3" valign="top">
                                         <div id="menu" >
-                                            <form action="FinalizaCompra" method="">
-                                            <input type="hidden" name="idPro" value="${lista.idProduto}"
+                                            <form action="FinalizaCompra" method="get">
+                                            <input type="hidden" name="idPro" value="${lista.idProduto}">
                                             <big><big><big><big><big><big><big><big><big><big><h2> ${lista.nomeProduto} </h2>
                                             <br><h4>${lista.descricaoProduto}</h4>
                                             <br><h3>R$ ${lista.precoProduto}</h3>

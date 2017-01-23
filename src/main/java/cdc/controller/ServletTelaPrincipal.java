@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cesar
  */
-@WebServlet("/MontaCompra")
+//@WebServlet("/MontaCompra")
 public class ServletTelaPrincipal extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
