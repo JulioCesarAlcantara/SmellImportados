@@ -8,12 +8,12 @@ package cdc.controller;
 import cdc.model.UsuarioDAO;
 import cdc.util.DAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -51,7 +51,15 @@ public class ServletLogin extends HttpServlet {
                boolean resultado = usu.verificaLogin(email, senha);
                
                if(resultado){
-                   getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+                   HttpSession session = request.getSession();
+                   session.setMaxInactiveInterval(30);
+                   UsuarioDAO usuario = new UsuarioDAO();
+                   
+                   String idUsuario = Integer.toString(usuario.buscaIdUsuarioPeloLogin(email));
+                   
+                   session.setAttribute("idUsuarioLogin", idUsuario); 
+                   rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
+                   
                } else{
                    getServletContext().getRequestDispatcher("/CadastroCliente.jsp").forward(request, response);
                }

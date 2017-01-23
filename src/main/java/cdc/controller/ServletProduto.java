@@ -87,8 +87,8 @@ public class ServletProduto extends HttpServlet {
             } else if (cmd.equalsIgnoreCase("update")) {
                 Integer idProduto = Integer.parseInt(request.getParameter("id"));
 
-                List produtoList = dao.procura(new Produto(idProduto));
-                request.setAttribute("produtoList", produtoList);
+                //List produtoList = dao.procura(new Produto(idProduto));
+                //request.setAttribute("produtoList", produtoList);
                 getServletContext().getRequestDispatcher("/AlteraProduto.jsp").forward(request, response);
 
             } else if (cmd.equalsIgnoreCase("saveUpdate")) {
