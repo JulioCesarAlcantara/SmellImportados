@@ -40,7 +40,7 @@
         <div id ="redor">
             <div class="container">
 
-                            <a href="produto?cmd=add" >Cadastrar novo Produto </a>
+                            <a href="produtos?cmd=add" >Cadastrar novo Produto </a>
             <div style="padding: 10px; margin:10px;">
                 <table>
                     <tr>
@@ -53,12 +53,12 @@
                     </tr>
                     <c:forEach var="lista" items="${ requestScope.produtoList }">
                         <tr>
-                            <td><a href="produto?cmd=update&id=${lista.idProduto}"> ${lista.idProduto} </a></td>
+                            <td><a href="produtos?cmd=update&id=${lista.idProduto}"> ${lista.idProduto} </a></td>
                             <td>${lista.nomeProduto}</td>
                             <td>${lista.descricaoProduto}</td>
                             <td>${lista.quantidadeProduto}</td>
-                            <td>${precoProduto}</td>
-                           <td><a href="produto?cmd=del&id=${lista.idProduto}"> Excluir Produto</a></td>
+                            <td>R$ ${lista.precoProduto}</td>
+                           <td><a href="produtos?cmd=del&id=${lista.idProduto}"> Excluir</a></td>
                     </c:forEach>
                 </table>
             </div>

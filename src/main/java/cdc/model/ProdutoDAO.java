@@ -66,6 +66,7 @@ public class ProdutoDAO implements DAO {
         if (com == null) {
             throw new Exception("O valor passado não pode ser nulo!");
         }
+        
         try {
             String sql = "delete from Produto where idProduto = ?";
             conn = this.conn;
@@ -78,6 +79,9 @@ public class ProdutoDAO implements DAO {
             ConnectionDAO.closeConnection(conn, ps);
         }
     }
+   
+    
+    
 
     @Override
     public List listaTodos() throws Exception {
@@ -119,60 +123,33 @@ public class ProdutoDAO implements DAO {
             String SQL = "select * from Produto ";
             String where = "";
             boolean checa = false;
-            /* if (com.getIdProduto() != 0 || com.getNomeProduto() != null || com.getPrecoProduto() != 0 || com.getIdCategoriaProduto() != 0) {
+            if (com.getIdProduto() != 0) {
                 where = "where ";
                 if (com.getIdProduto() != 0) {
                     where += "idProduto=? ";
                     checa = true;
                 }
-                if (com.getNomeProduto() != null) {
-                    if (checa) {
-                        where += "and";
-                    }
-                    where += " nomeProduto=? ";
-                    checa = true;
-                }
-                if (com.getPrecoProduto() != 0) {
-                    if (checa) {
-                        where += "and";
-                    }
-                    where += " precoProduto=? ";
-                    checa = true;
-                }
-                /*if (com.getIdCategoriaProduto() != 0) {
-                    if (checa) {    
-                        where += "and";
-                    }
-                    where += " idCategoriaProduto=? ";
-                }
-            }*/
+            }
 
             ps = conn.prepareStatement(SQL + where);
             int contaCampos = 1;
-            /*if (com.getIdProduto() != 0 || com.getNomeProduto() != null || com.getPrecoProduto() != 0 || com.getIdCategoriaProduto() != 0) {
+            if (com.getIdProduto() != 0) {
                 if (com.getIdProduto() != 0) {
                     ps.setInt(contaCampos, com.getIdProduto());
                     contaCampos++;
                 }
-                if (com.getNomeProduto() != null) {
-                    ps.setString(contaCampos, com.getNomeProduto());
-                    contaCampos++;
-                }
-                if (com.getPrecoProduto() != 0) {
-                    ps.setFloat(contaCampos, com.getPrecoProduto());
-                }
-               // if (com.getIdCategoriaProduto() != 0) {
-               //    ps.setInt(contaCampos, com.getIdCategoriaProduto());
-               // }
-            }*/
+            }
             rs = ps.executeQuery();
             List<Produto> list = new ArrayList<Produto>();
             while (rs.next()) {
                 Integer idProduto = rs.getInt(1);
                 String nomeProduto = rs.getString(2);
                 Float precoProduto = rs.getFloat(3);
-                Integer idCategoriaProduto = rs.getInt(4);
-                //list.add(new Produto(idProduto, nomeProduto, precoProduto, idCategoriaProduto));
+                String descricaoProduto = rs.getString(4);
+                String categoriaProduto = rs.getString(5);
+                int quantidadeProduto = rs.getInt(6);
+                
+                list.add(new Produto(idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeProduto));
             }
             return list;
         } catch (SQLException sqle) {
@@ -265,12 +242,13 @@ public class ProdutoDAO implements DAO {
     }
 
     /**
-     * Este método é responsável por buscar um determinado produto pra realizar 
-     * uma compra. O produto é buscado pelo id e é retornado uma lista contendo 
-     * todos seus atributos. 
+     * Este método é responsável por buscar um determinado produto pra realizar
+     * uma compra. O produto é buscado pelo id e é retornado uma lista contendo
+     * todos seus atributos.
+     *
      * @param id
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     public List listaProdutosParaCompra(String id) throws Exception {
         PreparedStatement ps = null;
@@ -284,10 +262,10 @@ public class ProdutoDAO implements DAO {
                     + "INNER JOIN ImagemDeProduto  "
                     + "ON ImagemDeProduto.idProduto = Produto.idProduto "
                     + "WHERE Produto.idProduto = " + id);
-            
+
             System.out.println("SQL : " + ps);
             rs = ps.executeQuery();
-            
+
             List list = new ArrayList();
             while (rs.next()) {
                 list.add(new ListaImagemProduto(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4),
@@ -295,6 +273,28 @@ public class ProdutoDAO implements DAO {
                         rs.getString(9), rs.getString(10), rs.getInt(11)));
             }
             System.out.println("Lista :  " + list);
+            return list;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+    }
+
+    public List pegaProdutos() throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.conn;
+            ps = conn.prepareStatement("SELECT * from Produto");
+            rs = ps.executeQuery();
+
+            List list = new ArrayList();
+            while (rs.next()) {
+                list.add(new Produto(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6)));
+            }
             return list;
         } catch (SQLException e) {
             throw new Exception(e);

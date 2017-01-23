@@ -126,8 +126,8 @@ public class ProdutoPromocaoDAO implements DAO {
         }
 
     }
-    
-     public List buscaProdutosDeUmaPromocao(int idPromo) throws Exception {
+
+    public List buscaProdutosDeUmaPromocao(int idPromo) throws Exception {
 
         PreparedStatement ps = null;
         Connection conn = null;
@@ -144,7 +144,7 @@ public class ProdutoPromocaoDAO implements DAO {
                 String nomeProduto = rs.getString(2);
                 list.add(new Produto(idProduto, nomeProduto, 0, null, null, 0));
             }
-            
+
             return list;
         } catch (SQLException sqle) {
             throw new Exception(sqle);
@@ -210,7 +210,6 @@ public class ProdutoPromocaoDAO implements DAO {
 //            ConnectionDAO.close(conn, ps, rs);
 //        }
 //    }
-
     public void delete(Integer idProduto, Integer idPromocao) throws Exception {
         PreparedStatement ps = null;
         Connection conn = null;
@@ -228,6 +227,27 @@ public class ProdutoPromocaoDAO implements DAO {
 
         } catch (SQLException e) {
             throw new Exception("Erro ao inserir dados do cliente: " + e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps);
+        }
+    }
+
+    public void excluirPromo(int id) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+
+        if (id == 0) {
+            throw new Exception("O valor passado não pode ser nulo!");
+        }
+
+        try {
+            String sql = "delete from ProdutoPromocao where idProdutoProdutoPromocao = ?";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception(e);
         } finally {
             ConnectionDAO.closeConnection(conn, ps);
         }

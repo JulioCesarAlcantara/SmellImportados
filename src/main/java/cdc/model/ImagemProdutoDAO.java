@@ -90,4 +90,23 @@ public class ImagemProdutoDAO implements DAO {
         }
     }
 
+    public void excluirPromo(int id) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+
+        if (id == 0) {
+            throw new Exception("O valor passado não pode ser nulo!");
+        }
+
+        try {
+            String sql = "delete from ImagemDeProduto where idProduto = ?";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception(e);
+        }
+    }
+
 }

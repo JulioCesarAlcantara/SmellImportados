@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author erik
  */
-public class ItemCompraDAO implements DAO{
+public class ItemCompraDAO implements DAO {
 
     Connection conn;
 
@@ -71,7 +71,6 @@ public class ItemCompraDAO implements DAO{
         }
     }
 
-   
     @Override
     public List listaTodos() throws Exception {
         PreparedStatement ps = null;
@@ -94,7 +93,6 @@ public class ItemCompraDAO implements DAO{
         }
     }
 
-    
     @Override
     public List procura(Object ob) throws Exception {
         ItemCompra ic = (ItemCompra) ob;
@@ -119,7 +117,7 @@ public class ItemCompraDAO implements DAO{
             ps = conn.prepareStatement(SQL + where);
             int contaCampos = 1;
             if (ic.getIdItemCompra() != 0) {
-                if (ic.getIdItemCompra()!= 0) {
+                if (ic.getIdItemCompra() != 0) {
                     ps.setInt(contaCampos, ic.getIdItemCompra());
                     contaCampos++;
                 }
@@ -179,6 +177,27 @@ public class ItemCompraDAO implements DAO{
             ps.setString(1, idPro);
             ps.setString(2, idUsu);            
             ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception(e);
+        }
+    }
+
+    public void excluirPromo(int id) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+
+        if (id == 0) {
+            throw new Exception("O valor passado não pode ser nulo!");
+        }
+
+        try {
+            String sql = "delete from ItemCompra where idProdutoItemCompra = ?";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+            System.out.println(ps);
         } catch (SQLException e) {
             throw new Exception(e);
         }
