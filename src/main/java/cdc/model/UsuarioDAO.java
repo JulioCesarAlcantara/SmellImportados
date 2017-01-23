@@ -206,7 +206,29 @@ public class UsuarioDAO implements DAO {
         } finally {
             ConnectionDAO.closeConnection(conn, ps);
         }
+    }
 
+    public Integer buscaIdUsuarioPeloLogin(String userName) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.conn;
+            ps = conn.prepareStatement("SELECT idUsuario "
+                    + "FROM `Usuario` "
+                    + "WHERE emailUsuario = '" + userName +"'");
+            Integer idUsuario = 0; 
+            while (rs.next()) {
+                 idUsuario = rs.getInt(1); 
+            }
+            
+            return idUsuario; 
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
     }
 
 }
