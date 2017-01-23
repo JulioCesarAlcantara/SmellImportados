@@ -32,11 +32,17 @@
 }
 
 div#menu{
-    background-color: #f3f3f2 ;
+    font-family: monospace;
+    background-color: #f8f8f8;
     text-align: center;
     float: right;    
-    width: 600px;
-    height: 700px;
+    width: 400px;
+    height: 50px;
+}
+
+div#celula{    
+    float: right; 
+    width:200px 
 }
 
 div#menu a:hover, div#menu a:active {

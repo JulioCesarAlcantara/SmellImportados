@@ -4,6 +4,7 @@
     Author     : cesar
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="cdc.model.ImagemProduto"%>
 <%@page import="cdc.model.ImagemProdutoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,7 +13,6 @@
 <%@page import="cdc.model.Produto" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="java.util.List" %>
-<jsp:useBean id="produto1" class="cdc.model.Produto" scope="request" />
 
 <!DOCTYPE html>
 <html><head>
@@ -47,30 +47,50 @@
                             <a href="#">Contacts</a>
                         </li>
                         <li>
-                            <a href="login.jsp">Login</a>
+                            <a href="Login.jsp">Login</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        Id do produto eh: ${produto1.idProduto} !!!
 
         <div class="section">
             <div class="background-image background-image-fixed"></div>
             <div class="container">
                 <div class="row">                   
-                    <div class="col-lg-12 col-sm-5" >  
-                        
+                    <div>  
+                        <c:forEach var="lista" items="${requestScope.listaComTudo}">                           
+                            <table style="width: 25%" class="table table-responsive">
+                                <tr>
+                                    <td> <img src="${lista.imagem1}"> </td> 
+                                    <td rowspan="3" valign="top">
+                                        <div id="menu" >
+                                            <form action="FinalizaCompra" method="">
+                                            <input type="hidden" name="idPro" value="${lista.idProduto}"
+                                            <big><big><big><big><big><big><big><big><big><big><h2> ${lista.nomeProduto} </h2>
+                                            <br><h4>${lista.descricaoProduto}</h4>
+                                            <br><h3>R$ ${lista.precoProduto}</h3>
+                                            <br><input type="submit" value="Comprar" class="btn btn-primary"> 
 
+                                            </form>
+                                        </div>
+                                    </td> 
+                                </tr> 
+                                <tr>
+                                    <td> <img src="${lista.imagem2}"> </td>
+                                </tr>
+                                <tr>
+                                    <td> <img src="${lista.imagem3}"> </td>  
+                                </tr>
+                            </table> 
+
+
+
+                        </c:forEach> 
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
 
-        <div id="menu" class="media-object col-lg-2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ">
-
-            Teste de menu;
-        </div> 
     </body>
 </html>

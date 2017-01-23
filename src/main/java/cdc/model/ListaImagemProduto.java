@@ -7,7 +7,7 @@ package cdc.model;
 public class ListaImagemProduto {
    
     private Integer idProduto; 
-    private String nomeproduto; 
+    private String nomeProduto; 
     private float precoProduto;     
     private String descricaoProduto; 
     private String categoriaProduto; 
@@ -22,9 +22,9 @@ public class ListaImagemProduto {
         
     }    
 
-    public ListaImagemProduto(Integer idProduto, String nomeproduto, float precoProduto, String descricaoProduto, String categoriaProduto, int qntProduto, Integer idImagem, String imagem1, Integer idProdutoImagem) {
+    public ListaImagemProduto(Integer idProduto, String nomeProduto, float precoProduto, String descricaoProduto, String categoriaProduto, int qntProduto, Integer idImagem, String imagem1, Integer idProdutoImagem) {
         this.idProduto = idProduto;
-        this.nomeproduto = nomeproduto;
+        this.nomeProduto = nomeProduto;
         this.precoProduto = precoProduto;
         this.descricaoProduto = descricaoProduto;
         this.categoriaProduto = categoriaProduto;
@@ -36,7 +36,7 @@ public class ListaImagemProduto {
 
     public ListaImagemProduto(Integer idProduto, String nomeproduto, float precoProduto, String descricaoProduto, String categoriaProduto, int qntProduto, Integer idImagem, String imagem1, String imagem2, String imagem3, Integer idProdutoImagem) {
         this.idProduto = idProduto;
-        this.nomeproduto = nomeproduto;
+        this.nomeProduto = nomeproduto;
         this.precoProduto = precoProduto;
         this.descricaoProduto = descricaoProduto;
         this.categoriaProduto = categoriaProduto;
@@ -58,12 +58,12 @@ public class ListaImagemProduto {
         this.idProduto = idProduto;
     }
 
-    public String getNomeproduto() {
-        return nomeproduto;
+    public String getNomeProduto() {
+        return nomeProduto;
     }
 
-    public void setNomeproduto(String nomeproduto) {
-        this.nomeproduto = nomeproduto;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 
     public float getPrecoProduto() {
