@@ -2,8 +2,6 @@ package cdc.controller;
 
 import cdc.model.ClienteDAO;
 import Model.ClienteModel;
-import cdc.model.Estado;
-import cdc.model.EstadoDAO;
 import java.io.IOException;
 import cdc.util.DAO;
 import java.text.SimpleDateFormat;

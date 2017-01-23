@@ -25,7 +25,28 @@ public class ImagemProdutoDAO implements DAO {
 
     @Override
     public void atualizar(Object ob) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ImagemProduto ip = (ImagemProduto) ob;
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        if (ip == null) {
+            throw new Exception("O valor passado não pode ser nulo/ The value passed cannot be null");
+        }
+
+        try {
+            String sql = "update ImagemDeProduto ImagemDeProduto set imagem1=?,imagem2=?,imagem3=?) where idProduto = ?)";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, ip.getImagem1());
+            ps.setString(2, ip.getImagem2());
+            ps.setString(3, ip.getImagem3());
+            ps.setInt(4, ip.getIdProduto());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps);
+        }
     }
 
     @Override
@@ -68,4 +89,5 @@ public class ImagemProdutoDAO implements DAO {
             ConnectionDAO.closeConnection(conn, ps);
         }
     }
+
 }

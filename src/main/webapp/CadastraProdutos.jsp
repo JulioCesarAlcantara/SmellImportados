@@ -78,7 +78,7 @@
                     <input type="hidden" name="imagem3" id="imagem3"/>
                     <fieldset class="well the-fieldset">  
                         <legend> Dados do Produto</legend>
-                        <input type="name" id="inputName" class="form-control" placeholder="Nome do Produto " name="nomeProduto"></br>                    
+                        <input type="text" id="inputName" class="form-control" placeholder="Nome do Produto " name="nomeProduto"></br>                    
                         <br><input type="number" id="inputPreco" class="form-control" placeholder="Preco do produto" name="precoProduto"></br>
                         <br><input type="number" id="inputPreco" class="form-control" placeholder="Quantidade" name="quantidadeProduto"></br>                    
                         <br><input type="text" id="inputDescricao" class="form-control" placeholder="Descrição do Produto " name="descricaoProduto"></br>
@@ -90,18 +90,11 @@
                         <br><input type="file" id="inputImagem2" onchange="exibirSrcImagem2(this)" class="btn btn-default" name="imagemProduto2" /></br>
                         <br><input type="file" id="inputImagem3" onchange="exibirSrcImagem3(this)" class="btn btn-default" name="imagemProduto3" /></br>
                     </fieldset>
-
-                    <fieldset class="well the-fieldset">
-                        <legend>Palavras chave</legend>
-                        <br><input type="text" id="inputPalavraChaveProduto" class="form-control" placeholder="Palavra Chave ..." name="palavra1"></br>
-                        <br><input type="text" id="inputPalavraChaveProduto" class="form-control" placeholder="Palavra Chave ..." name="palavra2"></br>
-                        <br><input type="text" id="inputPalavraChaveProduto" class="form-control" placeholder="Palavra Chave ..." name="palavra3"></br>
-                    </fieldset>
                     
                     <fieldset class="well the-fieldset">
                         <legend>Categoria</legend>
-                    <input type="radio" name="categoria" value="m"> Masculino
-                    <input type="radio" name="categoria" value="f"> Feminino
+                        <input type="radio" name="categoria" value="m"> Masculino
+                        <input type="radio" name="categoria" value="f"> Feminino
                     </fieldset>
                     <button class="btn btn-lg btn-primary" type="submit" value="Salvar">Cadastrar</button>
 

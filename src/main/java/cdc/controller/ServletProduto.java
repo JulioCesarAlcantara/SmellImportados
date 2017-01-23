@@ -2,12 +2,11 @@ package cdc.controller;
 
 import cdc.model.ImagemProduto;
 import cdc.model.ImagemProdutoDAO;
-import cdc.model.PalavrasChave;
-import cdc.model.PalavrasChaveDAO;
 import cdc.model.Produto;
 import cdc.model.ProdutoDAO;
 import cdc.util.DAO;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -33,7 +32,7 @@ public class ServletProduto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
-              
+
         String cmd = request.getParameter("cmd");
         DAO dao;
 
@@ -46,7 +45,6 @@ public class ServletProduto extends HttpServlet {
         try {
             dao = new ProdutoDAO();
             ProdutoDAO pd = new ProdutoDAO();
-            PalavrasChaveDAO keyword = new PalavrasChaveDAO();
             ImagemProdutoDAO image = new ImagemProdutoDAO();
             RequestDispatcher rd = null; //setando o objeto "despachador
 
@@ -59,9 +57,6 @@ public class ServletProduto extends HttpServlet {
                 float preco = Float.parseFloat(precoProduto);
 
                 //aqui ta ok;
-                String palavra1 = request.getParameter("palavra1");
-                String palavra2 = request.getParameter("palavra2");
-                String palavra3 = request.getParameter("palavra3");
                 String categoria = request.getParameter("categoria");
                 String qntProduto = request.getParameter("quantidadeProduto");
                 String imagem1 = request.getParameter("imagem1");
@@ -69,22 +64,60 @@ public class ServletProduto extends HttpServlet {
                 String imagem3 = request.getParameter("imagem3");
                 //converter o id do produto para int; 
                 int quantidadeProduto = Integer.parseInt(qntProduto);
-                
+
                 Produto produtoMontado = new Produto(nomeProduto, preco, descricaoProduto, categoria, quantidadeProduto);
                 dao.salvar(produtoMontado);
-                
-                //busca o id do produto add, para add palavra chave e imagem; 
+
+                //busca o id do produto add, para add imagem; 
                 int id = pd.buscaIdPeloNome(nomeProduto);
-                
+
                 ImagemProduto imagemModel = new ImagemProduto(imagem1, imagem2, imagem3, id);
                 image.salvar(imagemModel);
-                
-                PalavrasChave pc = new PalavrasChave(palavra1, palavra2, palavra3, id);
-                keyword.salvar(pc);
 
                 rd = request.getRequestDispatcher("/index.html");
-            } else {
-                rd = request.getRequestDispatcher("/index.html");
+            } else if (cmd.equalsIgnoreCase("listar")) {
+                List produtoList = dao.listaTodos();//recebendo o ArrayList com todos os autores
+                request.setAttribute("produtoList", produtoList); //enviando parametros via request
+                //setando o despachador
+                getServletContext().getRequestDispatcher("/produtos.jsp").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("update")) {
+                Integer idProduto = Integer.parseInt(request.getParameter("id"));
+
+                List produtoList = dao.procura(new Produto(idProduto));
+                request.setAttribute("produtoList", produtoList);
+                getServletContext().getRequestDispatcher("/AlteraProduto.jsp").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("saveUpdate")) {
+                Integer idProduto = Integer.parseInt(request.getParameter("idProduto"));
+                String nomeProduto = request.getParameter("nomeProduto");
+                String descricaoProduto = request.getParameter("descricaoProduto");
+                String precoProduto = request.getParameter("precoProduto");
+                float preco = Float.parseFloat(precoProduto);
+                String categoria = request.getParameter("categoria");
+                String qntProduto = request.getParameter("quantidadeProduto");
+                // img
+                String imagem1 = request.getParameter("imagem1");
+                String imagem2 = request.getParameter("imagem2");
+                String imagem3 = request.getParameter("imagem3");
+                //converter o id do produto para int; 
+                int quantidadeProduto = Integer.parseInt(qntProduto);
+
+                Produto produtoMontado = new Produto(nomeProduto, preco, descricaoProduto, categoria, quantidadeProduto);
+                dao.atualizar(produtoMontado);
+
+                ImagemProduto imagemModel = new ImagemProduto(imagem1, imagem2, imagem3, idProduto);
+                image.atualizar(imagemModel);
+
+                getServletContext().getRequestDispatcher("/produtos?cmd=listar").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("add")) {
+                getServletContext().getRequestDispatcher("/CadastroClientes.jsp").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("del")) {
+                Integer id = Integer.parseInt(request.getParameter("id"));
+                ClienteModel cli = new ClienteModel(id);
+                dao.excluir(cli);
+                getServletContext().getRequestDispatcher("/clientes?cmd=listar").forward(request, response);
             }
 
         } catch (Exception e) {
@@ -108,8 +141,10 @@ public class ServletProduto extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (Exception ex) {
-            Logger.getLogger(ServletProduto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletProduto.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -127,8 +162,10 @@ public class ServletProduto extends HttpServlet {
 
         try {
             processRequest(request, response);
+
         } catch (Exception ex) {
-            Logger.getLogger(ServletProduto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletProduto.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 

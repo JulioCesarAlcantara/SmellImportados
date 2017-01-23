@@ -46,7 +46,7 @@
                     <input type="text" id="inputName" class="form-control" placeholder="Nome " name="nomeCliente"></br>                    
                     <br><input type="email" id="inputEmail" class="form-control" placeholder="Email" name="emailCliente"></br>
                     <br><input type="text" id="inputCPF" class="form-control" placeholder="CPF " name="cpfCliente"></br>
-                    <br><input type="text" id="inputDt" class="form-control" name="dataNascimentoCliente"></br>
+                    <br><input type="text" id="inputDt" class="form-control" placeholder="Data Nascimento" name="dataNascimentoCliente"></br>
                     <br><input type="tel" id="inputTelefone1" class="form-control" placeholder="Telefone1" name="telefone1Cliente"></br>
                     <br><input type="tel" id="inputTelefone2" class="form-control" placeholder="Telefone2" name="telefone2Cliente"></br>
                     <input type="radio" name="sexoCliente" value="m"> Masculino <br><br>
