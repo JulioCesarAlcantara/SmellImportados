@@ -46,6 +46,10 @@
                         <li>
                             <a href="promocao?cmd=listar">Promoções</a>
                         </li>
+                        
+                        <li>
+                            <a href="produtos?cmd=add">Cadastrar produto</a>
+                        </li>
                         <li>
                             <a href="Login.jsp">Login</a>
                         </li>
