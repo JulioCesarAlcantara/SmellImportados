@@ -5,9 +5,11 @@
  */
 package cdc.controller;
 
+import cdc.model.Usuario;
 import cdc.model.UsuarioDAO;
 import cdc.util.DAO;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +34,7 @@ public class ServletLogin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                String cmd = request.getParameter("cmd");
+        String cmd = request.getParameter("cmd");
         DAO dao;
         request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
 
@@ -48,24 +50,29 @@ public class ServletLogin extends HttpServlet {
                 String email = request.getParameter("emailUsuario");
                 String senha = request.getParameter("passwordUsuario");
                 System.out.println("parei aqui");
-               boolean resultado = usu.verificaLogin(email, senha);
-               
-               if(resultado){
-                   HttpSession session = request.getSession();
-                   session.setMaxInactiveInterval(120);
-                   UsuarioDAO usuario = new UsuarioDAO();
-                   
-                   String idUsuario = Integer.toString(usuario.buscaIdUsuarioPeloLogin(email));
-                   
-                   session.setAttribute("idUsuarioLogin", idUsuario); 
-                   rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
-                   
-               } else{
-                   getServletContext().getRequestDispatcher("/CadastroCliente.jsp").forward(request, response);
-               }
-            //    rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
-                
-            getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+                boolean resultado = usu.verificaLogin(email, senha);
+
+                if (resultado) {
+                    HttpSession session = request.getSession();
+                    session.setMaxInactiveInterval(120);
+                    UsuarioDAO usuario = new UsuarioDAO();
+
+                    String idUsuario = Integer.toString(usuario.buscaIdUsuarioPeloLogin(email));
+
+                    session.setAttribute("idUsuarioLogin", idUsuario);
+//                   UsuarioDAO user = new UsuarioDAO();
+//                   Usuario usuario1 = new Usuario();
+//                   usuario1.setIdUsuario(Integer.parseInt(idUsuario));
+//                   List usuarioList = user.procura(rd);
+
+                    rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
+
+                } else {
+                    getServletContext().getRequestDispatcher("/CadastroCliente.jsp").forward(request, response);
+                }
+                //    rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
+
+                getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
 
             } else {
                 rd = request.getRequestDispatcher("/index.html");

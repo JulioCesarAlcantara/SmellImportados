@@ -247,7 +247,7 @@ public class ItemCompraDAO implements DAO {
             throw new Exception("O valor passado não pode ser nulo!");
         }
         try {
-            String sql = "delete from ItemCompra where idItemCompra = '" + idItemCompra +"'";
+            String sql = "delete from ItemCompra where idProdutoItemCompra = '" + idItemCompra +"'";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             System.out.println("SQL2 : " + ps);

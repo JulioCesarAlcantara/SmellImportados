@@ -50,7 +50,6 @@
         </div>
 
         <div class="section">
-            <div class="background-image background-image-fixed"></div>
             <div class="container">
                 <div class="row">                   
                     <div>  
@@ -66,12 +65,9 @@
                                     <td> ${lista.nomeProduto} </td> 
                                     <td> ${lista.descricaoProduto} </td>
                                     <td> R$ ${lista.precoProduto} </td>
-                                    <td >
-                                    <form action="ExcluiDoCarrinho" method="get">
-                                        <input type="hidden" name="idPro" value="${lista.idItemCompra}"/> 
-                                        <br><input type="submit" class="btn btn-danger col-lg-6 col-md-1 col-sm-2 col-xs-1" value="Excluir" />
-                                    </form>
-                            </td> 
+                                    <td><a href="Carrinho?cmd=del&id=${lista.idProduto}"> Excluir Produto</a></td>
+                                    
+                                    
                                 </tr>                  
                             </table> 
 
