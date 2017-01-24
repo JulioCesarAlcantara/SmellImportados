@@ -40,6 +40,14 @@
         <servlet-name>ItemCompra</servlet-name>
         <servlet-class>cdc.controller.ServletItemCompra</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Carrinho</servlet-name>
+        <servlet-class>cdc.controller.ServletCarrinho</servlet-class>
+    </servlet>    
+    <servlet>
+        <servlet-name>ExcluiDoCarrinho</servlet-name>
+        <servlet-class>cdc.controller.ServletCarrinho</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>usuarios</servlet-name>
@@ -80,6 +88,14 @@
     <servlet-mapping>
         <servlet-name>ItemCompra</servlet-name>
         <url-pattern>/ItemCompra</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Carrinho</servlet-name>
+        <url-pattern>/Carrinho</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluiDoCarrinho</servlet-name>
+        <url-pattern>/ExcluiDoCarrinho</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

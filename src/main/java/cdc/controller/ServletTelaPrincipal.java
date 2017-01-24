@@ -23,16 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cesar
  */
-//@WebServlet("/MontaCompra")
+
 public class ServletTelaPrincipal extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        Principal a = request.getUserPrincipal(); 
-        
-            System.out.println("botão carrinho: " + a);
-
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

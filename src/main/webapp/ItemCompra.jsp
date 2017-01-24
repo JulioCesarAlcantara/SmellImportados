@@ -54,26 +54,25 @@
             <div class="container">
                 <div class="row">                   
                     <div>  
-                        <c:forEach var="lista" items="${requestScope.listaDeProdutosDoCarrinho}">                           
-                            <table style="width: 25%" class="table table-responsive">
+                        <c:forEach var="lista" items="${requestScope.listaDeProdutosDoCarrinho}">                      
+                            <table style="width: 100%" class="table">
                                 <tr>
-                                    <td> <img src="${lista.imagem1}"> </td> 
-                                    <td rowspan="3" valign="top">
-                                            <form action="FinalizaCompra" method="get">
-                                                <input type="hidden" name="idPro" value="${lista.idProduto}">
-                                                <big><big><big><big><big><big><big><big><big><big><h2> ${lista.nomeProduto} </h2>
-                                                <br><h4>${lista.descricaoProduto}</h4>
-                                                <br><h3>R$ ${lista.precoProduto}</h3>
-                                                <br><input type="submit" value="Comprar" class="btn btn-primary"> 
-                                            </form>
-                                    </td> 
-                                </tr> 
+                                    <th> Nome do Produto</th>
+                                    <th> Descrição do Produto</th>
+                                    <th> Preço do Produto </th>
+                                    <th> Excluir </th>
+                                </tr>                                
                                 <tr>
-                                    <td> <img src="${lista.imagem2}"> </td>
-                                </tr>
-                                <tr>
-                                    <td> <img src="${lista.imagem3}"> </td>  
-                                </tr>
+                                    <td> ${lista.nomeProduto} </td> 
+                                    <td> ${lista.descricaoProduto} </td>
+                                    <td> R$ ${lista.precoProduto} </td>
+                                    <td >
+                                    <form action="ExcluiDoCarrinho" method="get">
+                                        <input type="hidden" name="idPro" value="${lista.idItemCompra}"/>                                      
+                                        <br><input type="submit" value="Excluir"> 
+                                    </form>
+                            </td> 
+                                </tr>                  
                             </table> 
 
 
