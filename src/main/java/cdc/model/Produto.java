@@ -12,7 +12,7 @@ public class Produto {
     private String nomeProduto;
     private float precoProduto;
     private String descricaoProduto;
-    private String Categoria;  
+    private String categoriaProduto;  
     private int quantidadeProduto; 
 
     public Produto() {
@@ -24,7 +24,7 @@ public class Produto {
         this.nomeProduto = nomeProduto;
         this.precoProduto = precoProduto;
         this.descricaoProduto = descricaoProduto;
-        this.Categoria = Categoria;
+        this.categoriaProduto = Categoria;
         this.quantidadeProduto = quantidadeProduto;
     }
 
@@ -33,7 +33,7 @@ public class Produto {
         this.nomeProduto = nomeProduto;
         this.precoProduto = precoProduto;
         this.descricaoProduto = descricaoProduto;
-        this.Categoria = Categoria;
+        this.categoriaProduto = Categoria;
         this.quantidadeProduto = quantidadeProduto;
     }
 
@@ -81,12 +81,12 @@ public class Produto {
         this.descricaoProduto = descricaoProduto;
     }
 
-    public String getCategoria() {
-        return Categoria;
+    public String getCategoriaProduto() {
+        return categoriaProduto;
     }
 
-    public void setCategoria(String Categoria) {
-        this.Categoria = Categoria;
+    public void setCategoriaProduto(String categoriaProduto) {
+        this.categoriaProduto = categoriaProduto;
     }
 
     public int getQuantidadeProduto() {

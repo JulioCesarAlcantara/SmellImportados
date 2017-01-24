@@ -87,8 +87,8 @@ public class ServletProduto extends HttpServlet {
             } else if (cmd.equalsIgnoreCase("update")) {
                 Integer idProduto = Integer.parseInt(request.getParameter("id"));
 
-                //List produtoList = dao.procura(new Produto(idProduto));
-                //request.setAttribute("produtoList", produtoList);
+                List produtoList = dao.procura(new Produto(idProduto));
+                request.setAttribute("produtoList", produtoList);
                 getServletContext().getRequestDispatcher("/AlteraProduto.jsp").forward(request, response);
 
             } else if (cmd.equalsIgnoreCase("saveUpdate")) {
@@ -106,11 +106,11 @@ public class ServletProduto extends HttpServlet {
                 //converter o id do produto para int; 
                 int quantidadeProduto = Integer.parseInt(qntProduto);
 
-                Produto produtoMontado = new Produto(nomeProduto, preco, descricaoProduto, categoria, quantidadeProduto);
+                Produto produtoMontado = new Produto(idProduto, nomeProduto, preco, descricaoProduto, categoria, quantidadeProduto);
                 dao.atualizar(produtoMontado);
 
-                ImagemProduto imagemModel = new ImagemProduto(imagem1, imagem2, imagem3, idProduto);
-                image.atualizar(imagemModel);
+//                ImagemProduto imagemModel = new ImagemProduto(imagem1, imagem2, imagem3, idProduto);
+//                image.atualizar(imagemModel);
 
                 getServletContext().getRequestDispatcher("/produtos?cmd=listar").forward(request, response);
 

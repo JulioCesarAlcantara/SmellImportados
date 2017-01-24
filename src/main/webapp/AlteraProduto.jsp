@@ -79,17 +79,11 @@
                     <input type="hidden" name="imagem3" id="imagem3"/>
                     <fieldset class="well the-fieldset">  
                         <legend> Dados do Produto</legend>
+                        <input type="text" id="inputId" class="form-control" placeholder="Id do Produto " name="idProduto" value="${produtoList.get(0).idProduto}" readonly>     <br/>              
                         <input type="text" id="inputName" class="form-control" placeholder="Nome do Produto " name="nomeProduto" value="${produtoList.get(0).nomeProduto}">                   
                         <br><input type="text" id="inputPreco" class="form-control" placeholder="Preco do produto" name="precoProduto" value="${produtoList.get(0).precoProduto}">
                         <br><input type="text" id="inputQtd" class="form-control" placeholder="Quantidade" name="quantidadeProduto" value="${produtoList.get(0).quantidadeProduto}">                    
                         <br><input type="text" id="inputDescricao" class="form-control" placeholder="Descrição do Produto " name="descricaoProduto" value="${produtoList.get(0).descricaoProduto}">
-                    </fieldset>
-
-                    <fieldset class="well the-fieldset">
-                        <legend>Imagens</legend>
-                        <br><input type="file" id="inputImagem1" onchange="exibirSrcImagem1(this)" class="btn btn-default" name="imagemProduto1" /></br>
-                        <br><input type="file" id="inputImagem2" onchange="exibirSrcImagem2(this)" class="btn btn-default" name="imagemProduto2" /></br>
-                        <br><input type="file" id="inputImagem3" onchange="exibirSrcImagem3(this)" class="btn btn-default" name="imagemProduto3" /></br>
                     </fieldset>
 
                     <fieldset class="well the-fieldset">
@@ -104,7 +98,7 @@
                             <input type="radio" name="categoria" value="f" checked> Feminino
                         </c:if>
                     </fieldset>
-                    <button class="btn btn-lg btn-primary" type="submit" value="Salvar">Cadastrar</button>
+                    <button class="btn btn-lg btn-primary" type="submit" value="Salvar">Alterar</button>
 
                 </form> 
             </div>

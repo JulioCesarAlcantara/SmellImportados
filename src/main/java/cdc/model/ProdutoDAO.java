@@ -41,15 +41,18 @@ public class ProdutoDAO implements DAO {
             throw new Exception("O valor passado não pode ser nulo!");
         }
         try {
-            String sql = "update Produto set nomeProduto = ?, precoProduto = ?, idCategoriaProduto where idProduto = ?";
+            String sql = "update Produto set nomeProduto = ?, precoProduto = ?, descricaoProduto=?, categoriaProduto=?, quantidadeProduto=?  where idProduto = ?";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setString(1, com.getNomeProduto());
             ps.setFloat(2, com.getPrecoProduto());
-            // ps.setInt(3, com.getIdCategoriaProduto());
-            ps.setInt(4, com.getIdProduto());
+            ps.setString(3, com.getDescricaoProduto());
+            ps.setString(4, com.getCategoriaProduto());
+            ps.setInt(5, com.getQuantidadeProduto());
+            ps.setInt(6, com.getIdProduto());
 
             ps.executeUpdate();
+            System.out.println(ps);
         } catch (SQLException e) {
             throw new Exception(e);
         } finally {
@@ -151,6 +154,7 @@ public class ProdutoDAO implements DAO {
                 
                 list.add(new Produto(idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeProduto));
             }
+            System.out.println(ps);
             return list;
         } catch (SQLException sqle) {
             throw new Exception(sqle);
@@ -177,7 +181,7 @@ public class ProdutoDAO implements DAO {
             ps.setString(1, com.getNomeProduto());
             ps.setFloat(2, com.getPrecoProduto());
             ps.setString(3, com.getDescricaoProduto());
-            ps.setString(4, com.getCategoria());
+            ps.setString(4, com.getCategoriaProduto());
             ps.setInt(5, com.getQuantidadeProduto());
             ps.executeUpdate();
         } catch (SQLException e) {
