@@ -54,21 +54,18 @@
             <div class="container">
                 <div class="row">                   
                     <div>  
-                        <c:forEach var="lista" items="${requestScope.listaComTudo}">                           
+                        <c:forEach var="lista" items="${requestScope.listaDeProdutosDoCarrinho}">                           
                             <table style="width: 25%" class="table table-responsive">
                                 <tr>
                                     <td> <img src="${lista.imagem1}"> </td> 
                                     <td rowspan="3" valign="top">
-                                        <div id="menu" >
                                             <form action="FinalizaCompra" method="get">
-                                            <input type="hidden" name="idPro" value="${lista.idProduto}">
-                                            <big><big><big><big><big><big><big><big><big><big><h2> ${lista.nomeProduto} </h2>
-                                            <br><h4>${lista.descricaoProduto}</h4>
-                                            <br><h3>R$ ${lista.precoProduto}</h3>
-                                            <br><input type="submit" value="Comprar" class="btn btn-primary"> 
-
+                                                <input type="hidden" name="idPro" value="${lista.idProduto}">
+                                                <big><big><big><big><big><big><big><big><big><big><h2> ${lista.nomeProduto} </h2>
+                                                <br><h4>${lista.descricaoProduto}</h4>
+                                                <br><h3>R$ ${lista.precoProduto}</h3>
+                                                <br><input type="submit" value="Comprar" class="btn btn-primary"> 
                                             </form>
-                                        </div>
                                     </td> 
                                 </tr> 
                                 <tr>

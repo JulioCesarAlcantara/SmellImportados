@@ -70,7 +70,10 @@
                                             <big><big><big><big><big><big><big><big><big><big><h2> ${lista.nomeProduto} </h2>
                                             <br><h4>${lista.descricaoProduto}</h4>
                                             <br><h3>R$ ${lista.precoProduto}</h3>
-                                            <input type="submit" class="btn btn-success col-lg-4 col-md-1 col-sm-2 col-xs-1" value="Comprar" />
+                                            <br><input type="submit" class="btn btn-success col-lg-6 col-md-1 col-sm-2 col-xs-1" value="Adicionar no Carrinho" />
+                                            
+                                            <br><input type="button" class="btn btn-secondary col-lg-6 col-md-1 col-sm-2 col-xs-1" value="VerCarrinho" />
+                                            
                                             </form>
                                         </div>
                                     </td> 

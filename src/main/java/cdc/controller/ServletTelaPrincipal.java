@@ -9,6 +9,7 @@ import cdc.model.ListaImagemProduto;
 import cdc.model.Produto;
 import cdc.model.ProdutoDAO;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,6 +26,14 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet("/MontaCompra")
 public class ServletTelaPrincipal extends HttpServlet {
 
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Principal a = request.getUserPrincipal(); 
+        
+            System.out.println("botão carrinho: " + a);
+
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
@@ -40,9 +49,6 @@ public class ServletTelaPrincipal extends HttpServlet {
             Logger.getLogger(ServletTelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-//        p1.setIdProduto(Integer.parseInt(idProduto));
-//        request.setAttribute("produto1", p1);
-//        request.getRequestDispatcher("/MostraProdutoCompra.jsp").forward(request, response);
     }
 
 }

@@ -37,7 +37,7 @@ public class ItemCompraDAO implements DAO {
             String sql = "update ItemCompra set idCompraItemCompra = ?, idProdutoItemCompra = ? where idItemCompra = ?";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, ic.getIdCompraItemCompra());
+            //ps.setInt(1, ic.getIdCompraItemCompra());
             ps.setInt(2, ic.getIdProdutoItemCompra());
             ps.setInt(3, ic.getIdItemCompra());
 
@@ -83,7 +83,7 @@ public class ItemCompraDAO implements DAO {
             rs = ps.executeQuery();
             List<ItemCompra> list = new ArrayList<ItemCompra>();
             while (rs.next()) {
-                list.add(new ItemCompra(rs.getInt(1), rs.getInt(2), rs.getInt(3)));
+                //list.add(new ItemCompra(rs.getInt(1), rs.getInt(2), rs.getInt(3)));
             }
             return list;
         } catch (SQLException e) {
@@ -99,6 +99,7 @@ public class ItemCompraDAO implements DAO {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+
         if (ic == null) {
             throw new Exception("O valor passado não pode ser nulo");
         }
@@ -129,7 +130,7 @@ public class ItemCompraDAO implements DAO {
                 Integer idItemCompra = rs.getInt(1);
                 Integer idCompraItemCompra = rs.getInt(2);
                 Integer idProdutoItemCompra = rs.getInt(3);
-                list.add(new ItemCompra(idItemCompra, idCompraItemCompra, idProdutoItemCompra));
+               // list.add(new ItemCompra(idItemCompra, idCompraItemCompra, idProdutoItemCompra));
             }
             return list;
         } catch (SQLException sqle) {
@@ -155,7 +156,27 @@ public class ItemCompraDAO implements DAO {
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setInt(1, ic.getIdProdutoItemCompra());
-            ps.setInt(2, ic.getIdCompraItemCompra());            
+            ps.setInt(2, ic.getIdUsuarioItemCompra());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception(e);
+        }
+    }
+
+    public void salvarProdutoNoCarrinho(String idPro, String idUsu) throws Exception {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        if (idPro == null || idUsu == null) {
+            throw new Exception("O valor passado não pode ser nulo");
+        }
+
+        try {
+            String sql = "insert into ItemCompra (idProdutoItemCompra, idUsuarioItemCompra) values (?,?)";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idPro);
+            ps.setString(2, idUsu);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);
@@ -183,4 +204,38 @@ public class ItemCompraDAO implements DAO {
         }
     }
 
+    public List listaIntemDoCarrinho(String idUsu) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.conn;
+            ps = conn.prepareStatement("SELECT * " 
+                                       +"FROM  ItemCompra " 
+                                       +"INNER JOIN Produto " 
+                                       +   "ON (ItemCompra.idProdutoItemCompra = Produto.idProduto) " 
+                                       +   "INNER JOIN ImagemDeProduto " 
+                                       +   "ON (ImagemDeProduto.idProduto = Produto.idProduto) " 
+                                       +   "WHERE ItemCompra.idUsuarioItemCompra= '" + idUsu + "'"
+                                       +   "ORDER BY `ItemCompra`.`idItemCompra` ASC");
+
+            System.out.println("SQL : " + ps);
+            rs = ps.executeQuery();
+
+            List list = new ArrayList();
+            while (rs.next()) {
+                list.add(new ItemCompra(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4), rs.getString(5), rs.getFloat(6), rs.getString(7),
+                        rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11),
+                        rs.getString(12), rs.getString(13), rs.getInt(14)));
+            }
+            System.out.println("Lista :  " + list);
+            return list;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+    }
 }
+
