@@ -75,8 +75,7 @@ public class ServletProduto extends HttpServlet {
 
                 ImagemProduto imagemModel = new ImagemProduto(imagem1, imagem2, imagem3, id);
                 image.salvar(imagemModel);
-
-                rd = request.getRequestDispatcher("/index.html");
+                getServletContext().getRequestDispatcher("/produtos?cmd=listar").forward(request, response);
             } else if (cmd.equalsIgnoreCase("listar")) {
                 ProdutoDAO dao1 = new ProdutoDAO();
                 List produtoList = dao1.pegaProdutos();

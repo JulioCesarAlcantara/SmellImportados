@@ -79,7 +79,7 @@
                     <input type="hidden" name="imagem3" id="imagem3"/>
                     <fieldset class="well the-fieldset">  
                         <legend> Dados do Produto</legend>
-                        <input type="text" id="inputId" class="form-control" placeholder="Id do Produto " name="idProduto" value="${produtoList.get(0).idProduto}" readonly>     <br/>              
+                        <input type="hidden" id="inputId" class="form-control" name="idProduto" value="${produtoList.get(0).idProduto}">     <br/>              
                         <input type="text" id="inputName" class="form-control" placeholder="Nome do Produto " name="nomeProduto" value="${produtoList.get(0).nomeProduto}">                   
                         <br><input type="text" id="inputPreco" class="form-control" placeholder="Preco do produto" name="precoProduto" value="${produtoList.get(0).precoProduto}">
                         <br><input type="text" id="inputQtd" class="form-control" placeholder="Quantidade" name="quantidadeProduto" value="${produtoList.get(0).quantidadeProduto}">                    

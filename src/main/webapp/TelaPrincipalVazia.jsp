@@ -46,7 +46,7 @@
                         <li>
                             <a href="promocao?cmd=listar">Gerenciar Promoções</a>
                         </li>
-                        
+
                         <li>
                             <a href="produtos?cmd=listar">Gerenciar Produtos</a>
                         </li>
@@ -71,8 +71,8 @@
                             <div class="row">
                                 <form action="PesquisaProduto" method="post">
                                     <input type="hidden" name="cmd" value="pesquisa"/>
-                                    <input type="text" class="form form-control-static col-lg-6 col-md-6 col-sm-5 col-xs-2" name="palavraPesquisa" placeholder="Pesquise por um produto aqui ..." />
-                                    <input type="submit" class="btn btn-success col-lg-1 col-md-1 col-sm-2 col-xs-1" value="Pesquisar" />
+                                    <input type="text" class="form form-control-static col-lg-6 col-md-6 col-sm-5 col-xs-2" name="palavraPesquisa" placeholder="Pesquise por um produto aqui ..." disabled/>
+                                    <input type="submit" class="btn btn-success col-lg-1 col-md-1 col-sm-2 col-xs-1" value="Pesquisar" disabled/>
                                 </form>
                             </div>
                         </div>
@@ -89,93 +89,8 @@
                 </div>
             </div>
         </footer>
-        <% List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>();
-            ProdutoDAO produto = new ProdutoDAO();
-            String pesquisa = request.getParameter("palavraPesquisa");
-
-            if (pesquisa != null) {
-                list = produto.buscaProdutoPesquisado(pesquisa);
-            } else {
-                list = produto.listaTodos();
-            }
-
-            if (list.isEmpty()) {
-                response.sendRedirect("TelaPrincipalVazia.jsp");
-            }
-        %>
-        <div class="section">
-            <div class="background-image background-image-fixed"></div>
-            <div class="container">
-                <div class="row">       
-
-                    <% for (ListaImagemProduto proIm : list) { %>
-                    <form action="MontaCompra" method="get">                        
-                        <div class="col-md-3 col-sm-5" >   
-                            <input type="hidden" name="idProduto" value="<%out.print(proIm.getIdProduto());%>"/>      
-                            <a href="MostraProdutoCompra.jsp"><h2><%out.print(proIm.getNomeProduto()); %></h2></a>
-                            <a href="MostraProdutoCompra.jsp"><img src="<%out.print(proIm.getImagem1());%>" class="img-responsive img-thumbnail"></a>
-
-                            <br><br>
-                            <p><%out.print(proIm.getDescricaoProduto());%>
-                                <br>
-                            <h3> R$ <%out.print(proIm.getPrecoProduto());%></h3>
-                            <input type="submit" value="Comprar"> 
-                        </div>
-                    </form>
-                    <%}%>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <ul class="pagination">
-                            <li class="">
-                                <a href="#">Prev</a>
-                            </li>
-                            <li class="">
-                                <a href="#">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#">Next</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-xs-3 text-center">
-                        <a><i class="fa fa-5x fa-fw fa-instagram"></i></a>
-                    </div>
-                    <div class="col-xs-3">
-                        <a><i class="fa fa-5x fa-fw fa-twitter"></i></a>
-                    </div>
-                    <div class="col-xs-3">
-                        <a><i class="fa fa-5x fa-fw fa-facebook"></i></a>
-                    </div>
-                    <div class="col-xs-3 text-center">
-                        <a><i class="fa fa-5x fa-fw fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <br><br>
+        <center><h1>Não há produtos Disponíveis</h1></center>
 
     </body>
 </html>
