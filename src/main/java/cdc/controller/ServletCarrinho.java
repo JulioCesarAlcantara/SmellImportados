@@ -34,24 +34,26 @@ public class ServletCarrinho extends HttpServlet {
         try {
 
             String idUsuario = session.getAttribute("idUsuarioLogin").toString();
-            
-            String idItemCompra = request.getParameter("idPro"); 
-            
+            String idItemCompra = request.getParameter("idPro");
             System.out.println("======== id Carrinho: " + idItemCompra);
             
 
+            ItemCompraDAO carrinho = new ItemCompraDAO();
+            carrinho.excluirDocarrinho(idItemCompra);
+
             if (!idUsuario.isEmpty()) {
+
                 List<ItemCompra> listaDeProdutosDoCarrinho = new ArrayList<ItemCompra>();
                 ItemCompraDAO ic = new ItemCompraDAO();
                 listaDeProdutosDoCarrinho = ic.listaIntemDoCarrinho(idUsuario);
-                
+
                 System.out.println("lista de produtos do carrinho: " + listaDeProdutosDoCarrinho);
-                
+
                 request.setAttribute("listaDeProdutosDoCarrinho", listaDeProdutosDoCarrinho);
                 request.getRequestDispatcher("/ItemCompra.jsp").forward(request, response);
 
                 //request.getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
-            } 
+            }
         } catch (Exception ex) {
             request.getRequestDispatcher("/Login.jsp").forward(request, response);
             Logger.getLogger(ServletTelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);

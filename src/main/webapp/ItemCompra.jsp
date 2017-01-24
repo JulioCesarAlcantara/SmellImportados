@@ -68,8 +68,8 @@
                                     <td> R$ ${lista.precoProduto} </td>
                                     <td >
                                     <form action="ExcluiDoCarrinho" method="get">
-                                        <input type="hidden" name="idPro" value="${lista.idItemCompra}"/>                                      
-                                        <br><input type="submit" value="Excluir"> 
+                                        <input type="hidden" name="idPro" value="${lista.idItemCompra}"/> 
+                                        <br><input type="submit" class="btn btn-danger col-lg-6 col-md-1 col-sm-2 col-xs-1" value="Excluir" />
                                     </form>
                             </td> 
                                 </tr>                  

@@ -22,7 +22,8 @@ public class ItemCompraDAO implements DAO {
             this.conn = ConnectionDAO.getConnection();
         } catch (Exception e) {
         }
-    }
+    }    
+    
 
     @Override
     public void atualizar(Object ob) throws Exception {
@@ -235,6 +236,26 @@ public class ItemCompraDAO implements DAO {
             throw new Exception(e);
         } finally {
             ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+    }
+    
+    public void excluirDocarrinho(String idItemCompra) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+
+        if (idItemCompra == null) {
+            throw new Exception("O valor passado não pode ser nulo!");
+        }
+        try {
+            String sql = "delete from ItemCompra where idItemCompra = '" + idItemCompra +"'";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            System.out.println("SQL2 : " + ps);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps);
         }
     }
 }

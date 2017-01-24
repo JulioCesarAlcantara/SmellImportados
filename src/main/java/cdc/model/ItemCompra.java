@@ -41,6 +41,10 @@ public class ItemCompra {
         this.idProdutoImagemDeProduto = idProdutoImagemDeProduto;
     }
 
+    public ItemCompra(Integer idItemCompra) {
+        this.idItemCompra = idItemCompra;
+    }
+    
     public Integer getIdItemCompra() {
         return idItemCompra;
     }
