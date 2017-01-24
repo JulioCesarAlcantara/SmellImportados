@@ -7,7 +7,11 @@ package cdc.controller;
 
 import cdc.model.ItemCompra;
 import cdc.model.ItemCompraDAO;
+import cdc.model.ListaImagemProduto;
+import cdc.model.ProdutoDAO;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -29,10 +33,18 @@ public class ServletItemCompra extends HttpServlet {
             String idUsuario = session.getAttribute("idUsuarioLogin").toString();
             System.out.println("ID PRODUTO: " + idProduto);
             System.out.println("ID USUARIO: " + idUsuario);
+            
 
             if (!idUsuario.isEmpty()) {
                 ItemCompraDAO itemCompra = new ItemCompraDAO();
                 itemCompra.salvarProdutoNoCarrinho(idProduto, idUsuario);
+
+                List<ItemCompra> listaDeProdutosDoCarrinho = new ArrayList<ItemCompra>();
+                ItemCompraDAO ic = new ItemCompraDAO();
+
+                listaDeProdutosDoCarrinho = ic.listaIntemDoCarrinho(idUsuario);
+                request.setAttribute("listaDeProdutosDoCarrinho", listaDeProdutosDoCarrinho);
+                request.getRequestDispatcher("/ItemCompra.jsp").forward(request, response);
 
                 request.getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
             } else {
