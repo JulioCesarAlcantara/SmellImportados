@@ -51,10 +51,12 @@
                             <a href="produtos?cmd=add">Cadastrar produto</a>
                         </li>
                         <li>
-                            <a href="#">Contacts</a>
+                            <a href="Login.jsp">Login</a>
                         </li>
                         <li>
-                            <a href="Login.jsp">Login</a>
+                            <form action="Carrinho" method="get"> 
+                                <input type="submit" class="btn btn-lg" value="Meu Carrinho"/>  
+                            </form>
                         </li>
                     </ul>
                 </div>
