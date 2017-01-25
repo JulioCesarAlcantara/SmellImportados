@@ -60,12 +60,19 @@ public class ServletLogin extends HttpServlet {
                     String idUsuario = Integer.toString(usuario.buscaIdUsuarioPeloLogin(email));
 
                     session.setAttribute("idUsuarioLogin", idUsuario);
-//                   UsuarioDAO user = new UsuarioDAO();
-//                   Usuario usuario1 = new Usuario();
-//                   usuario1.setIdUsuario(Integer.parseInt(idUsuario));
-//                   List usuarioList = user.procura(rd);
-
-                    rd = request.getRequestDispatcher("/TelaPrincipal.jsp");
+                    UsuarioDAO user = new UsuarioDAO();
+                    Usuario usuario1 = new Usuario();
+                    usuario1.setIdUsuario(Integer.parseInt(idUsuario));
+                    List<Usuario> usuarioList = user.procura(usuario1);
+                    String tipoUsuario = null;
+                    for (Usuario us : usuarioList) {
+                        tipoUsuario = us.getTipoUsuario();
+                    }
+                    if (tipoUsuario == null) {
+                        request.setAttribute("tipoUsuario", tipoUsuario);
+                    }
+                    System.out.println(tipoUsuario);
+                    getServletContext().getRequestDispatcher("/TelaPrincipal.jsp");
 
                 } else {
                     getServletContext().getRequestDispatcher("/CadastroCliente.jsp").forward(request, response);

@@ -4,6 +4,7 @@
     Author     : cesar
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="cdc.model.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="cdc.model.ListaImagemProduto" %>
@@ -40,13 +41,15 @@
                         <li>
                             <a href="clientes?cmd=listar">Gerenciar Clientes</a>
                         </li>
-                        <li>
-                            <a href="usuarios?cmd=listar">Gerenciar Usuarios</a>
-                        </li>
+                        <c:if test="${tipoUsuario eq 'a'}">
+                            <li>
+                                <a href="usuarios?cmd=listar">Gerenciar Usuarios</a>
+                            </li>
+                        </c:if>
                         <li>
                             <a href="promocao?cmd=listar">Gerenciar Promoções</a>
                         </li>
-                        
+
                         <li>
                             <a href="produtos?cmd=listar">Gerenciar Produtos</a>
                         </li>

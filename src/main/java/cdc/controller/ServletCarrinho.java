@@ -32,7 +32,7 @@ public class ServletCarrinho extends HttpServlet {
         HttpSession session = request.getSession(false);
         String cmd = request.getParameter("cmd");
         if (cmd == null) {
-            cmd = "principal";
+            cmd = "listar";
         }
 
         try {
@@ -44,7 +44,7 @@ public class ServletCarrinho extends HttpServlet {
 //
 //            ItemCompraDAO carrinho = new ItemCompraDAO();
 //            carrinho.excluirDocarrinho(idItemCompra);
-            if (!idUsuario.isEmpty() && !cmd.equalsIgnoreCase("del")) {
+            if (!idUsuario.isEmpty() && cmd.equalsIgnoreCase("listar")) {
 
                 List<ItemCompra> listaDeProdutosDoCarrinho = new ArrayList<ItemCompra>();
                 ItemCompraDAO ic = new ItemCompraDAO();
@@ -60,8 +60,7 @@ public class ServletCarrinho extends HttpServlet {
                 Integer id = Integer.parseInt(request.getParameter("id"));
                 ItemCompraDAO carrinho = new ItemCompraDAO();
                 carrinho.excluirDocarrinho(id.toString());
-                getServletContext().getRequestDispatcher("/Carrinho?").forward(request, response);
-                cmd = "nada";
+                getServletContext().getRequestDispatcher("/Carrinho?cmd=listar").forward(request, response);
             }
         } catch (Exception ex) {
             request.getRequestDispatcher("/Login.jsp").forward(request, response);
