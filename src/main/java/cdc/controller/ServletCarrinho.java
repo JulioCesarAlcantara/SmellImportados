@@ -31,6 +31,7 @@ public class ServletCarrinho extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         String cmd = request.getParameter("cmd");
+
         if (cmd == null) {
             cmd = "principal";
         }
@@ -38,12 +39,7 @@ public class ServletCarrinho extends HttpServlet {
         try {
 
             String idUsuario = session.getAttribute("idUsuarioLogin").toString();
-            String idItemCompra = request.getParameter("idPro");
-            System.out.println("======== id Carrinho: " + idItemCompra);
-
-//
-//            ItemCompraDAO carrinho = new ItemCompraDAO();
-//            carrinho.excluirDocarrinho(idItemCompra);
+            
             if (!idUsuario.isEmpty() && !cmd.equalsIgnoreCase("del")) {
 
                 List<ItemCompra> listaDeProdutosDoCarrinho = new ArrayList<ItemCompra>();
@@ -55,12 +51,11 @@ public class ServletCarrinho extends HttpServlet {
                 request.setAttribute("listaDeProdutosDoCarrinho", listaDeProdutosDoCarrinho);
                 request.getRequestDispatcher("/ItemCompra.jsp").forward(request, response);
 
-                //request.getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
             } else if (cmd.equalsIgnoreCase("del")) {
-                Integer id = Integer.parseInt(request.getParameter("id"));
+                String id = request.getParameter("idProduto");
                 ItemCompraDAO carrinho = new ItemCompraDAO();
-                carrinho.excluirDocarrinho(id.toString());
-                getServletContext().getRequestDispatcher("/Carrinho?").forward(request, response);
+                carrinho.excluirDocarrinho(id);
+                response.sendRedirect("Carrinho?");
                 cmd = "nada";
             }
         } catch (Exception ex) {
