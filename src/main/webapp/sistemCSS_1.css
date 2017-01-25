@@ -40,6 +40,14 @@ div#menu{
     height: 50px;
 }
 
+table#table-total{
+    width: 100%;
+    text-align: right;
+    float: right;
+    
+}
+
+
 div#celula{    
     float: right; 
     width:200px 

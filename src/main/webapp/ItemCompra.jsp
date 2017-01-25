@@ -80,12 +80,24 @@
                                             <input type="submit" class="btn btn-danger col-lg-6 col-md-1 col-sm-2 col-xs-1" value="Excluir" onClick="location.reload()"/>
                                         </form>   
                                     </td>
-                                </tr>                  
+                                </tr>
                             </table> 
 
-
-
                         </c:forEach> 
+                        <table style="width: 100%" class="table" id="table-total">
+                            
+                            <tr>
+                                <th rowspan="4"> Total </td>
+                                <td></td>
+                                <td> <input type="text" name="total" value="10" readonly="true" class="form form-control col-lg-2 text-center"/></td>
+                                <td></td>
+                            </tr>
+                        </table>
+
+
+
+
+
                     </div>
                 </div>
             </div>
