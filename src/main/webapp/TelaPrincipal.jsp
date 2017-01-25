@@ -41,11 +41,11 @@
                         <li>
                             <a href="clientes?cmd=listar">Gerenciar Clientes</a>
                         </li>
-                        <c:if test="${tipoUsuario eq 'a'}">
+                        
                             <li>
                                 <a href="usuarios?cmd=listar">Gerenciar Usuarios</a>
                             </li>
-                        </c:if>
+                        
                         <li>
                             <a href="promocao?cmd=listar">Gerenciar Promoções</a>
                         </li>
