@@ -5,10 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-/**
- *
- * @author cesar
- */
+
 public class ConnectionDAO {
     public static Connection getConnection() throws Exception{
         try {

@@ -1,8 +1,5 @@
 package cdc.model;
-/**
- *
- * @author cesar
- */
+
 public class ImagemProduto {
     private int idImagem; 
     private String imagem1; 

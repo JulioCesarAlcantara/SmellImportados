@@ -2,10 +2,7 @@ package Model;
 
 import java.sql.Date;
 
-/**
- *
- * @author cesar
- */
+
 public class ClienteModel {
 
     Integer idCliente;

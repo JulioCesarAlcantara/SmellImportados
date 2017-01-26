@@ -7,10 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author cesar
- */
+
 public class ImagemProdutoDAO implements DAO {
 
     Connection conn;

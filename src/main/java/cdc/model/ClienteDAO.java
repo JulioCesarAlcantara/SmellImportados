@@ -11,10 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author cesar
- */
 public class ClienteDAO implements DAO {
 
     private Connection conn = null;

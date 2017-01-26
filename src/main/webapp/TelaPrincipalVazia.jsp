@@ -1,8 +1,4 @@
-<%-- 
-    Document   : TelaPrincipal
-    Created on : 31/10/2016, 15:57:02
-    Author     : cesar
---%>
+
 
 <%@page import="cdc.model.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

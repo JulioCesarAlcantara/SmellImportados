@@ -1,9 +1,6 @@
 package cdc.model;
 
-/**
- *
- * @author cesar
- */
+
 public class ListaImagemProduto {
    
     private Integer idProduto; 

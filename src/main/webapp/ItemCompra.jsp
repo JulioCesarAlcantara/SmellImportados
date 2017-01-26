@@ -16,6 +16,14 @@
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="sistemCSS_1.css" rel="stylesheet">
+        <script type="text/javascript">
+            $('#ex').on("submit", function () {
+
+                location.reload();
+
+            });
+
+        </script>
     </head>
     <body>
         <div class="navbar navbar-default navbar-fixed-top">
@@ -65,9 +73,13 @@
                                     <td> ${lista.nomeProduto} </td> 
                                     <td> ${lista.descricaoProduto} </td>
                                     <td> R$ ${lista.precoProduto} </td>
-                                    <td><a href="Carrinho?cmd=del&id=${lista.idProduto}"> Excluir Produto</a></td>
-                                    
-                                    
+                                    <td> 
+                                        <form action="ExcluiDoCarrinho" method="get" id="ex"> 
+                                            <input type="hidden" name="cmd" value="del"/>
+                                            <input type="hidden" name="idProduto" value="${lista.idProduto}"/>
+                                            <input type="submit" class="btn btn-danger col-lg-6 col-md-1 col-sm-2 col-xs-1" value="Excluir" onClick="location.reload()"/>
+                                        </form>   
+                                    </td>
                                 </tr>                  
                             </table> 
 

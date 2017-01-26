@@ -12,10 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author cesar
- */
+
 //@WebServlet(name = "ServletCliente", urlPatterns = {"/ServletCliente", "/TelaPrincipal"})
 public class ServletCliente extends HttpServlet {
 
