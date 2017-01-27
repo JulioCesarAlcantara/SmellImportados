@@ -68,8 +68,8 @@ public class ServletLogin extends HttpServlet {
                     for (Usuario us : usuarioList) {
                         tipoUsuario = us.getTipoUsuario();
                     }
-                    if (tipoUsuario == null) {
-                        request.setAttribute("tipoUsuario", tipoUsuario);
+                    if (tipoUsuario != null) {
+                        session.setAttribute("tipoUsuario", tipoUsuario);
                     }
                     System.out.println(tipoUsuario);
                     getServletContext().getRequestDispatcher("/TelaPrincipal.jsp");
