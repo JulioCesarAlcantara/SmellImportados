@@ -36,15 +36,11 @@
                         <li>
                             <a href="clientes?cmd=listar">Gerenciar Clientes</a>
                         </li>
-                        <%
-                            HttpSession sessao = request.getSession(false);
-                            System.out.print("===========Isso é o que está na sessão: "+sessao);
-                            if (sessao.getAttribute("tipoUsuario").toString().equalsIgnoreCase("a")) {
-                        %>
+                        
                         <li>
                             <a href="usuarios?cmd=listar">Gerenciar Usuarios</a>
                         </li>
-                        <%}%>
+                       
 
                         <li>
                             <a href="promocao?cmd=listar">Gerenciar Promoções</a>
