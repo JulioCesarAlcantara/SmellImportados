@@ -40,10 +40,13 @@ public class ServletCarrinho extends HttpServlet {
 
                 List<ItemCompra> listaDeProdutosDoCarrinho = new ArrayList<ItemCompra>();
                 ItemCompraDAO ic = new ItemCompraDAO();
+                System.out.println("AQUI 1");
                 listaDeProdutosDoCarrinho = ic.listaIntemDoCarrinho(idUsuario);
-
-                System.out.println("lista de produtos do carrinho: " + listaDeProdutosDoCarrinho);
-
+                System.out.println("AQUI 2");
+                List precoTotal = ic.somaPrecoItensCarrinho(idUsuario);
+                System.out.println("AQUI 3");
+                
+                request.setAttribute("precoTotal", precoTotal);
                 request.setAttribute("listaDeProdutosDoCarrinho", listaDeProdutosDoCarrinho);
                 request.getRequestDispatcher("/ItemCompra.jsp").forward(request, response);
 

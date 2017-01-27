@@ -89,7 +89,7 @@
                             <tr>
                                 <th rowspan="4"> Total </td>
                                 <td></td>
-                                <td> <input type="text" name="total" value="10" readonly="true" class="form form-control col-lg-2 text-center"/></td>
+                                <td> <input type="text" name="total" value="R$ ${requestScope.precoTotal.get(0)}" readonly class="form form-control col-lg-2 text-center"/></td>
                                 <td></td>
                             </tr>
                         </table>

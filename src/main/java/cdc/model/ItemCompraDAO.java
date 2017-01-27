@@ -22,8 +22,7 @@ public class ItemCompraDAO implements DAO {
             this.conn = ConnectionDAO.getConnection();
         } catch (Exception e) {
         }
-    }    
-    
+    }
 
     @Override
     public void atualizar(Object ob) throws Exception {
@@ -131,7 +130,7 @@ public class ItemCompraDAO implements DAO {
                 Integer idItemCompra = rs.getInt(1);
                 Integer idCompraItemCompra = rs.getInt(2);
                 Integer idProdutoItemCompra = rs.getInt(3);
-               // list.add(new ItemCompra(idItemCompra, idCompraItemCompra, idProdutoItemCompra));
+                // list.add(new ItemCompra(idItemCompra, idCompraItemCompra, idProdutoItemCompra));
             }
             return list;
         } catch (SQLException sqle) {
@@ -212,21 +211,21 @@ public class ItemCompraDAO implements DAO {
 
         try {
             conn = this.conn;
-            ps = conn.prepareStatement("SELECT * " 
-                                       +"FROM  ItemCompra " 
-                                       +"INNER JOIN Produto " 
-                                       +   "ON (ItemCompra.idProdutoItemCompra = Produto.idProduto) " 
-                                       +   "INNER JOIN ImagemDeProduto " 
-                                       +   "ON (ImagemDeProduto.idProduto = Produto.idProduto) " 
-                                       +   "WHERE ItemCompra.idUsuarioItemCompra= '" + idUsu + "'"
-                                       +   "ORDER BY `ItemCompra`.`idItemCompra` ASC");
+            ps = conn.prepareStatement("SELECT * "
+                    + "FROM  ItemCompra "
+                    + "INNER JOIN Produto "
+                    + "ON (ItemCompra.idProdutoItemCompra = Produto.idProduto) "
+                    + "INNER JOIN ImagemDeProduto "
+                    + "ON (ImagemDeProduto.idProduto = Produto.idProduto) "
+                    + "WHERE ItemCompra.idUsuarioItemCompra= '" + idUsu + "'"
+                    + "ORDER BY `ItemCompra`.`idItemCompra` ASC");
 
             System.out.println("SQL : " + ps);
             rs = ps.executeQuery();
 
             List list = new ArrayList();
             while (rs.next()) {
-                list.add(new ItemCompra(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4), rs.getString(5), rs.getFloat(6), rs.getString(7),
+                list.add(new ItemCompra(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getFloat(6), rs.getString(7),
                         rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11),
                         rs.getString(12), rs.getString(13), rs.getInt(14)));
             }
@@ -234,11 +233,9 @@ public class ItemCompraDAO implements DAO {
             return list;
         } catch (SQLException e) {
             throw new Exception(e);
-        } finally {
-            ConnectionDAO.closeConnection(conn, ps, rs);
         }
     }
-    
+
     public void excluirDocarrinho(String idItemCompra) throws Exception {
         PreparedStatement ps = null;
         Connection conn = null;
@@ -247,7 +244,7 @@ public class ItemCompraDAO implements DAO {
             throw new Exception("O valor passado não pode ser nulo!");
         }
         try {
-            String sql = "delete from ItemCompra where idProdutoItemCompra = '" + idItemCompra +"'";
+            String sql = "delete from ItemCompra where idProdutoItemCompra = '" + idItemCompra + "'";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             System.out.println("SQL2 : " + ps);
@@ -258,5 +255,31 @@ public class ItemCompraDAO implements DAO {
             ConnectionDAO.closeConnection(conn, ps);
         }
     }
-}
 
+    public List somaPrecoItensCarrinho(String idUsuario) throws Exception{
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.conn;
+
+            ps = conn.prepareStatement("SELECT SUM(Produto.precoProduto) FROM ItemCompra INNER JOIN Produto "
+                    + "ON (ItemCompra.idProdutoItemCompra = Produto.idProduto) INNER JOIN ImagemDeProduto "
+                    + "ON (ImagemDeProduto.idProduto = Produto.idProduto) "
+                    + "WHERE ItemCompra.idUsuarioItemCompra= "+idUsuario);
+
+            rs = ps.executeQuery();
+            
+            List list = new ArrayList();
+            while (rs.next()) {
+                list.add(rs.getInt(1));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+    }
+}
