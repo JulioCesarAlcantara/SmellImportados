@@ -1,5 +1,6 @@
 
 
+<%@page import="javax.websocket.SessionException"%>
 <%@page import="cdc.model.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="cdc.model.ListaImagemProduto" %>
@@ -33,16 +34,20 @@
                         <%
                             HttpSession sessao = request.getSession(true);
                             String tipoUsuario = "c";
-                            boolean ehNova;
+                            boolean ehNova = false;
                             if (sessao.isNew()) {
-                                //continua
-                                sessao.invalidate();
 
+                                //sessao.invalidate();
                                 ehNova = true;
                             } else {
-                                sessao.setMaxInactiveInterval(150);
-                                tipoUsuario = sessao.getAttribute("tipoUsuario").toString();
-                                ehNova = false;
+                                //sessao.setMaxInactiveInterval(150);
+                                try {
+                                    tipoUsuario = sessao.getAttribute("tipoUsuario").toString();
+                                } catch (Exception e) {
+                                    tipoUsuario = "c";
+                                    ehNova = true;
+                                    //out.print(e);
+                                }
                             }
                         %>
                         <li>
@@ -97,6 +102,10 @@
                             <a href="Login.jsp">Login</a>
                         </li>
 
+                        <%if (!ehNova) {%><li>
+                            <a href="login?cmd=logout">Sair</a>
+                        </li>
+                        <%}%>
                     </ul>
                 </div>
             </div>
