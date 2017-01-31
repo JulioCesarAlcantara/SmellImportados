@@ -31,8 +31,20 @@
                     <i class="fa fa-3x fa-car fa-fw pull-right text-muted"></i>
                     <ul class="nav navbar-nav navbar-right">
                         <%
-                            HttpSession sessao = request.getSession(false);
-                            String tipoUsuario = sessao.getAttribute("tipoUsuario").toString();%>
+                            HttpSession sessao = request.getSession(true);
+                            String tipoUsuario = "c";
+                            boolean ehNova;
+                            if (sessao.isNew()) {
+                                //continua
+                                sessao.invalidate();
+
+                                ehNova = true;
+                            } else {
+                                sessao.setMaxInactiveInterval(150);
+                                tipoUsuario = sessao.getAttribute("tipoUsuario").toString();
+                                ehNova = false;
+                            }
+                        %>
                         <li>
                             <a href="TelaPrincipal.jsp">Home</a>
                         </li>
@@ -66,8 +78,8 @@
                         </li>
 
                         <%}
-                            String idCliente = sessao.getAttribute("idUsuarioLogin").toString();
-                            if (tipoUsuario.equalsIgnoreCase("c")) {
+                            if (tipoUsuario.equalsIgnoreCase("c") && !ehNova) {
+                                String idCliente = sessao.getAttribute("idUsuarioLogin").toString();
                         %>
                         <li>
                             <a href="clientes?cmd=update&id=<%out.println(idCliente);%>">Alterar meus Dados</a>
@@ -79,7 +91,7 @@
                                 <input type="submit" class="btn btn-lg" value="Meu Carrinho"/>  
                             </form>
                         </li>
-                            <%}%>
+                        <%}%>
 
                         <li>
                             <a href="Login.jsp">Login</a>
