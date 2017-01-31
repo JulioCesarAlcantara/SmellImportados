@@ -85,17 +85,22 @@
 
                         </c:forEach> 
                         <table style="width: 100%" class="table" id="table-total">
-                            
+
                             <tr>
-                                <th rowspan="4"> Total </td>
+                                <th rowspan="4"> Total 
                                 <td></td>
                                 <td> <input type="text" name="total" value="R$ ${requestScope.precoTotal}" readonly class="form form-control col-lg-2 text-center"/></td>
                                 <td></td>
                             </tr>
+
                         </table>
-
-
-
+                        <form action="ExcluiDoCarrinho" method="get" id="ex"> 
+                            <input type="hidden" name="cmd" value="fin"/>
+                            <input type="hidden" name="valorCompra" value="${requestScope.precoTotal}"/>
+                            <%HttpSession sessao = request.getSession(false);%>
+                            <input type="hidden" name="idUsuario" value="<%out.print(sessao.getAttribute("idUsuarioLogin").toString());%>">
+                            <input type="submit" class="btn alinhado-direita btn-danger" value="Finalizar Compra" />
+                        </form>
 
 
                     </div>

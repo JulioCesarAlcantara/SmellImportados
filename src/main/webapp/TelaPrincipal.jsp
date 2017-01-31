@@ -37,10 +37,10 @@
                             boolean ehNova = false;
                             if (sessao.isNew()) {
 
-                                //sessao.invalidate();
+                                sessao.invalidate();
                                 ehNova = true;
                             } else {
-                                //sessao.setMaxInactiveInterval(150);
+                                sessao.setMaxInactiveInterval(300);
                                 try {
                                     tipoUsuario = sessao.getAttribute("tipoUsuario").toString();
                                 } catch (Exception e) {

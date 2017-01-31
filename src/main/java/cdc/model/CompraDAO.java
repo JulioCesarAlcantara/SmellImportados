@@ -41,7 +41,7 @@ public class CompraDAO implements DAO {
             ps = conn.prepareStatement(sql);
             ps.setFloat(1, com.getPrecoCompra());
             ps.setFloat(2, com.getFreteCompra());
-            ps.setInt(3, com.getIdClienteCompra());
+            ps.setInt(3, com.getIdUsuarioCompra());
             ps.setInt(4, com.getIdCompra());
 
             ps.executeUpdate();
@@ -110,7 +110,7 @@ public class CompraDAO implements DAO {
             String SQL = "select * from Compra ";
             String where = "";
             boolean checa = false;
-            if (com.getIdCompra() != 0 || com.getFreteCompra() != 0 || com.getPrecoCompra() != 0 || com.getIdClienteCompra() != 0) {
+            if (com.getIdCompra() != 0 || com.getFreteCompra() != 0 || com.getPrecoCompra() != 0 || com.getIdUsuarioCompra() != 0) {
                 where = "where ";
                 if (com.getIdCompra() != 0) {
                     where += "idCompra=? ";
@@ -130,7 +130,7 @@ public class CompraDAO implements DAO {
                     where += " precoCompra=? ";
                     checa = true;
                 }
-                if (com.getIdClienteCompra() != 0) {
+                if (com.getIdUsuarioCompra() != 0) {
                     if (checa) {
                         where += "and";
                     }
@@ -140,7 +140,7 @@ public class CompraDAO implements DAO {
 
             ps = conn.prepareStatement(SQL + where);
             int contaCampos = 1;
-            if (com.getIdCompra() != 0 || com.getFreteCompra() != 0 || com.getPrecoCompra() != 0 || com.getIdClienteCompra() != 0) {
+            if (com.getIdCompra() != 0 || com.getFreteCompra() != 0 || com.getPrecoCompra() != 0 || com.getIdUsuarioCompra() != 0) {
                 if (com.getIdCompra() != 0) {
                     ps.setInt(contaCampos, com.getIdCompra());
                     contaCampos++;
@@ -152,8 +152,8 @@ public class CompraDAO implements DAO {
                 if (com.getFreteCompra() != 0) {
                     ps.setFloat(contaCampos, com.getFreteCompra());
                 }
-                if(com.getIdClienteCompra() != 0){
-                    ps.setInt(contaCampos, com.getIdClienteCompra());
+                if(com.getIdUsuarioCompra() != 0){
+                    ps.setInt(contaCampos, com.getIdUsuarioCompra());
                 }
             }
             rs = ps.executeQuery();
@@ -185,12 +185,12 @@ public class CompraDAO implements DAO {
         }
 
         try {
-            String sql = "insert into Compra (valorCompra, freteCompra, idClienteCompra) values (?,?,?)";
+            String sql = "insert into Compra (valorCompra, freteCompra, idUsuarioCompra) values (?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setFloat(1, com.getPrecoCompra());
             ps.setFloat(2, com.getFreteCompra());
-            ps.setInt(3, com.getIdClienteCompra());
+            ps.setInt(3, com.getIdUsuarioCompra());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);

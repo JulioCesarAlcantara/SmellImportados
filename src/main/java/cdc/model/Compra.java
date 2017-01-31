@@ -9,7 +9,7 @@ public class Compra {
     private int idCompra;
     private float precoCompra;
     private float freteCompra;
-    private int idClienteCompra;
+    private int idUsuarioCompra;
 
     public Compra() {
     }
@@ -18,7 +18,7 @@ public class Compra {
         this.idCompra = idCompra;
         this.precoCompra = precoCompra;
         this.freteCompra = freteCompra;
-        this.idClienteCompra = idClienteCompra;
+        this.idUsuarioCompra = idClienteCompra;
     }
 
     public Compra(float precoCompra, float freteCompra) {
@@ -50,12 +50,12 @@ public class Compra {
         this.freteCompra = freteCompra;
     }
 
-    public int getIdClienteCompra() {
-        return idClienteCompra;
+    public int getIdUsuarioCompra() {
+        return idUsuarioCompra;
     }
 
-    public void setIdClienteCompra(int idClienteCompra) {
-        this.idClienteCompra = idClienteCompra;
+    public void setIdUsuarioCompra(int idUsuarioCompra) {
+        this.idUsuarioCompra = idUsuarioCompra;
     }
     
     

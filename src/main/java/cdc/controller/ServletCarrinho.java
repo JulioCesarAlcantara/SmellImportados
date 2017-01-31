@@ -5,6 +5,8 @@
  */
 package cdc.controller;
 
+import cdc.model.Compra;
+import cdc.model.CompraDAO;
 import cdc.model.ItemCompra;
 import cdc.model.ItemCompraDAO;
 import java.io.IOException;
@@ -35,28 +37,39 @@ public class ServletCarrinho extends HttpServlet {
         try {
 
             String idUsuario = session.getAttribute("idUsuarioLogin").toString();
-            
-            if (!idUsuario.isEmpty() && !cmd.equalsIgnoreCase("del")) {
+
+            if (!idUsuario.isEmpty() && !cmd.equalsIgnoreCase("del") && !cmd.equalsIgnoreCase("fin")) {
 
                 List<ItemCompra> listaDeProdutosDoCarrinho = new ArrayList<ItemCompra>();
                 ItemCompraDAO ic = new ItemCompraDAO();
                 listaDeProdutosDoCarrinho = ic.listaIntemDoCarrinho(idUsuario);
                 float precoTotal = 0;
-                for(ItemCompra item : listaDeProdutosDoCarrinho){
-                precoTotal += item.getPrecoProduto();
+                for (ItemCompra item : listaDeProdutosDoCarrinho) {
+                    precoTotal += item.getPrecoProduto();
                 }
 
                 //List precoTotal = ic.somaPrecoItensCarrinho(idUsuario);
                 request.setAttribute("precoTotal", precoTotal);
                 request.setAttribute("listaDeProdutosDoCarrinho", listaDeProdutosDoCarrinho);
                 request.getRequestDispatcher("/ItemCompra.jsp").forward(request, response);
-
             } else if (cmd.equalsIgnoreCase("del")) {
                 String id = request.getParameter("idProduto");
                 ItemCompraDAO carrinho = new ItemCompraDAO();
                 carrinho.excluirDocarrinho(id);
                 response.sendRedirect("Carrinho?");
-                cmd = "nada";
+            } else if (cmd.equalsIgnoreCase("fin")) {
+                CompraDAO compraDAO = new CompraDAO();
+                Compra compra = new Compra();
+                Integer id = Integer.parseInt(request.getParameter("idUsuario"));
+                Float valor = Float.parseFloat(request.getParameter("valorCompra"));
+                compra.setIdUsuarioCompra(id);
+                compra.setPrecoCompra(valor);
+                compra.setFreteCompra(4);
+                compraDAO.salvar(compra);
+                 
+                //request.getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+            } else {
+                System.out.println("deu ruim");
             }
         } catch (Exception ex) {
             request.getRequestDispatcher("/Login.jsp").forward(request, response);

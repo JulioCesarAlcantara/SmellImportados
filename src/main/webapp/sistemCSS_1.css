@@ -3390,6 +3390,9 @@ fieldset[disabled] .btn-warning.active {
     background-color: #d9534f;
     border-color: #d43f3a;
 }
+.alinhado-direita {
+    float:right;
+}
 .btn-danger:hover,
 .btn-danger:focus,
 .btn-danger.focus,
