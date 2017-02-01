@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,9 +61,8 @@ public class ServletPromocao extends HttpServlet {
                 dao.salvar(promo);
                 getServletContext().getRequestDispatcher("/promocao?cmd=listar").forward(request, response);
             } else if (cmd.equalsIgnoreCase("listar")) {
-                List promocaoList = dao.listaTodos();//recebendo o ArrayList com todos os autores
-                request.setAttribute("promocaoList", promocaoList); //enviando parametros via request
-                //setando o despachador
+                List promocaoList = dao.listaTodos();
+                request.setAttribute("promocaoList", promocaoList);
                 getServletContext().getRequestDispatcher("/promocoes.jsp").forward(request, response);
 
             } else if (cmd.equalsIgnoreCase("update")) {
@@ -95,6 +95,12 @@ public class ServletPromocao extends HttpServlet {
                 Promocao promo = new Promocao(id);
                 dao.excluir(promo);
                 getServletContext().getRequestDispatcher("/promocao?cmd=listar").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("mostraProCliente")) {
+                HttpSession sessao = request.getSession(true);
+                Integer id = Integer.parseInt(request.getParameter("id"));
+                sessao.setAttribute("idPromo", id);
+                getServletContext().getRequestDispatcher("/TelaMostraProdutos.jsp").forward(request, response);
+
             }
 
         } catch (Exception e) {

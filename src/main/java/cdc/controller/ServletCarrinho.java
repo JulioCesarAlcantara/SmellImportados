@@ -149,10 +149,10 @@ public class ServletCarrinho extends HttpServlet {
                 GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);
 
                 // Para gerar um boleto em PDF  
-                gerador.geraPDF("/home/cesar/Documentos/BancoDoBrasil.pdf");
+                gerador.geraPDF("/home/erik/BancoDoBrasil.pdf");
 
                 // Para gerar um boleto em PNG  
-                gerador.geraPNG("/home/cesar/Documentos/BancoDoBrasil.png");
+                gerador.geraPNG("/home/erik/BancoDoBrasil.png");
 
                 compra.setIdUsuarioCompra(id);
                 compra.setPrecoCompra(valor);

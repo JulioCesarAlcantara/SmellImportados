@@ -135,7 +135,10 @@ public class ProdutoPromocaoDAO implements DAO {
 
         try {
             conn = this.conn;
-            ps = conn.prepareStatement("SELECT idProduto, nomeProduto FROM ProdutoPromocao INNER JOIN Promocao ON Promocao.idPromocao = ProdutoPromocao.idPromocaoProdutoPromocao INNER JOIN Produto ON idProduto = idProdutoProdutoPromocao AND idPromocao = ?");
+            ps = conn.prepareStatement("SELECT idProduto, nomeProduto FROM ProdutoPromocao "
+                                    + "INNER JOIN Promocao ON Promocao.idPromocao = ProdutoPromocao.idPromocaoProdutoPromocao "
+                                    + "INNER JOIN Produto ON idProduto = idProdutoProdutoPromocao "
+                                    + "AND idPromocao = ?");
             ps.setInt(1, idPromo);
             rs = ps.executeQuery();
             List<Produto> list = new ArrayList<>();

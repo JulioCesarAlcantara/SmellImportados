@@ -84,7 +84,7 @@ public class ServletLogin extends HttpServlet {
             } else if(cmd.equalsIgnoreCase("logout")) {
                 HttpSession sessao = request.getSession(false);
                 sessao.invalidate();
-                getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
 
             }
 

@@ -152,11 +152,13 @@
         <% List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>();
             ProdutoDAO produto = new ProdutoDAO();
             String pesquisa = request.getParameter("palavraPesquisa");
-
+            HttpSession sessao1 = request.getSession(true);
+            String idPromo = sessao1.getAttribute("idPromo").toString();
+            Integer id = Integer.parseInt(idPromo);
             if (pesquisa != null) {
                 list = produto.buscaProdutoPesquisado(pesquisa);
             } else {
-                list = produto.listaTodos();
+                list = produto.listaProdutosDaPromocao(id);
             }
 
             if (list.isEmpty()) {
