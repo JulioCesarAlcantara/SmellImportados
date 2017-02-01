@@ -27,6 +27,7 @@ public class ServletPesquisaProduto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String cmd = request.getParameter("cmd");
+        System.out.println("CMD: " + cmd);
         DAO dao;
 
         request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
@@ -38,9 +39,14 @@ public class ServletPesquisaProduto extends HttpServlet {
         try {
             RequestDispatcher rd = null; //setando o objeto "despachador
             if (cmd.equalsIgnoreCase("pesquisa")) {
+                System.out.println("Aqui 1");
                 getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
-            } else {
-                rd = request.getRequestDispatcher("/index.html");
+            } else if (cmd.equalsIgnoreCase("pesquisaMasc")) {
+                System.out.println("Aqui 2");
+                getServletContext().getRequestDispatcher("/TelaDeProdutosMasculinos.jsp").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("pesquisaFem")){
+                System.out.println("Aqui 3");
+                getServletContext().getRequestDispatcher("/TelaDeProdutosFemininos.jsp").forward(request, response);
             }
 
         } catch (Exception e) {

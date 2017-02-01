@@ -6015,6 +6015,15 @@ button.close {
     border-width: 5px 5px 0;
     border-top-color: #000000;
 }
+
+.tooltip.top-right-center .tooltip-arrow {
+    bottom: 0;
+    left: 5px;
+    float: start;
+    margin-bottom: -5px;
+    border-width: 5px 5px 0;
+    border-top-color: #000000;
+}
 .tooltip.right .tooltip-arrow {
     top: 50%;
     left: 0;

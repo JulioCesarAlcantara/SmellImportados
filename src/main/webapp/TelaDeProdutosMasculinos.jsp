@@ -1,5 +1,3 @@
-
-
 <%@page import="cdc.model.Promocao"%>
 <%@page import="cdc.model.PromocaoDAO"%>
 <%@page import="javax.websocket.SessionException"%>
@@ -130,18 +128,18 @@
                         <div class="container">
                             <div class="row">
                                 <div class="row"> 
-                                    <form action="PesquisaProduto" method="post">          
-                                        <input type="hidden" name="cmd" value="pesquisa"/>
+                                    <form action="PesquisaProduto" method="post">   
+                                        <input type="hidden" name="cmd" value="pesquisaMasc"/>
                                         <input type="text" class="form form-control-static col-lg-6 col-md-6 col-sm-5 col-xs-2" name="palavraPesquisa" placeholder="Pesquise por um produto aqui ..." />
-                                        <input type="submit" class="btn btn-success col-lg-1 col-md-1 col-sm-2 col-xs-1" value="Pesquisar" />  
+                                        <input type="submit" class="btn btn-success col-lg-1 col-md-1 col-sm-2 col-xs-1" value="Pesquisar" />                                        
+
                                     </form>
                                     <fieldset class="col-lg-2 alinhado-direita top-right" >
                                         <legend style="color: white">Categorias</legend>
                                         <a href="TelaDeProdutosMasculinos.jsp" ><button class="btn alinhado-direita">Masculino</button></a><br>
                                         <br><a href="TelaDeProdutosFemininos.jsp" ><button class="btn alinhado-direita">Feminino</button></a>   
                                     </fieldset>
-                                    
-                                </div>   
+                                </div>
                             </div>
                         </div>
                         <br>
@@ -157,15 +155,14 @@
                 </div>
             </div>
         </footer>
-                        
         <% List<ListaImagemProduto> list = new ArrayList<ListaImagemProduto>();
             ProdutoDAO produto = new ProdutoDAO();
             String pesquisa = request.getParameter("palavraPesquisa");
 
             if (pesquisa != null) {
-                list = produto.buscaProdutoPesquisado(pesquisa);
+                list = produto.buscaProdutosMasculinosPesquisados(pesquisa);
             } else {
-                list = produto.listaTodos();
+                list = produto.listaTodosMasculinos();
             }
 
             if (list.isEmpty()) {
