@@ -24,99 +24,31 @@
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <i class="fa fa-3x fa-car fa-fw pull-right text-muted"></i>
                     <ul class="nav navbar-nav navbar-right">
-                         <%
-                            HttpSession sessao = request.getSession(true);
-                            String tipoUsuario = "c";
-                            boolean ehNova = false;
-                            if (sessao.isNew()) {
-
-                                sessao.invalidate();
-                                ehNova = true;
-                            } else {
-                                sessao.setMaxInactiveInterval(300);
-                                try {
-                                    tipoUsuario = sessao.getAttribute("tipoUsuario").toString();
-                                } catch (Exception e) {
-                                    tipoUsuario = "c";
-                                    ehNova = true;
-                                    //out.print(e);
-                                }
-                            }
-                        %>
                         <li>
                             <a href="TelaPrincipal.jsp">Home</a>
-                        </li>
-                        <%
-                            if (tipoUsuario.equalsIgnoreCase("a")) {
-                        %>
-                        <li>
-                            <a href="usuarios?cmd=listar">Gerenciar Usuarios</a>
-                        </li>
-                        <%}%>
-
-                        <%
-                            if (tipoUsuario.equalsIgnoreCase("g")) {
-                        %>
-
-                        <li>
-                            <a href="promocao?cmd=listar">Gerenciar Promoções</a>
-                        </li>
-                        <%}%>
-
-                        <%
-                            if (tipoUsuario.equalsIgnoreCase("e")) {
-                        %>
-                        <li>
-                            <a href="produtos?cmd=listar">Gerenciar Produtos</a>
-                        </li>
-
-                        <%}
-                            if (tipoUsuario.equalsIgnoreCase("c") && !ehNova) {
-                                String idCliente = sessao.getAttribute("idUsuarioLogin").toString();
-                        %>
-                        <li>
-                            <a href="clientes?cmd=update&id=<%out.println(idCliente);%>">Alterar meus Dados</a>
-                        </li>
-
-
-                        <li>
-                            <form action="Carrinho" method="get"> 
-                                <input type="submit" class="btn btn-lg" value="Meu Carrinho"/>  
-                            </form>
-                        </li>
-                        <%}%>
-
-                        <li>
-                            <a href="Login.jsp">Login</a>
-                        </li>
-
-                        <%if (!ehNova) {%><li>
-                            <a href="login?cmd=logout">Sair</a>
-                        </li>
-                        <%}%>
-                    </ul>
+                        </li>                    </ul>
                 </div>
             </div>
         </div>
         <div id ="redor">
             <div class="container">
 
-                            <a href="clientes?cmd=add" >Cadastrar novo Cliente</a>
-            <div style="padding: 10px; margin:10px;">
-                <table>
-                    <tr>
-                        <th> ID - Atualizar </th>
-                        <th> Nome </th>
-                        <th> Excluir </th>
-                    </tr>
-                    <c:forEach var="lista" items="${ requestScope.clienteList }">
+                <a href="clientes?cmd=add" >Cadastrar novo Cliente</a>
+                <div style="padding: 10px; margin:10px;">
+                    <table>
                         <tr>
-                            <td><a href="clientes?cmd=update&id=${lista.idCliente}"> ${lista.idCliente} </a></td>
-                            <td>${lista.nomeCliente}</td>
-                           <td><a href="clientes?cmd=del&id=${lista.idCliente}"> Excluir Cliente</a></td>
-                    </c:forEach>
-                </table>
-            </div>
+                            <th> ID - Atualizar </th>
+                            <th> Nome </th>
+                            <th> Excluir </th>
+                        </tr>
+                        <c:forEach var="lista" items="${ requestScope.clienteList }">
+                            <tr>
+                                <td><a href="clientes?cmd=update&id=${lista.idCliente}"> ${lista.idCliente} </a></td>
+                                <td>${lista.nomeCliente}</td>
+                                <td><a href="clientes?cmd=del&id=${lista.idCliente}"> Excluir Cliente</a></td>
+                            </c:forEach>
+                    </table>
+                </div>
             </div>
         </div>
     </body>
